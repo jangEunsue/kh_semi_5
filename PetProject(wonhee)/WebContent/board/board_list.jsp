@@ -68,25 +68,25 @@
 	   <br>
 	   
 	   <c:if test="${page > block }">
-	      <a href="admin_board_list.do?page=1">◀◀</a>
-	      <a href="admin_board_list.do?page=${startBlock -1 }">◀</a>
+	      <a href="board_list.do?page=1">◀◀</a>
+	      <a href="board_list.do?page=${startBlock -1 }">◀</a>
 	   </c:if>
 	   
 	   <c:forEach begin="${startBlock }" end="${endBlock }" var="i">
 	   
 	      <c:if test="${i == page }">
-	         <b><a href="admin_board_list.do.do?page=${i }">[${i }]</a></b>
+	         <b><a href="board_list.do?page=${i }">[${i }]</a></b>
 	      </c:if>
 	      
 	      <c:if test="${i != page }">
-	         <a href="admin_board_list.do.do?page=${i }">[${i }]</a>
+	         <a href="board_list.do?page=${i }">[${i }]</a>
 	      </c:if>
 	      
 	   </c:forEach>
 	   
 	   <c:if test="${endBlock < allPage }">
-	      <a href="admin_board_list.do.do?page=${endBlock + 1 }">▶</a>
-	      <a href="admin_board_list.do.do?page=${allPage }">▶▶</a>
+	      <a href="board_list.do?page=${endBlock + 1 }">▶</a>
+	      <a href="board_list.do?page=${allPage }">▶▶</a>
 	   </c:if>
 	   
 	   <br> <br>

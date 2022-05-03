@@ -64,7 +64,7 @@
             </td>
             
             <td>
-              <a href="<%=request.getContextPath() %>/admin_board_list.do">게시판
+              <a href="<%=request.getContextPath() %>/board_list.do">게시판
                전체 목록</a>
             </td>
             

@@ -745,6 +745,57 @@ public List<BoardDTO> getBoardList() {
 			return count;
 		}  // getBoardCount() 메서드 end
 	
+		public List<BoardDTO> getBoardList(int page, int rowsize) {
+			
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			
+			int startNo = (page * rowsize) - (rowsize - 1);
+			int endNo = (page * rowsize);
+			
+			
+		     try {
+		    	 openConn();
+					
+					sql = "select * from "
+							+ " (select row_number() "
+							+ " over(order by free_no desc) rnum, "
+							+ " b.* from pet_free b ) "
+							+ " where rnum >= ? and rnum <= ?";
+				
+				pstmt = con.prepareStatement(sql);
+			
+				pstmt.setInt(1, startNo);
+				
+				pstmt.setInt(2, endNo);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					
+					BoardDTO dto = new BoardDTO();
+					
+					dto.setFree_no(rs.getInt("free_no"));
+					dto.setFree_writer(rs.getString("free_writer"));
+					dto.setFree_title(rs.getString("free_title"));
+					dto.setFree_cont(rs.getString("free_cont"));
+					dto.setFree_pwd(rs.getString("free_pwd"));
+					dto.setFree_hit(rs.getInt("free_hit"));
+					dto.setFree_date(rs.getString("free_date"));
+					dto.setFree_update(rs.getString("free_update"));
+					
+					list.add(dto);
+					
+				}
+				
+		     } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				closeConn(rs, pstmt, con);
+			}
+		     return list;
+		
+		}
 	
 	
 	
