@@ -7,5 +7,6 @@ create table pet_review( -- 상품 리뷰
     review_date date,                               -- 작성일
     review_group number(5) not null,                -- 글 그룹
     review_step number(5),                          -- 글 답변
-    review_indent number(5)                         --글 답변 들여쓰기
+    review_indent number(5),                        -- 글 답변 들여쓰기
+    sale_no number(20)								-- 주문 번호
 );

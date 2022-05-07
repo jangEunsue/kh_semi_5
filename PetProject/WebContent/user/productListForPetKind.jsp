@@ -40,6 +40,8 @@ h3{
 </style>
 </head>
 <body>
+
+<jsp:include page="../inc/pet_top.jsp" />
 <div width="80%">
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -110,11 +112,9 @@ h3{
 	<%-- 검색 --%>
 	<div class="select" align="right">
 		<form method="post"
-			action="<%=request.getContextPath()%>/board_search.do">
+			action="<%=request.getContextPath()%>/product_search.do">
 			<select name="search_field">
 				<option value="pName">상품명</option>
-				<option value="conpany]">제조사</option>
-				<option value="title_content">제목+내용</option>
 			</select> 
 			<input name="search_keyword">
 			 <input type="submit" value="검색">
@@ -125,7 +125,7 @@ h3{
 		<div id="feed">
 			<h3 align="left">사료</h3>
 			<hr width="50%" align="left">
-			<table>
+			<table width="50%">
 				<c:set var="feedlist" value="${feed}" />
 				<c:if test="${!empty feedlist}">
 					<tr>
@@ -158,7 +158,7 @@ h3{
 			<div id="stick">
 			<h3 align="left">스틱 및 개껌</h3>
 			<hr width="50%">
-			<table>
+			<table width="50%">
 			<c:set var="sticklist" value="${stick}" />
 			<c:if test="${!empty sticklist}"> <%-- 상품이 있다면 --%>
 					<tr>
@@ -191,7 +191,7 @@ h3{
 			<div id="biscuit">
 			<h3 align="left">비스킷</h3>
 			<hr width="50%">
-			<table>
+			<table width="50%">
 			<c:set var="biscuitlist" value="${biscuit}" />
 			<c:if test="${!empty biscuitlist}"> <%-- 상품이 있다면 --%>
 					<tr>
@@ -224,7 +224,7 @@ h3{
 			<div id="beefJerky">
 			<h3 align="left">육포 및 어포</h3>
 			<hr width="50%">
-			<table>
+			<table width="50%">
 			<c:set var="beefJerkyList" value="${beefJerky}" />
 			<c:if test="${!empty beefJerkyList}"> <%-- 상품이 있다면 --%>
 					<tr>
@@ -257,7 +257,7 @@ h3{
 			<div id="can">
 			<h3 align="left">캔</h3>
 			<hr width="50%">
-			<table>
+			<table width="50%">
 			<c:set var="canList" value="${can}" />
 			<c:if test="${!empty canList}"> <%-- 상품이 있다면 --%>
 					<tr>
@@ -290,7 +290,7 @@ h3{
 			<div id="treat">
 			<h3 align="left">트릿</h3>
 			<hr width="50%">
-			<table>
+			<table width="50%"> 
 			<c:set var="treatList" value="${treat}" />
 			<c:if test="${!empty trearList}"> <%-- 상품이 있다면 --%>
 					<tr>
@@ -323,7 +323,7 @@ h3{
 			<div id="milk">
 			<h3 align="left">펫밀크</h3>
 			<hr width="50%">
-			<table>
+			<table width="50%">
 			<c:set var="milkList" value="${milk}" />
 			<c:if test="${!empty milkList}"> <%-- 상품이 있다면 --%>
 					<tr>
@@ -359,7 +359,7 @@ h3{
 	<script src="js/bootstrap.min.js" > </script>
 	<script src="js/run_prettify.js" ></script>
 	
-	
+	 <jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>
 				

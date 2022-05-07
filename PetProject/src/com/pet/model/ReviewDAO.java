@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -78,5 +80,165 @@ public class ReviewDAO {
 		}
 
 	} // closeConn() 메서드 end
+	
+	//해당 상품의 리뷰들을 조회하는 메서드
+	public List<ReviewDTO> selectReview(int no){
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		
+		openConn();
+	
+		try {
+			sql="select * from pet_review where pnum=? order by review_no desc";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReviewDTO dto = new ReviewDTO();
+				
+				dto.setReview_no(rs.getInt("review_no"));
+				dto.setPnum(rs.getInt("pnum"));
+				dto.setReview_cont(rs.getString("review_cont"));
+				dto.setUserID(rs.getString("userID"));
+				dto.setRimage(rs.getString("rimage"));
+				dto.setReview_date(rs.getString("review_date"));
+				dto.setReview_group(rs.getInt("review_group"));
+				dto.setReview_step(rs.getInt("review_step"));
+				dto.setReview_indent(rs.getInt("review_indent"));
+				dto.setSale_no(rs.getInt("sale_no"));
+				dto.setSale_date(rs.getString("sale_date"));
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return list;
+	}
+	
+	//리뷰를 추가하는 메서드
+	public int insertReview(ReviewDTO dto) {
+		
+		int result=0 , reNum= 0, gNum=0;
+		
+		openConn();
+		
+		try {
+			//review_no와 review_group의 최댓값을 조회하는 메서드
+			sql="select max(review_no), max(review_group) from pet_review";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				reNum = rs.getInt(1) + 1;
+				gNum = rs.getInt(2) +1;
+			}
+			
+			
+			sql="insert into pet_review values(?,?,?,?,?,sysdate,?,0,0,?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, reNum);
+			pstmt.setInt(2, dto.getPnum());
+			pstmt.setString(3, dto.getReview_cont());
+			pstmt.setString(4, dto.getUserID());
+			pstmt.setString(5, dto.getRimage());
+			pstmt.setInt(6, gNum);
+			pstmt.setInt(7, dto.getSale_no());
+			pstmt.setString(8, dto.getSale_date());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}//insertReview end
+	
+	//구매내역에서 작성한 리뷰를 확인하는 메서드
+	public ReviewDTO selectMyReview(String id, int saleNum, int pNum) {
+		ReviewDTO dto = new ReviewDTO();
+		
+		openConn();
+		
+		try {
+			sql = "select * from pet_review where userID=? and pnum=? and sale_no=?  order by review_no desc";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, pNum);
+			pstmt.setInt(3, saleNum);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto.setReview_no(rs.getInt("review_no"));
+				dto.setPnum(rs.getInt("pnum"));
+				dto.setReview_cont(rs.getString("review_cont"));
+				dto.setUserID(rs.getString("userID"));
+				dto.setRimage(rs.getString("rimage"));
+				dto.setReview_date(rs.getString("review_date"));
+				dto.setReview_group(rs.getInt("review_group"));
+				dto.setReview_step(rs.getInt("review_step"));
+				dto.setReview_indent(rs.getInt("review_indent"));
+				dto.setSale_no(rs.getInt("sale_no"));
+				dto.setSale_date(rs.getString("sale_date"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return dto;
+	}//selectMyReview end
+	
+	
+	//리뷰를 수정하는 메서드
+	public int updateReview(ReviewDTO dto) {
+		
+		int result = 0;
+		
+		openConn();
+		
+		try {
+			sql = "update pet_review set review_cont = ? ,rimage = ? where userID = ? and pnum = ? and sale_no =? ";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getReview_cont());
+			pstmt.setString(2, dto.getRimage());
+			pstmt.setString(3, dto.getUserID());
+			pstmt.setInt(4, dto.getPnum());
+			pstmt.setInt(5, dto.getSale_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return result;
+	}//updateReview end
 
 }

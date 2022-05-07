@@ -89,7 +89,7 @@ public class ProductDAO {
 		 openConn();
 		
 		 try {
-			 sql="select * from pet_product where p_category_fk=?";
+			 sql="select * from pet_product where p_category_fk=? order by p_num desc";
 			 
 			pstmt = con.prepareStatement(sql);
 			
@@ -138,7 +138,7 @@ public class ProductDAO {
 		 openConn();
 		
 		 try {
-			 sql="select * from pet_product where p_category_fk=? and p_kind_fk = ?";
+			 sql="select * from pet_product where p_category_fk=? and p_kind_fk = ? order by p_num desc";
 			 
 			pstmt = con.prepareStatement(sql);
 			
@@ -228,4 +228,55 @@ public class ProductDAO {
 		
 		return dto;
 	}//selectProductcont end
+	
+	
+	//검색한 상품을 조회하는 메서드
+	public List<ProductDTO> searchProduct(String keyward){
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		
+		openConn();
+		
+		try {
+			 sql="select * from pet_product where p_name like ? order by p_num desc";
+			 
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "%" + keyward + "%");
+		
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				
+				dto.setP_num(rs.getInt("p_num"));
+				dto.setP_name(rs.getString("p_name"));
+				dto.setP_category_fk(rs.getString("p_category_fk"));
+				dto.setP_age(rs.getString("p_age"));
+				dto.setP_kind_fk(rs.getString("p_kind_fk"));
+				dto.setP_wetdry(rs.getString("p_wetdry"));
+				dto.setP_size(rs.getString("p_size"));
+				dto.setP_neutering(rs.getString("p_neutering"));
+				dto.setP_company(rs.getString("p_company"));
+				dto.setP_image(rs.getString("p_image"));
+				dto.setP_price(rs.getInt("p_price"));
+				dto.setP_qty(rs.getInt("p_qty"));
+				dto.setP_spec(rs.getString("p_spec"));
+				dto.setP_content(rs.getString("p_content"));
+				dto.setP_point(rs.getInt("p_point"));
+				dto.setP_inputdate(rs.getString("p_inputdate"));
+				
+				list.add(dto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		 
+		return list;
+	}//searchProduct end
 }
