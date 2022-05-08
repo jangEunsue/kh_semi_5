@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
 a {
 	text-decoration: none;
 	color: black;
@@ -24,42 +23,25 @@ table tr td {
 </style>
 <script type="text/javascript">
 	$(".btn").mouseover(function() {
-	var btn = document.getElementByClass("btn");
-	btn.style.backgroundColor = '#F1BCAE ';
+		var btn = document.getElementByClass("btn");
+		btn.style.backgroundColor = '#F1BCAE ';
 	});
-	
+
 	$(function() {
 
-		$("#review").on("click",function() {
-		
-		let p_num = $("#p_num").val();
-		
-		$.ajax({
-			type: "post",
-			url : "selectReviewCont.jsp",
-			data : {pnum : p_num },
-			datatype : "jsp",
-			success :  function(data) {
-				document.p.innerHTML = data;  //id= cont안에 해당 내역을 넣기
-				alert("통신 성공");
-			},
-			error : function(data) {
-				alert("통신 오류 입니다.");
-			}
-		});
-		});
-		
-		$(function cont() {
-			
+		$("#review").on("click", function() {
+
 			let p_num = $("#p_num").val();
-			
+
 			$.ajax({
-				type: "post",
-				url : "selectdetailCont.jsp",
-				data : {pnum : p_num },
+				type : "post",
+				url : "selectReviewCont.jsp",
+				data : {
+					pnum : p_num
+				},
 				datatype : "jsp",
-				success :  function(data) {
-					document.p.innerHTML = data;  //id= cont안에 해당 내역을 넣기
+				success : function(data) {
+					document.p.innerHTML = data; //id= cont안에 해당 내역을 넣기
 					alert("통신 성공");
 				},
 				error : function(data) {
@@ -67,15 +49,44 @@ table tr td {
 				}
 			});
 		});
-		
-		$("#detail").on("click",cont());
-		
+
+		$(function cont() {
+
+			let p_num = $("#p_num").val();
+
+			$.ajax({
+				type : "post",
+				url : "selectdetailCont.jsp",
+				data : {
+					pnum : p_num
+				},
+				datatype : "jsp",
+				success : function(data) {
+					document.p.innerHTML = data; //id= cont안에 해당 내역을 넣기
+					alert("통신 성공");
+				},
+				error : function(data) {
+					alert("통신 오류 입니다.");
+				}
+			});
+		});
+
+		$("#detail").on("click", cont());
+
 		cont();
 	});
+	
+	function cart(num) {
+		let pqty =$("#pqty").val();
+		if(pqty){
+			location.href = "addCart.do?no="+num+"&qty="+pqty;
+		}
+	}
+	
 </script>
 </head>
 <body>
-<jsp:include page="../inc/pet_top.jsp" />
+	<jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
 		<c:set var="dto" value="${cont}"></c:set>
 		<c:if test="${dto.getP_name() != null}">
@@ -93,24 +104,24 @@ table tr td {
 					<td></td>
 				</tr>
 				<tr>
-				<td>
-				</td>
-				</tr>
-				<tr>
 					<td colspan="2" align="center">${dto.getP_name()}<br>
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;가격 : ${dto.getP_price()}원
+					<br>
+					<br>
+					수량 &nbsp;<input type="number" id="pqty" value="1" min="1" width="30px">
 					</td>
 				</tr>
 				<tr>
-				<td>
-				<button value="장바구니" class="btn" >장바구니</button> &nbsp; &nbsp; &nbsp; &nbsp;
-				<button value="결제하기" class="btn" >결제하기</button>
-				</td>
+					<td align="center">
+						<button value="장바구니" class="btn" onclick="cart(${dto.getP_num()})">장바구니</button> &nbsp; &nbsp;
+						&nbsp; &nbsp;
+						<button value="결제하기" class="btn">결제하기</button>
+					</td>
 				</tr>
 			</table>
 			<br>
 			<br>
-			
+
 			<br>
 			<br>
 			<input type="button" value="상세정보" onclick="" id="detail"> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -125,7 +136,7 @@ table tr td {
 			href="<%=request.getContextPath()%>/dokindList.do">[품종 선택]</a>
 
 	</div>
-	 <jsp:include page="../inc/pet_bottom.jsp" />
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>
 
