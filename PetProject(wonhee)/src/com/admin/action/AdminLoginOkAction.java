@@ -11,6 +11,7 @@ import com.admin.controller.Action;
 import com.admin.controller.ActionForward;
 import com.pet.model.AdminDAO;
 import com.pet.model.AdminDTO;
+import com.pet.model.OrderDAO;
 
 public class AdminLoginOkAction implements Action {
 
@@ -32,13 +33,27 @@ public class AdminLoginOkAction implements Action {
 		
 		PrintWriter out = response.getWriter();
 		
+		OrderDAO o_dao = OrderDAO.getInstance();
+		
+		int del_b = o_dao.CountDel_b();
+		int del_i = o_dao.CountDel_i();
+		int del_a = o_dao.CountDel_a();
+		int pay_b = o_dao.CountPay_b();
+		int pay_a = o_dao.CountPay_a();
+		
 		if(check > 0) {
 			// 관리자 정보
 			AdminDTO dto = dao.getAdmin(m_id);
 			
 			session.setAttribute("adminId", dto.getM_id());
 			session.setAttribute("adminName", dto.getM_name());
-			
+			session.setAttribute("del_b", del_b);
+			session.setAttribute("del_i", del_i);
+			session.setAttribute("del_a", del_a);
+			session.setAttribute("pay_b", pay_b);
+			session.setAttribute("pay_a", pay_a);
+
+			forward.setRedirect(false);
 			forward.setPath("admin1/admin_main.jsp");
 			
 		}else if(check == -1) {

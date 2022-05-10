@@ -319,7 +319,7 @@ public class PetQandADAO {
 				}
 				
 				sql = "insert into pet_QandA "
-						+ " values(?, ?, ?, ?, ?, sysdate, '', ?, ?, ?)";
+						+ " values(?, ?, ?, ?, ?, default, sysdate, '', ?, ?, ?)";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, count);

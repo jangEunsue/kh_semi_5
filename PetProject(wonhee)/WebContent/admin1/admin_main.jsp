@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YamYamPet 관리자 모드</title>
 <style type="text/css">
  
  ul li {
@@ -18,31 +18,74 @@
 
    <jsp:include page="../include/admin_top.jsp" />
 
-  <div align="center">
-     
-     <ul>
-        <li> <a href="<%=request.getContextPath() %>/admin_cart_input.do">상품 카테고리 등록</a>
-        <li> <a href="<%=request.getContextPath() %>/admin_cart_list.do">상품 카테고리 목록</a>
-        <li> <a href="<%=request.getContextPath() %>/admin_product_input.do">상품 등록</a>
-        <li> <a href="<%=request.getContextPath() %>/admin_product_input.do">상품 리스트</a>
-     
-     </ul>
-     
-     <ul>
-        <li> <a href="<%=request.getContextPath() %>/admin_board_list.do"> 자유 게시판</a>
-        <li> <a href="<%=request.getContextPath() %>/boardqa_list.do"> Q/A 게시판</a>
-        <li> <a href="<%=request.getContextPath() %>/notice_list.do"> 공지사항 게시판</a>
-    </ul>
-     
-     <ul>
-         <li> <a href="<%=request.getContextPath() %>/admin_member_input.do">회원 등록</a>
-         <li> <a href="<%=request.getContextPath() %>/admin_member_list.do">회원 전체 목록</a>
-         
-     
-     </ul>
+<div class="main_right">
+	
+		<div class="main_box">
+			<h3>주문관리</h3><span class="menu_direct"><a href="<%=request.getContextPath()%>/admin_order_mg.do">바로가기</a></span>
+			<table class="order box_table">
+			
+				<tr>
+					<th>배송전</th> <th>배송중</th> <th>배송완료</th> <th>결제전</th> <th>결제완료</th>
+				</tr>
+				<tr>
+					<td>${del_b}</td><td>${del_i}</td><td>${del_a}</td>
+					<td>${pay_b}</td><td>${pay_a}</td>
+				</tr> 
+			
+			</table>
+
+		</div>
+		
+		
+		
+		<div class="main_box">
+			<h3>상품관리</h3><span class="menu_direct"><a href="<%=request.getContextPath()%>/admin_product_list.do">바로가기</a></span>
+			<table class="order box_table">
+			
+				<tr>
+					<th>재고관리</th> <th></th>
+				</tr>
+				<tr>
+					<td></td>
+				</tr> 
+			
+			</table>
+
+		</div>
+		
+		<div class="main_box">
+			<h3>게시글관리</h3><span class="menu_direct"><a href="<%=request.getContextPath()%>/admin_board_list.do">바로가기</a></span>
+			<table class="order box_table">
+			
+				<tr>
+					<th>자유게시판</th> <th>Q&A</th>
+				</tr>
+				<tr>
+					<td></td>
+				</tr> 
+			
+			</table>
+
+		</div>
+		
+		<div class="main_box">
+			<h3>매출관리</h3><span class="menu_direct"><a href="<%=request.getContextPath()%>/admin_sales_list.do">바로가기</a></span>
+			<table class="order box_table">
+			
+				<tr>
+					<th>총매출</th> <th></th>
+				</tr>
+				<tr>
+					<td></td>
+				</tr> 
+			
+			</table>
+
+		</div>
+			
+	</div>
   
-  
-  </div>
    <jsp:include page="../include/admin_bottom.jsp" />
+   
 </body>
 </html>

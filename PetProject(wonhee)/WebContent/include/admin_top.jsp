@@ -19,6 +19,52 @@
  
 </style>
 
+<style type="text/css">
+	/*헤더 css*/
+	ul li {list-style : none;}
+	.main_header{padding-left:40px; background:#c9decf;  line-height:50px;}
+	.main_mode{float:left; margin:0 50px 0 10px; }
+	.main_h_area{height:50px;}
+	.main_h_title{width:100px; cursor:pointer; line-height:45px; float:left; text-align: center; height:50px; }
+	.main_h_title::after{border-right:1px solid #888;}
+	.main_h_title:hover{background:#F1BCAE; transition:all 0.3s;}
+	.main_h_title:hover.main_h_title a{font-weight:600; transition:all 0.3s;}
+	.main_h_title a {width:100%;height:100%; vertical-align: middle; text-decoration: none; font-size:14px; }
+	/*헤더 css end*/
+	
+	/* 전체 기본 틀 적용css*/	
+	*{margin:0; padding:0;}
+	html,body{width:100%; height:100%;}
+	a{color:#000000; text-decoration:none;}
+	a:hover{text-decoration: none;}
+	/* 전체 기본 틀 적용css end*/
+	
+	/* 메인페이지 css */
+	.adminid_box{width: 200px;padding:50px; text-align: left;}
+	.ad_id{font-size: 16px; color:black;}
+	.logout{ margin-top : 10px;font-size:12px;  }
+	.logout a{color:#888;}
+	.main_box{width:450px; height:120px; float:left; margin:40px;}
+	.box_table {margin-top :20px; width:450px; padding:20px; border:1px solid #222222;}
+	.menu_direct{font-size:12px; color:#444444; float:right; line-height:0;}
+	/* 메인페이지 css end*/
+	
+	/*왼쪽 탭 css*/
+	.main_left{ float:left;width:25%; }
+	.left_menu{padding:50px;width:200px; text-align: left; }
+	.left_tab{margin-bottom:10px;} 
+	.left_tab.bold{font_weight:bold;}
+	/*왼쪽 탭 css end*/
+	
+	/*오른쪽 탭 내용 css*/
+	.main_right{float:center; width:75%; text-align: center; margin:40px auto;}
+	
+	#toptitle {
+		margin-left: 20%;
+		
+	}
+</style>
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 <!-- Animate.css -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet" type="text/css">
@@ -81,25 +127,34 @@
         <div id="navwrap_bg" class="clearfix">
             <div id="navwrap">
                 <div id="logo">
-                    <h1><a href="#"><img src="images/logo.png" alt="logo" border="0"></a></h1>
+                    <h1><a href="admin_main.do"><img src="images/logo.png" alt="logo" border="0"></a></h1>
                 </div>
             </div>
             <!--2단 메뉴-->
             <nav id="nav" class="clearfix">
                 <ul class="menu">
-                    <li><a href="admin_main.do">관라지 홈</a>
-                    </li>
-                    <li><a href="#">카테고리</a><!---/default/02/01.php?top=2&sub=0-->
+                    <li><a href="#">주문관리</a><!---/default/02/01.php?top=1&sub=0-->
                         <ul>
-                            <li><a href="admin_cart_input.do">카테고리 등록</a></li>
-                            <li><a href="admin_cart_list.do">카테고리 조회</a></li>
+                            <li><a href="<%=request.getContextPath() %>/admin_order_mg.do">주문 내역</a></li>
+                            <li><a href="#">결제 관리</a></li>
+                            <li><a href="#">배송 관리</a></li>
                         </ul>
                     </li>
+
                     <li><a href="#">상품</a><!--/default/03/01.php?top=3&sub=0--->
                         <ul>
-                            <li><a href="admin_product_input.do">상품 등록</a></li>
-                            <li><a href="admin_product_list.do">상품 조회</a></li>
+                            <li><a href="<%=request.getContextPath() %>/admin_product_list.do">상품 관리</a></li>
+                            <li><a href="<%=request.getContextPath() %>/admin_product_input.do">상품 등록</a></li>
+                            <li><a href="<%=request.getContextPath() %>/admin_category_list.do">카테고리 관리</a></li>
+                            <li><a href="<%=request.getContextPath() %>/admin_category_input.do">카테고리 등록</a></li>
                         </ul>
+                    </li>
+                    
+                    <li><a href="<%=request.getContextPath() %>/admin_sales_list.do">매출관리</a><!---/default/02/01.php?top=2&sub=0-->
+                        <!-- <ul>
+                            <li><a href="admin_cart_input.do">카테고리 조회</a></li>
+                            <li><a href="admin_cart_list.do">카테고리 등록</a></li>
+                        </ul> -->
                     </li>
                     <li><a href="#">회원</a><!---/default/04/01.php?top=4&sub=0-->
                         <ul>
@@ -122,8 +177,8 @@
     </header>
 
      <div align="center">
-       <hr width="65%">
-         <h2>관리자 페이지</h2>
+       <br>
+         <h4 id="toptitle" align="left">관리자 모드</h4>
      
          
        <hr width="65%">
