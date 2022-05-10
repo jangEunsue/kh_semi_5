@@ -1,6 +1,7 @@
 package com.pet.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,8 @@ import com.pet.controller.Action;
 import com.pet.controller.ActionForward;
 import com.pet.model.ProductDAO;
 import com.pet.model.ProductDTO;
+import com.pet.model.ReviewDAO;
+import com.pet.model.ReviewDTO;
 
 public class UserProductViewAction implements Action {
 
@@ -19,10 +22,14 @@ public class UserProductViewAction implements Action {
 		int no = Integer.parseInt(request.getParameter("pnum").trim());
 		
 		ProductDAO dao = ProductDAO.getInstance();
-		
 		ProductDTO dto = dao.selectProductcont(no);
 		
+		
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		List<ReviewDTO> review = rdao.selectReview(no);
+		
 		request.setAttribute("cont", dto);
+		request.setAttribute("review", review);
 		
 		ActionForward forward = new ActionForward();
 		

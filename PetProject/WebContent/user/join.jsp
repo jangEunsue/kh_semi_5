@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YamYam PET</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!--  -->
 <script type="text/javascript">
 	$(function() {
 		$("#user_id").keyup(function(){
@@ -169,10 +170,7 @@
                 alert("아이디를 입력하지 않았습니다.");
                 return false;
             } 
-            else if((id < "0" || id > "9") && (id < "A" || id > "Z") && (id < "a" || id > "z")){ 
-                alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
-                return false;
-            }
+
             else
             {
                 var param="id="+id
@@ -246,7 +244,7 @@
 			        <fieldset class="j_info">
 			            <legend>필수 입력 사항</legend>
 			            
-			            <form method="post" action="<%=request.getContextPath() %>/pet_join_ok.do">
+			            <form method="post" name="userInfo" onsubmit="return checkValue()" action="<%=request.getContextPath() %>/pet_join_ok.do">
 			                <table class="login_t">
 			                    <tr>
 			                       	<th><i class="fa fa-user"></i></th>

@@ -1,5 +1,6 @@
-create table pet_free(
+create table pet_free(--자유게시판
    free_no number(5) primary key,      -- 게시판 글 번호
+   free_id varchar2(10) not null, 
    free_writer varchar2(30) not null,  -- 게시판 글 작성자
    free_title varchar2(1000) not null, -- 게시판 글 제목
    free_cont varchar2(2000) not null,  -- 게시판 글 내용

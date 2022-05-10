@@ -81,7 +81,7 @@ public class ReviewDAO {
 
 	} // closeConn() 메서드 end
 	
-	//해당 상품의 이뷰들을 조회하는 메서드
+	//해당 상품의 리뷰들을 조회하는 메서드
 	public List<ReviewDTO> selectReview(int no){
 		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
 		
@@ -104,10 +104,12 @@ public class ReviewDAO {
 				dto.setReview_cont(rs.getString("review_cont"));
 				dto.setUserID(rs.getString("userID"));
 				dto.setRimage(rs.getString("rimage"));
+				dto.setReview_date(rs.getString("review_date"));
 				dto.setReview_group(rs.getInt("review_group"));
 				dto.setReview_step(rs.getInt("review_step"));
 				dto.setReview_indent(rs.getInt("review_indent"));
 				dto.setSale_no(rs.getInt("sale_no"));
+				dto.setSale_date(rs.getString("sale_date"));
 				
 				list.add(dto);
 			}
@@ -143,7 +145,7 @@ public class ReviewDAO {
 			}
 			
 			
-			sql="insert into pet_review values(?,?,?,?,?,sysdate,?,0,0,?)";
+			sql="insert into pet_review values(?,?,?,?,?,sysdate,?,0,0,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -154,6 +156,7 @@ public class ReviewDAO {
 			pstmt.setString(5, dto.getRimage());
 			pstmt.setInt(6, gNum);
 			pstmt.setInt(7, dto.getSale_no());
+			pstmt.setString(8, dto.getSale_date());
 			
 			result = pstmt.executeUpdate();
 			
@@ -164,5 +167,113 @@ public class ReviewDAO {
 		
 		return result;
 	}//insertReview end
+	
+	//구매내역에서 작성한 리뷰를 확인하는 메서드
+	public ReviewDTO selectMyReview(String id, int saleNum, int pNum) {
+		ReviewDTO dto = new ReviewDTO();
+		
+		openConn();
+		
+		try {
+			sql = "select * from pet_review where userID=? and pnum=? and sale_no=?  order by review_no desc";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, pNum);
+			pstmt.setInt(3, saleNum);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto.setReview_no(rs.getInt("review_no"));
+				dto.setPnum(rs.getInt("pnum"));
+				dto.setReview_cont(rs.getString("review_cont"));
+				dto.setUserID(rs.getString("userID"));
+				dto.setRimage(rs.getString("rimage"));
+				dto.setReview_date(rs.getString("review_date"));
+				dto.setReview_group(rs.getInt("review_group"));
+				dto.setReview_step(rs.getInt("review_step"));
+				dto.setReview_indent(rs.getInt("review_indent"));
+				dto.setSale_no(rs.getInt("sale_no"));
+				dto.setSale_date(rs.getString("sale_date"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return dto;
+	}//selectMyReview end
+	
+	
+	//리뷰를 수정하는 메서드
+	public int updateReview(ReviewDTO dto) {
+		
+		int result = 0;
+		
+		openConn();
+		
+		try {
+			sql = "update pet_review set review_cont = ? ,rimage = ? where userID = ? and pnum = ? and sale_no =? ";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getReview_cont());
+			pstmt.setString(2, dto.getRimage());
+			pstmt.setString(3, dto.getUserID());
+			pstmt.setInt(4, dto.getPnum());
+			pstmt.setInt(5, dto.getSale_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		
+		return result;
+	}//updateReview end
+	
+	
+	//리뷰를 삭제하는 메서드
+	 public int deleteReview(int no) {
+		 int result = 0;
+		 
+		 openConn();
+		 
+		 try {
+			 //리뷰 삭제
+			sql = "delete from pet_sales where sales_no = ?";
+			 
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+
+			//삭제된 번호이후인 리뷰 번호 하나씩 내려가기
+			sql = "update pet_sales set sales_no = sales_no -1 where sales_no > ? ";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConn(rs, pstmt, con);
+		}
+		 return result;
+	 }
 
 }

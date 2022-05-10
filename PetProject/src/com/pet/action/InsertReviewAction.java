@@ -49,6 +49,7 @@ public class InsertReviewAction implements Action {
 		
 		int pnum = Integer.parseInt(multi.getParameter("pnum").trim());
 		int SaleNo = Integer.parseInt(multi.getParameter("SaleNo").trim());
+		String saleDate = multi.getParameter("saleDate").trim();
 		
 		//자료실 폼 페이지에서 type="file"로 되어있으면  getFile() 메서드로 받기
 		File upload_file =  multi.getFile("image");

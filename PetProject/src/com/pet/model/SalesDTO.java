@@ -16,8 +16,16 @@ public class SalesDTO {
 	private int sales_mileage;
 	private String sales_date;
 	private String sales_comments;
+	private int sales_p_no;
+	private int  sales_serial;
 	
 	
+	public int getSales_serial() {
+		return sales_serial;
+	}
+	public void setSales_serial(int sales_serial) {
+		this.sales_serial = sales_serial;
+	}
 	public String getSales_name() {
 		return sales_name;
 	}
@@ -32,6 +40,12 @@ public class SalesDTO {
 	}
 	public String getSales_comments() {
 		return sales_comments;
+	}
+	public int getSales_p_no() {
+		return sales_p_no;
+	}
+	public void setSales_p_no(int sales_p_no) {
+		this.sales_p_no = sales_p_no;
 	}
 	public void setSales_comments(String sales_comments) {
 		this.sales_comments = sales_comments;

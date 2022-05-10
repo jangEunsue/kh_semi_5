@@ -21,6 +21,7 @@
 </head>
 <body>
 
+<%-- 제품 리스트에서 보여지는 리뷰 --%>
 
 	<div align="center">
 		<h3 width="80">리뷰</h3>

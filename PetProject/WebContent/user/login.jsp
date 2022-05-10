@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YamYam PET</title>
 
 </head>
 <body>
@@ -64,13 +64,14 @@
 			            </table>
 			            <div class="right login_a">
 			            	<a href="<%=request.getContextPath() %>/pet_Login_find_password.do" class="find_password">
-			            		아이디(이메일)/비밀번호 찾기 <i class="fa fa-chevron-right"></i>
+			            		비밀번호 찾기 <i class="fa fa-chevron-right"></i>
 				            </a>
 			            </div>
 			            <div id="login_menu">
 			               <input type="submit" value="로그인" class="login_b submit_b">
 			               <hr class="lm_line">
-			               <input type="button" value="회원가입" class="join_b" >
+			               <input type="button" value="회원가입" class="join_b" 
+			               	onclick="location.href='<%=request.getContextPath() %>/pet_join.do'" >
 			            </div>
                     </form>
                 </div>

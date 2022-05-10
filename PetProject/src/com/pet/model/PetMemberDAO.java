@@ -82,64 +82,65 @@ public class PetMemberDAO {
 	/*********************************************************************************/
 	
 	// 아이디 중복 확인
-	public int petIdCheck(String id) {
-		int result = 0;
-		
-		try {
-			openConn();
-			sql="select * from pet_member where m_id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
+		public int petIdCheck(String id) {
+			int result = 0;
 			
-			if (rs.next()) {
-				result = 1;
+			try {
+				openConn();
+				sql="select * from pet_member where m_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					result = 1;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-	} // petIdCheck()
-	
-	
-	// pet_member 테이블에 등록
-	public int joinPetMember(PetMemberDTO dto) {
-		int result = 0, count = 0;
+			return result;
+		} // petIdCheck()
 		
-		try {
-			openConn();
-			sql = "select max(m_num) from pet_member";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				count = rs.getInt(1) + 1;
+		
+		// pet_member 테이블에 등록
+		public int joinPetMember(PetMemberDTO dto) {
+			int result = 0, count = 0;
+			
+			try {
+				openConn();
+				sql = "select max(m_num) from pet_member";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					count = rs.getInt(1) + 1;
+				}
+				
+				sql = "insert into pet_member "
+						+ "values(?, ?, ?, ?, ?, ?, ?, ?, 0, sysdate)";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, count);
+				pstmt.setString(2, dto.getM_id());
+				pstmt.setString(3, dto.getM_pwd());
+				pstmt.setString(4, dto.getM_name());
+				pstmt.setString(5, dto.getM_birth());
+				pstmt.setString(6, dto.getM_email());
+				pstmt.setString(7, dto.getM_phone());
+				pstmt.setString(8, dto.getM_addr());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
 			}
 			
-			sql = "insert into pet_member "
-					+ "values(?, ?, ?, ?, ?, ?, ?, ?, 0, sysdate)";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, count);
-			pstmt.setString(2, dto.getM_id());
-			pstmt.setString(3, dto.getM_pwd());
-			pstmt.setString(4, dto.getM_name());
-			pstmt.setString(5, dto.getM_birth());
-			pstmt.setString(6, dto.getM_email());
-			pstmt.setString(7, dto.getM_phone());
-			pstmt.setString(8, dto.getM_addr());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			closeConn(rs, pstmt, con);
-		}
-		
-		return result;
-	} // joinPetMember()
+			return result;
+		} // joinPetMember()
 	
+
 	public int userCheck(String id, String pwd) {
 		int result = 0;
 		
@@ -167,34 +168,180 @@ public class PetMemberDAO {
 		return result;
 	} // userCheck() end
 	
-	// id에 해당하는 회원의 정보를 조회하는 메서드
-	public PetMemberDTO getMember(String id) {
-		PetMemberDTO dto = new PetMemberDTO();
-		
-		try {
-			openConn();
-			sql = "select * from pet_member where m_id = ?";
-			pstmt= con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dto.setM_num(rs.getInt("m_num"));
-				dto.setM_id(rs.getString("m_id"));
-				dto.setM_pwd(rs.getString("m_pwd"));
-				dto.setM_name(rs.getString("m_name"));
-				dto.setM_birth(rs.getString("m_birth"));
-				dto.setM_email(rs.getString("m_email"));
-				dto.setM_phone(rs.getString("m_phone"));
-				dto.setM_addr(rs.getString("m_addr"));
-				dto.setM_mileage(rs.getInt("m_mileage"));
-				dto.setM_regdate(rs.getString("m_regdate"));
+	// 비밀번호 확인
+		public int userPwdCheck(String id, String pwd) {
+			int result = 0;
+			
+			try {
+				openConn();
+				sql = "select * from pet_member where m_id = ?";
+				pstmt= con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					
+					if (pwd.equals(rs.getString("m_pwd"))) {
+						// 회원인 경우
+						result = 1;
+					}else {
+						// 비밀번호가 틀린 경우
+						result = -1;
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			return result;
+		} // userPwdCheck() end
+	
+		// id에 해당하는 회원의 정보를 조회하는 메서드
+		public PetMemberDTO getMember(String id) {
+			PetMemberDTO dto = new PetMemberDTO();
+			
+			try {
+				openConn();
+				sql = "select * from pet_member where m_id = ?";
+				pstmt= con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					dto.setM_num(rs.getInt("m_num"));
+					dto.setM_id(rs.getString("m_id"));
+					dto.setM_pwd(rs.getString("m_pwd"));
+					dto.setM_name(rs.getString("m_name"));
+					dto.setM_birth(rs.getString("m_birth"));
+					dto.setM_email(rs.getString("m_email"));
+					dto.setM_phone(rs.getString("m_phone"));
+					dto.setM_addr(rs.getString("m_addr"));
+					dto.setM_mileage(rs.getInt("m_mileage"));
+					dto.setM_regdate(rs.getString("m_regdate"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
+			}
+			
+			return dto;
+		} // getMember() end
 		
-		return dto;
-	} // getMember() end
+		// 회원 번호에 해당하는 회원정보를 가져오기
+		public PetMemberDTO getMember(int num) {
+			PetMemberDTO dto = new PetMemberDTO();
+			
+			try {
+				openConn();
+				sql = "select * from pet_member where m_num = ?";
+				pstmt= con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					dto.setM_num(rs.getInt("m_num"));
+					dto.setM_id(rs.getString("m_id"));
+					dto.setM_pwd(rs.getString("m_pwd"));
+					dto.setM_name(rs.getString("m_name"));
+					dto.setM_birth(rs.getString("m_birth"));
+					dto.setM_email(rs.getString("m_email"));
+					dto.setM_phone(rs.getString("m_phone"));
+					dto.setM_addr(rs.getString("m_addr"));
+					dto.setM_mileage(rs.getInt("m_mileage"));
+					dto.setM_regdate(rs.getString("m_regdate"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
+			}
+			
+			return dto;
+		} // getMember() end
+	
+	
+		public int userEmailCheck(String id, String email) {
+			int result = 0;
+			
+			try {
+				openConn();
+				sql = "select * from pet_member where m_id = ?";
+				pstmt= con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					if (email.equals(rs.getString("m_email"))) {
+						result = 1;		
+					}else {
+						// 이메일이 다른 경우
+						result = -1;
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
+			}
+			return result;
+		} // userEmailCheck() end
+	
+		//
+		public String getPetMemberPassword(String id) {
+			String pwd = "";
+			
+			try {
+				openConn();
+				sql="select * from pet_member where m_id = ?";
+				pstmt= con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					pwd = rs.getString("m_pwd");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
+			}
+			
+			return pwd;
+		} // getPetMemberPassword()
 
+		// 회원 정보 수정
+		public int modifyPetMember(PetMemberDTO dto) {
+			int result = 0;
+			
+			try {
+				openConn();
+				
+				sql = "update pet_member set m_pwd = ?, "
+						+ " m_birth = ?, m_email = ?, "
+						+ " m_phone = ?, m_addr =? where m_num = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getM_pwd());
+				pstmt.setString(2, dto.getM_birth());
+				pstmt.setString(3, dto.getM_email());
+				pstmt.setString(4, dto.getM_phone());
+				pstmt.setString(5, dto.getM_addr());
+				pstmt.setInt(6, dto.getM_num());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				closeConn(rs, pstmt, con);
+			}
+			
+			return result;
+		}
+
+	
 }

@@ -54,10 +54,15 @@
                         %>		
 		                        <li><a href="<%=request.getContextPath() %>/pet_login.do">Login</a></li>
 		                        <li><a href="<%=request.getContextPath() %>/pet_join.do">Join</a></li>
-	                    <%  } else{ %>
-	                    		<li><a href="<%=request.getContextPath() %>/pet_member_mypage.do">MyPage</a></li>
-	                        	<li><a href="<%=request.getContextPath() %>/pet_member_logout.do">Logout</a></li>
-	                    <%	}	%>
+	                    <%  } else{
+		                    	if(session.getAttribute("sessionID") == "admin"){ %>
+		                    		<li><a href="<%=request.getContextPath() %>/pet_admin.do">관리자페이지</a></li>
+		                        	<li><a href="<%=request.getContextPath() %>/pet_member_logout.do">Logout</a></li>
+		                <% 		}else { %>
+		                	   		<li><a href="<%=request.getContextPath() %>/pet_member_mypage.do">MyPage</a></li>
+	                        		<li><a href="<%=request.getContextPath() %>/pet_member_logout.do">Logout</a></li>
+		                <%   	} 		
+	                   		}	%>
                     </ul>
                     <div class="clear"></div>
                 </div>
@@ -82,25 +87,33 @@
                     </li>
                     <li><a href="#">제품소개</a>
                         <ul>
-                            <li><a href="#">제품소개</a></li>
+                            <li><a href="<%=request.getContextPath()%>/user/selectPetKind.jsp">제품소개</a></li>
                         </ul>
                     </li>
                     <li><a href="#">고객센터</a>
-                        <ul>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">Q&A</a></li>
-                        </ul>
+                    	 <ul>
+                            <li><a href="<%=request.getContextPath()%>/user/fqa.jsp">자주하는 질문</a></li>
+                            <li><a href="<%=request.getContextPath()%>/pet_QA.do">Q&A</a></li>
+                        </ul> 
                     </li>
                     <li><a href="#">커뮤니티</a>
                         <ul>
-                            <li><a href="#">커뮤니티</a></li>
+                            <li><a href="<%=request.getContextPath()%>/free_list.do">커뮤니티</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">샘플신청</a>
-                        <ul>
-                            <li><a href="#">샘플신청</a></li>
-                        </ul>
-                    </li>
+                    <%	// 로그인 안되었을 경우 -
+                    	if(session.getAttribute("sessionID")==null){ %>
+                   			<li><a href="#" onclick="loginAlert()">마이페이지</a>
+	                        	<ul>
+	                          		<li><a href="#" onclick="loginAlert()">회원정보수정</a></li>
+                    <%  }else {  %>
+                    		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">마이페이지</a>
+	                            <ul>
+	                            	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID")%>">회원정보조회</a></li>
+	                             <% }%>
+	                                <li><a href="<%=request.getContextPath() %>/selectSalesList.do">구매내역</a></li>
+	                            </ul>
+	                        </li>
                 </ul>
             </nav>
             <!-- // 2단 메뉴--> 

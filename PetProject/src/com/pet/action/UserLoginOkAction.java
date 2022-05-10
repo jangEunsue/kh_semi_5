@@ -21,7 +21,7 @@ public class UserLoginOkAction implements Action {
 		String user_pwd = request.getParameter("user_pwd").trim();
 		
 		PetMemberDAO dao = PetMemberDAO.getInstance();
-		int check = dao.userCheck(user_id, user_pwd);
+		int check = dao.userPwdCheck(user_id, user_pwd);
 		
 		ActionForward forward = new ActionForward();
 
@@ -51,7 +51,6 @@ public class UserLoginOkAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		}
-		System.out.println(check);
 		return forward;
 		
 	}

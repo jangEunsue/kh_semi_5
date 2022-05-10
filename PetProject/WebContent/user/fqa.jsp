@@ -44,6 +44,8 @@
 </head>
 
 <body>
+<jsp:include page="../inc/pet_top.jsp"/>
+
 <div align="center">
 
 	<h3>자주 묻는 질문</h3>
@@ -139,6 +141,7 @@ jQuery(function($){
 });
 </script>
 
+<jsp:include page="../inc/pet_bottom.jsp"/>
 </body>
 </html>
 					

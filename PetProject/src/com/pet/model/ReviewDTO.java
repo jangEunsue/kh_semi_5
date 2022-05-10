@@ -11,8 +11,15 @@ public class ReviewDTO {
     private int review_step;
     private int review_indent;
     private int sale_no;
+    private String sale_date;
     
     
+	public String getSale_date() {
+		return sale_date;
+	}
+	public void setSale_date(String sale_date) {
+		this.sale_date = sale_date;
+	}
 	public int getSale_no() {
 		return sale_no;
 	}

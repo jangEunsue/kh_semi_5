@@ -43,46 +43,7 @@ h3{
 
 <jsp:include page="../inc/pet_top.jsp" />
 <div width="80%">
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
-
-	<P>
-	<div id="carouselExampleIndicators" class="carousel slide"
-		data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0"
-				class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<div align="center">
-				<div class="carousel_text">
-					<B>품종 특징을 고려한 영향</B>
-					<br><br>엄선된 단백질과 항산화 물질로 타곤나 잠재력을 키워 줄 수 있습니다.
-				</div>
-					<img src="<%=request.getContextPath() %>/image/DogRun.jpg" class="d-block w-100" alt="인기상품">
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div align="center">
-					<b>맞춤 영양 솔루션</b>
-					<br><br>
-						반려 동물의 크기, 춤종, 생활방식에 따라 필요한 영향이 다름니다<br> 반려 동물의 자양한 니즈에 맞춘
-						맞춤형 영양 제품을 만나보세요
-				</div>
-				<img src="<%=request.getContextPath() %>/image/DogwithCat.jpg" class="d-block w-100" alt="...">
-			</div>
-			<div class="carousel-item">
-				<div align="center">
-					크기별 나이별 종별 영양상태별 세밀하고 정확한 영양학적 솔루션을 제공합니다 제품을 확인하고 무료체험 해보세요!
-					 <img src="<%=request.getContextPath() %>/image/DoginBowl.jpg" class="d-block w-100" alt="...">
-				</div>
-			</div>
-		</div>
+	
 		<%-- 컨트롤러 --%>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators"
 			role="button" data-slide="prev"> 
