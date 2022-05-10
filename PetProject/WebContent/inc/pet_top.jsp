@@ -35,6 +35,13 @@
         autoplaySpeed: 3000,
       });
     });
+</script>\
+<script type="text/javascript">
+
+	function loginAlert() {
+	    alert("사용 권한이 없습니다. 로그인 해주세요");
+	}
+        
 </script>
 <!-- homepee.com pageJsfile -->
 <script src="js/myjs.js"></script>
@@ -86,6 +93,7 @@
                     </li>
                     <li><a href="#">고객센터</a>
                     	<ul>
+                    		<li><a href="<%=request.getContextPath() %>/pet_notice.do">공지사항</a></li>
                             <li><a href="<%=request.getContextPath()%>/user/fqa.jsp">자주하는 질문</a></li>
                         	<li><a href="<%=request.getContextPath() %>/pet_QA.do">Q&A</a></li>
                         </ul>

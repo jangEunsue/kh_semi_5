@@ -41,6 +41,8 @@ public class UserInfoAction implements Action {
 		forward.setRedirect(false);
 		forward.setPath("user/member_info.jsp");
 		
+		System.out.println("forward>>" + forward);
+		
 		return forward;
 	}
 

@@ -42,9 +42,9 @@ public class UserQnaWriteOkAction implements Action {
 			forward.setPath("pet_QA.do");
 		}else {
 			out.println("<script>");
-	         out.println("alert('게시물을 등록하지 못했습니다.')");
-	         out.println("history.back()");
-	         out.println("</script>");
+			out.println("alert('게시물을 등록하지 못했습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
 		}
 		
 		return forward;
