@@ -26,6 +26,14 @@ public class SelectSalesListAction implements Action {
 		HttpSession session =  request.getSession(); //세션 정보 가져오기
 		String userId = (String)session.getAttribute("userId"); //세션에서 받아온 ID
 		
+		ActionForward forward = new ActionForward();
+		
+		if(userId.equals(null)) {
+			forward.setRedirect(true);
+			forward.setPath("pet_login.do");
+		}else {
+			
+	
 		SalesDAO dao = SalesDAO.getInstance();
 		System.out.println(userId);
 		
@@ -37,10 +45,12 @@ public class SelectSalesListAction implements Action {
 		request.setAttribute("sales", list);
 		request.setAttribute("date", date);
 		
-		ActionForward forward = new ActionForward();
+		
 		
 		forward.setRedirect(false);
 		forward.setPath("user/selectSalesList.jsp");
+		}
+		
 		
 		return forward;
 	}
