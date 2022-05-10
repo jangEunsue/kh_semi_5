@@ -1,4 +1,4 @@
-package com.admin.action;
+package com.notice.action;
 
 import java.io.IOException;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.admin.controller.Action;
 import com.admin.controller.ActionForward;
-import com.pet.model.BoardDAO;
-import com.pet.model.BoardDTO;
+import com.pet.model.NoticeDAO;
+import com.pet.model.NoticeDTO;
 
-public class FreeContentAction implements Action {
+public class NoticeUpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -19,18 +19,17 @@ public class FreeContentAction implements Action {
 		int free_no = 
 				Integer.parseInt(request.getParameter("no").trim());
 		
-		BoardDAO dao = BoardDAO.getInstance();
-			
-		BoardDTO dto = dao.getFreeContent(free_no);
+		NoticeDAO dao = NoticeDAO.getInstance();
 		
-		request.setAttribute("Cont", dto);
+		NoticeDTO dto = dao.getNoticeContent(free_no);
+		
+		request.setAttribute("modify", dto);
 		
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);
-	
-		forward.setPath("board/board_content.jsp");
-		
+
+		forward.setPath("notice/Notice_update.jsp");
 		return forward;
 	}
 

@@ -11,8 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-
-public class BoardDAO {
+public class NoticeDAO {
 
 	Connection con = null;             // DB 연결하는 객체.
 	PreparedStatement pstmt = null;    // DB에 SQL문을 전송하는 객체.
@@ -26,17 +25,17 @@ public class BoardDAO {
 	// 1단계 : 싱글톤 방식으로 객체를 만들기 위해서는 우선적으로
 	//        기본 생성자의 접근 제어자를 private 으로 선언해야 함.
 	// 2단계 : UploadDAO 객체를 정적 멤버로 선언해야 함. - static으로 선언해야 함.
-	private static BoardDAO instance = null;
+	private static NoticeDAO instance = null;
 	
 	
-	private BoardDAO() {   }  // 기본생성자.
+	private NoticeDAO() {   }  // 기본생성자.
 		
 	// 3단계 : 기본 생성자 대신에 싱글턴 객체를 return 해 주는 getInstance() 라는
 	//        메서드를 만들어서 여기에 접근하게 해야 함.
-	public static BoardDAO getInstance() {
+	public static NoticeDAO getInstance() {
 		
 		if(instance == null) {
-			instance = new BoardDAO();
+			instance = new NoticeDAO();
 		}
 		return instance;
 		
@@ -89,35 +88,35 @@ public class BoardDAO {
 	}  // closeConn() 메서드 end
 	
 	// 게시판 전체 레코드 조회
-public List<BoardDTO> getBoardList() {
+public List<NoticeDTO> getNoticeList() {
 		
-		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		
 		
 		try {
 			openConn();
 			
-			sql = "select * from pet_free "
-					+ " order by  free_group desc, free_step";
+			sql = "select * from pet_notice "
+					+ " order by  notice_group desc, notice_step";
 		    
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				BoardDTO dto = new BoardDTO();
+				NoticeDTO dto = new NoticeDTO();
 				
-				dto.setFree_no(rs.getInt("free_no"));
-				dto.setFree_writer(rs.getString("free_writer"));
-				dto.setFree_title(rs.getString("free_title"));
-				dto.setFree_cont(rs.getString("free_cont"));
-				dto.setFree_pwd(rs.getString("free_pwd"));
-				dto.setFree_hit(rs.getInt("free_hit"));
-				dto.setFree_date(rs.getString("free_date"));
-				dto.setFree_update(rs.getString("free_update"));
-				dto.setFree_group(rs.getInt("free_group"));
-				dto.setFree_step(rs.getInt("free_step"));
-				dto.setFree_indent(rs.getInt("free_indent"));
+				dto.setNotice_no(rs.getInt("notice_no"));
+				dto.setNotice_writer(rs.getString("notice_writer"));
+				dto.setNotice_title(rs.getString("notice_title"));
+				dto.setNotice_cont(rs.getString("notice_cont"));
+				dto.setNotice_pwd(rs.getString("notice_pwd"));
+				dto.setNotice_hit(rs.getInt("notice_hit"));
+				dto.setNotice_date(rs.getString("notice_date"));
+				dto.setNotice_update(rs.getString("notice_update"));
+				dto.setNotice_group(rs.getInt("notice_group"));
+				dto.setNotice_step(rs.getInt("notice_step"));
+				dto.setNotice_indent(rs.getInt("notice_indent"));
 			    
 				list.add(dto);
 			}
@@ -131,7 +130,7 @@ public List<BoardDTO> getBoardList() {
 	}
 	
 	// 게시판 글 추가
-	public int insertBoard(BoardDTO dto) {
+	public int insertNotice(NoticeDTO dto) {
 		
 		int result = 0, count = 0;
 		
@@ -139,7 +138,7 @@ public List<BoardDTO> getBoardList() {
 		try {
 			openConn();
 			
-			sql = "select max(free_no) from pet_free";
+			sql = "select max(notice_no) from pet_notice";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -149,20 +148,20 @@ public List<BoardDTO> getBoardList() {
 				count = rs.getInt(1) + 1;
 			}
 			
-			sql = "insert into pet_free "
+			sql = "insert into pet_notice "
 					+ " values(?, ?, ?, ?, ? , default, sysdate, '', ?, 0, 0)";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, count);
 			
-			pstmt.setString(2, dto.getFree_writer());
+			pstmt.setString(2, dto.getNotice_writer());
 			
-			pstmt.setString(3, dto.getFree_title());
+			pstmt.setString(3, dto.getNotice_title());
 			
-			pstmt.setString(4, dto.getFree_cont());
+			pstmt.setString(4, dto.getNotice_cont());
 			
-			pstmt.setString(5, dto.getFree_pwd());
+			pstmt.setString(5, dto.getNotice_pwd());
 			
 			pstmt.setInt(6, count);
 			
@@ -179,15 +178,15 @@ public List<BoardDTO> getBoardList() {
 	}
 	
 	// 조회수 증가
-	public void FreeHit(int no) {
+	public void noticeHit(int no) {
 		
 		
 		try {
 			openConn();
 			
-			sql = "update pet_free set "
-					+ " free_hit = free_hit + 1 "
-					+ " where free_no = ? ";
+			sql = "update pet_notice set "
+					+ " notice_hit = notice_hit + 1 "
+					+ " where notice_no = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -205,16 +204,16 @@ public List<BoardDTO> getBoardList() {
 	}
 	
 	// 상세내역 조회
-	public BoardDTO getFreeContent(int no) {
+	public NoticeDTO getNoticeContent(int no) {
 		
-		BoardDTO dto = new BoardDTO();
+		NoticeDTO dto = new NoticeDTO();
 		
 		
 		try {
 			openConn();
 			
-			sql = "select * from pet_free "
-					+ " where free_no = ?";
+			sql = "select * from pet_notice "
+					+ " where notice_no = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -223,17 +222,17 @@ public List<BoardDTO> getBoardList() {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				dto.setFree_no(rs.getInt("free_no"));
-				dto.setFree_writer(rs.getString("free_writer"));
-				dto.setFree_title(rs.getString("free_title"));
-				dto.setFree_cont(rs.getString("free_cont"));
-				dto.setFree_pwd(rs.getString("free_pwd"));
-				dto.setFree_hit(rs.getInt("free_hit"));
-				dto.setFree_date(rs.getString("free_date"));
-				dto.setFree_update(rs.getString("free_update"));
-				dto.setFree_group(rs.getInt("free_group"));
-				dto.setFree_step(rs.getInt("free_step"));
-				dto.setFree_indent(rs.getInt("free_indent"));
+				dto.setNotice_no(rs.getInt("notice_no"));
+				dto.setNotice_writer(rs.getString("notice_writer"));
+				dto.setNotice_title(rs.getString("notice_title"));
+				dto.setNotice_cont(rs.getString("notice_cont"));
+				dto.setNotice_pwd(rs.getString("notice_pwd"));
+				dto.setNotice_hit(rs.getInt("notice_hit"));
+				dto.setNotice_date(rs.getString("notice_date"));
+				dto.setNotice_update(rs.getString("notice_update"));
+				dto.setNotice_group(rs.getInt("notice_group"));
+				dto.setNotice_step(rs.getInt("notice_step"));
+				dto.setNotice_indent(rs.getInt("notice_indent"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -246,7 +245,7 @@ public List<BoardDTO> getBoardList() {
 	}
 	
 	//게시판글 수정
-	public int UpdateBoard(BoardDTO dto) {
+	public int UpdateNotice(NoticeDTO dto) {
 		
 		int result = 0;
 		
@@ -254,27 +253,27 @@ public List<BoardDTO> getBoardList() {
 		try {
 			openConn();
 			
-			sql = "select * from pet_free "
-					+ " where free_no = ?";
+			sql = "select * from pet_notice "
+					+ " where notice_no = ?";
 			
 			pstmt = con.prepareStatement(sql);
 		
-			pstmt.setInt(1, dto.getFree_no());
+			pstmt.setInt(1, dto.getNotice_no());
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(dto.getFree_pwd().equals(rs.getString("free_pwd"))) {
-					sql = "update pet_free set "
-							+ " free_title = ?, free_cont = ?, "
-							+ " free_update = sysdate "
-							+ " where free_no = ?";
+				if(dto.getNotice_pwd().equals(rs.getString("notice_pwd"))) {
+					sql = "update pet_notice set "
+							+ " notice_title = ?, notice_cont = ?, "
+							+ " notice_update = sysdate "
+							+ " where notice_no = ?";
 					
 					pstmt = con.prepareStatement(sql);
 					
-					pstmt.setString(1, dto.getFree_title());
-					pstmt.setString(2, dto.getFree_cont());
-					pstmt.setInt(3, dto.getFree_no());
+					pstmt.setString(1, dto.getNotice_title());
+					pstmt.setString(2, dto.getNotice_cont());
+					pstmt.setInt(3, dto.getNotice_no());
 					
 					result = pstmt.executeUpdate();
 					
@@ -292,7 +291,7 @@ public List<BoardDTO> getBoardList() {
 	}
 	
 	// 게시글 삭제 매서드
-	public int deleteBoard(int no, String pwd) {
+	public int deleteNotice(int no, String pwd) {
 		
 		int result = 0;
 		
@@ -300,8 +299,8 @@ public List<BoardDTO> getBoardList() {
 		try {
 			openConn();
 			
-			sql = "select * from pet_free "
-					+ " where free_no = ?" ;
+			sql = "select * from pet_notice "
+					+ " where notice_no = ?" ;
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -310,10 +309,10 @@ public List<BoardDTO> getBoardList() {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(pwd.equals(rs.getString("free_pwd")))
+				if(pwd.equals(rs.getString("notice_pwd")))
 			      
-					sql = "delete from pet_free "
-							+ " where free_no = ?";
+					sql = "delete from pet_notice "
+							+ " where notice_no = ?";
 				   
 				pstmt = con.prepareStatement(sql);
 				
@@ -321,10 +320,10 @@ public List<BoardDTO> getBoardList() {
 				
 				result = pstmt.executeUpdate();
 				
-				sql = "update pet_free set "
-						+ " free_no = free_no - 1, "
-						+ " free_group = free_group -1 "
-						+ " where free_no > ?";
+				sql = "update pet_notice set "
+						+ " notice_no = notice_no - 1, "
+						+ " notice_group = notice_group -1 "
+						+ " where notice_no > ?";
 				
 				pstmt = con.prepareStatement(sql);
 				
@@ -355,9 +354,9 @@ public List<BoardDTO> getBoardList() {
 			
 			
 			try {
-				sql = "update pet_free set"
-						+ " free_step = free_step + 1 "
-						+ " where free_group = ? and free_step > ?"; 
+				sql = "update pet_notice set"
+						+ " notice_step = notice_step + 1 "
+						+ " where notice_group = ? and notice_step > ?"; 
 				
 				pstmt = con.prepareStatement(sql);
 			    
@@ -378,14 +377,14 @@ public List<BoardDTO> getBoardList() {
 	
 	
 	// 답변글 테이블 저장
-	public int replyBoard(BoardDTO dto) {
+	public int replyNotice(NoticeDTO dto) {
 		int result = 0, count = 0;
 		
 		
 		try {
 			openConn();
 			
-			sql = "select max(free_no) from pet_free";
+			sql = "select max(notice_no) from pet_notice";
 			
 			pstmt = con.prepareStatement(sql);
 		
@@ -396,19 +395,19 @@ public List<BoardDTO> getBoardList() {
 				count = rs.getInt(1) + 1;
 			}
 			
-			sql = "insert into pet_free "
+			sql = "insert into pet_notice "
 					+ " values(?, ?, ?, ?, ?, default, sysdate, '', ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, count);
 			
-			pstmt.setString(2, dto.getFree_writer());
-			pstmt.setString(3, dto.getFree_title());
-			pstmt.setString(4, dto.getFree_cont());
-			pstmt.setString(5, dto.getFree_pwd());
-			pstmt.setInt(6, dto.getFree_group());
-			pstmt.setInt(7, dto.getFree_step());
-			pstmt.setInt(8, dto.getFree_indent());
+			pstmt.setString(2, dto.getNotice_writer());
+			pstmt.setString(3, dto.getNotice_title());
+			pstmt.setString(4, dto.getNotice_cont());
+			pstmt.setString(5, dto.getNotice_pwd());
+			pstmt.setInt(6, dto.getNotice_group());
+			pstmt.setInt(7, dto.getNotice_step());
+			pstmt.setInt(8, dto.getNotice_indent());
 			
 			result = pstmt.executeUpdate();
 			
@@ -423,7 +422,7 @@ public List<BoardDTO> getBoardList() {
 	}
 	
 	// 게시물 조회
-	// board 테이블에서 검색어에 해당하는 게시물의 수를 조회하는 메서드.
+	// Notice 테이블에서 검색어에 해당하는 게시물의 수를 조회하는 메서드.
 		public int searchListCount(String field, String keyword) {
 			
 			int count = 0;
@@ -433,8 +432,8 @@ public List<BoardDTO> getBoardList() {
 			if(field.equals("title")) {
 				
 				try {
-					sql = "select count(*) from pet_free "
-							+ " where free_title like ?";
+					sql = "select count(*) from pet_notice "
+							+ " where notice_title like ?";
 					
 					pstmt = con.prepareStatement(sql);
 					
@@ -456,8 +455,8 @@ public List<BoardDTO> getBoardList() {
 			}else if(field.equals("content")) {
 				
 				try {
-					sql = "select count(*) from pet_free "
-							+ " where free_cont like ?";
+					sql = "select count(*) from pet_notice "
+							+ " where notice_cont like ?";
 					
 					pstmt = con.prepareStatement(sql);
 					
@@ -476,12 +475,12 @@ public List<BoardDTO> getBoardList() {
 					e.printStackTrace();
 				}
 				
-			}else if(field.equals("free_content")) {
+			}else if(field.equals("notice_content")) {
 				
 				try {
-					sql = "select count(*) from pet_free "
-							+ " where free_title like ?"
-							+ " or free_cont like ?";
+					sql = "select count(*) from pet_notice "
+							+ " where notice_title like ?"
+							+ " or notice_cont like ?";
 					
 					pstmt = con.prepareStatement(sql);
 					
@@ -505,8 +504,8 @@ public List<BoardDTO> getBoardList() {
 			}else {
 				
 				try {
-					sql = "select count(*) from pet_free "
-							+ " where free_writer like ?";
+					sql = "select count(*) from pet_notice "
+							+ " where notice_writer like ?";
 					
 					pstmt = con.prepareStatement(sql);
 					
@@ -530,10 +529,10 @@ public List<BoardDTO> getBoardList() {
 			return count;		
 	} //// searchListCount() 메서드 end
 	
-		public List<BoardDTO> searchBoardList(
+		public List<NoticeDTO> searchNoticeList(
 				String field, String keyword, int page, int rowsize) {
 			
-			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 			
 			// 해당 페이지에서 시작 번호
 			int startNo = (page * rowsize) - (rowsize - 1);
@@ -548,8 +547,8 @@ public List<BoardDTO> getBoardList() {
 				try {
 					sql = "select * from "
 							+ " (select row_number() "
-							+ " over(order by free_no desc) rnum, "
-							+ " b.* from pet_free b where free_title like ?) "
+							+ " over(order by notice_no desc) rnum, "
+							+ " b.* from pet_notice b where notice_title like ?) "
 							+ " where rnum >= ? and rnum <= ?";
 					
 					pstmt = con.prepareStatement(sql);
@@ -563,16 +562,16 @@ public List<BoardDTO> getBoardList() {
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
+						NoticeDTO dto = new NoticeDTO();
 						
-						dto.setFree_no(rs.getInt("free_no"));
-						dto.setFree_writer(rs.getString("Free_writer"));
-						dto.setFree_title(rs.getString("Free_title"));
-						dto.setFree_cont(rs.getString("Free_cont"));
-						dto.setFree_pwd(rs.getString("Free_pwd"));
-						dto.setFree_hit(rs.getInt("Free_hit"));
-						dto.setFree_date(rs.getString("Free_date"));
-						dto.setFree_update(rs.getString("Free_update"));
+						dto.setNotice_no(rs.getInt("notice_no"));
+						dto.setNotice_writer(rs.getString("notice_writer"));
+						dto.setNotice_title(rs.getString("notice_title"));
+						dto.setNotice_cont(rs.getString("notice_cont"));
+						dto.setNotice_pwd(rs.getString("notice_pwd"));
+						dto.setNotice_hit(rs.getInt("notice_hit"));
+						dto.setNotice_date(rs.getString("notice_date"));
+						dto.setNotice_update(rs.getString("notice_update"));
 						
 						list.add(dto);
 					}
@@ -589,8 +588,8 @@ public List<BoardDTO> getBoardList() {
 				try {
 					sql = "select * from "
 							+ " (select row_number() "
-							+ " over(order by free_no desc) rnum, "
-							+ " b.* from pet_free b where free_cont like ?) "
+							+ " over(order by notice_no desc) rnum, "
+							+ " b.* from pet_notice b where notice_cont like ?) "
 							+ " where rnum >= ? and rnum <= ?";
 					
 					pstmt = con.prepareStatement(sql);
@@ -604,16 +603,16 @@ public List<BoardDTO> getBoardList() {
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
+						NoticeDTO dto = new NoticeDTO();
 						
-						dto.setFree_no(rs.getInt("free_no"));
-						dto.setFree_writer(rs.getString("free_writer"));
-						dto.setFree_title(rs.getString("free_title"));
-						dto.setFree_cont(rs.getString("free_cont"));
-						dto.setFree_pwd(rs.getString("free_pwd"));
-						dto.setFree_hit(rs.getInt("free_hit"));
-						dto.setFree_date(rs.getString("free_date"));
-						dto.setFree_update(rs.getString("free_update"));
+						dto.setNotice_no(rs.getInt("notice_no"));
+						dto.setNotice_writer(rs.getString("notice_writer"));
+						dto.setNotice_title(rs.getString("notice_title"));
+						dto.setNotice_cont(rs.getString("notice_cont"));
+						dto.setNotice_pwd(rs.getString("notice_pwd"));
+						dto.setNotice_hit(rs.getInt("notice_hit"));
+						dto.setNotice_date(rs.getString("notice_date"));
+						dto.setNotice_update(rs.getString("notice_update"));
 						
 						list.add(dto);
 					}
@@ -625,14 +624,14 @@ public List<BoardDTO> getBoardList() {
 					e.printStackTrace();
 				}
 				
-			}else if(field.equals("free_content")) {
+			}else if(field.equals("notice_content")) {
 				
 				try {
 					sql = "select * from "
 							+ " (select row_number() "
-							+ " over(order by free_no desc) rnum, "
-							+ " b.* from pet_free b where free_title like ?"
-							+ " or free_cont like ?) "
+							+ " over(order by notice_no desc) rnum, "
+							+ " b.* from pet_notice b where notice_title like ?"
+							+ " or notice_cont like ?) "
 							+ " where rnum >= ? and rnum <= ?";
 					
 					pstmt = con.prepareStatement(sql);
@@ -648,16 +647,16 @@ public List<BoardDTO> getBoardList() {
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
+						NoticeDTO dto = new NoticeDTO();
 						
-						dto.setFree_no(rs.getInt("free_no"));
-						dto.setFree_writer(rs.getString("free_writer"));
-						dto.setFree_title(rs.getString("free_title"));
-						dto.setFree_cont(rs.getString("free_cont"));
-						dto.setFree_pwd(rs.getString("free_pwd"));
-						dto.setFree_hit(rs.getInt("free_hit"));
-						dto.setFree_date(rs.getString("free_date"));
-						dto.setFree_update(rs.getString("free_update"));
+						dto.setNotice_no(rs.getInt("notice_no"));
+						dto.setNotice_writer(rs.getString("notice_writer"));
+						dto.setNotice_title(rs.getString("notice_title"));
+						dto.setNotice_cont(rs.getString("notice_cont"));
+						dto.setNotice_pwd(rs.getString("notice_pwd"));
+						dto.setNotice_hit(rs.getInt("notice_hit"));
+						dto.setNotice_date(rs.getString("notice_date"));
+						dto.setNotice_update(rs.getString("notice_update"));
 						
 						list.add(dto);
 					}
@@ -674,8 +673,8 @@ public List<BoardDTO> getBoardList() {
 				try {
 					sql = "select * from "
 							+ " (select row_number() "
-							+ " over(order by free_no desc) rnum, "
-							+ " b.* from pet_free b where free_writer like ?) "
+							+ " over(order by notice_no desc) rnum, "
+							+ " b.* from pet_notice b where notice_writer like ?) "
 							+ " where rnum >= ? and rnum <= ?";
 					
 					pstmt = con.prepareStatement(sql);
@@ -689,16 +688,16 @@ public List<BoardDTO> getBoardList() {
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
+						NoticeDTO dto = new NoticeDTO();
 						
-						dto.setFree_no(rs.getInt("free_no"));
-						dto.setFree_writer(rs.getString("free_writer"));
-						dto.setFree_title(rs.getString("free_title"));
-						dto.setFree_cont(rs.getString("free_cont"));
-						dto.setFree_pwd(rs.getString("free_pwd"));
-						dto.setFree_hit(rs.getInt("free_hit"));
-						dto.setFree_date(rs.getString("free_date"));
-						dto.setFree_update(rs.getString("free_update"));
+						dto.setNotice_no(rs.getInt("notice_no"));
+						dto.setNotice_writer(rs.getString("notice_writer"));
+						dto.setNotice_title(rs.getString("notice_title"));
+						dto.setNotice_cont(rs.getString("notice_cont"));
+						dto.setNotice_pwd(rs.getString("notice_pwd"));
+						dto.setNotice_hit(rs.getInt("notice_hit"));
+						dto.setNotice_date(rs.getString("notice_date"));
+						dto.setNotice_update(rs.getString("notice_update"));
 						
 						list.add(dto);
 					}
@@ -713,9 +712,9 @@ public List<BoardDTO> getBoardList() {
 			}
 			
 			return list;
-		}  // searchBoardList() 메서드 end	
+		}  // searchNoticeList() 메서드 end	
 		
-		public int getBoardCount() {
+		public int getNoticeCount() {
 			
 			int count = 0;
 			
@@ -723,7 +722,7 @@ public List<BoardDTO> getBoardList() {
 			try {
 				openConn();
 				
-				sql = "select count(*) from pet_free";
+				sql = "select count(*) from pet_notice";
 				
 				pstmt = con.prepareStatement(sql);
 				
@@ -741,11 +740,11 @@ public List<BoardDTO> getBoardList() {
 			}
 			
 			return count;
-		}  // getBoardCount() 메서드 end
+		}  // getNoticeCount() 메서드 end
 	
-		public List<BoardDTO> getBoardList(int page, int rowsize) {
+		public List<NoticeDTO> getNoticeList(int page, int rowsize) {
 			
-			List<BoardDTO> list = new ArrayList<BoardDTO>();
+			List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 			
 			int startNo = (page * rowsize) - (rowsize - 1);
 			int endNo = (page * rowsize);
@@ -756,8 +755,8 @@ public List<BoardDTO> getBoardList() {
 					
 					sql = "select * from "
 							+ " (select row_number() "
-							+ " over(order by free_no desc) rnum, "
-							+ " b.* from pet_free b ) "
+							+ " over(order by notice_no desc) rnum, "
+							+ " b.* from pet_notice b ) "
 							+ " where rnum >= ? and rnum <= ?";
 				
 				pstmt = con.prepareStatement(sql);
@@ -770,16 +769,16 @@ public List<BoardDTO> getBoardList() {
 				
 				while(rs.next()) {
 					
-					BoardDTO dto = new BoardDTO();
+					NoticeDTO dto = new NoticeDTO();
 					
-					dto.setFree_no(rs.getInt("free_no"));
-					dto.setFree_writer(rs.getString("free_writer"));
-					dto.setFree_title(rs.getString("free_title"));
-					dto.setFree_cont(rs.getString("free_cont"));
-					dto.setFree_pwd(rs.getString("free_pwd"));
-					dto.setFree_hit(rs.getInt("free_hit"));
-					dto.setFree_date(rs.getString("free_date"));
-					dto.setFree_update(rs.getString("free_update"));
+					dto.setNotice_no(rs.getInt("notice_no"));
+					dto.setNotice_writer(rs.getString("notice_writer"));
+					dto.setNotice_title(rs.getString("notice_title"));
+					dto.setNotice_cont(rs.getString("notice_cont"));
+					dto.setNotice_pwd(rs.getString("notice_pwd"));
+					dto.setNotice_hit(rs.getInt("notice_hit"));
+					dto.setNotice_date(rs.getString("notice_date"));
+					dto.setNotice_update(rs.getString("notice_update"));
 					
 					list.add(dto);
 					
@@ -792,9 +791,6 @@ public List<BoardDTO> getBoardList() {
 				closeConn(rs, pstmt, con);
 			}
 		     return list;
-		
-		}
-	
-	
-	
 }
+		
+}		

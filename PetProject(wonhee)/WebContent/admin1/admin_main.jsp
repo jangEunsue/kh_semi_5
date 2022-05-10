@@ -9,6 +9,7 @@
  
  ul li {
   list-style: none;
+  text-align: center;
  }
  
 </style>
@@ -28,7 +29,9 @@
      </ul>
      
      <ul>
-        <li> <a href="<%=request.getContextPath() %>/admin_board_list.do"> 게시판 전체목록</a>
+        <li> <a href="<%=request.getContextPath() %>/admin_board_list.do"> 자유 게시판</a>
+        <li> <a href="<%=request.getContextPath() %>/boardqa_list.do"> Q/A 게시판</a>
+        <li> <a href="<%=request.getContextPath() %>/notice_list.do"> 공지사항 게시판</a>
     </ul>
      
      <ul>

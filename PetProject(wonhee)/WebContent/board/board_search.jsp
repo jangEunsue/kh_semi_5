@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<jsp:include page="../include/admin_top.jsp" />
+
   <div align="center">
 	   <hr width="30%" color="red">
 	      <h3>게시물 검색 리스트 페이지</h3>
