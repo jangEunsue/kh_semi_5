@@ -135,6 +135,7 @@ public class FreeBoardDAO {
 				FreeBoardDTO dto = new FreeBoardDTO();
 				
 				dto.setFree_no(rs.getInt("free_no"));
+				dto.setFree_id(rs.getString("free_id"));
 				dto.setFree_writer(rs.getString("free_writer"));
 				dto.setFree_title(rs.getString("free_title"));
 				dto.setFree_cont(rs.getString("free_cont"));
@@ -174,16 +175,17 @@ public class FreeBoardDAO {
 				count = rs.getInt(1)+1;
 			}
 			
-			sql = "insert into pet_free values(?,?,?,?,?,default,sysdate,'',?,0,0)";
+			sql = "insert into pet_free values(?,?,?,?,?,?,default,sysdate,'',?,0,0)";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, count);
-			pstmt.setString(2, dto.getFree_writer());
-			pstmt.setString(3, dto.getFree_title());
-			pstmt.setString(4, dto.getFree_cont());
-			pstmt.setString(5, dto.getFree_pwd());
-			pstmt.setInt(6, count);
+			pstmt.setString(2, dto.getFree_id());
+			pstmt.setString(3, dto.getFree_writer());
+			pstmt.setString(4, dto.getFree_title());
+			pstmt.setString(5, dto.getFree_cont());
+			pstmt.setString(6, dto.getFree_pwd());
+			pstmt.setInt(7, count);
 			
 			result = pstmt.executeUpdate();
 			
@@ -232,6 +234,7 @@ public class FreeBoardDAO {
 			
 			if(rs.next()) {
 				dto.setFree_no(rs.getInt("free_no"));
+				dto.setFree_id(rs.getString("free_id"));
 				dto.setFree_writer(rs.getString("free_writer"));
 				dto.setFree_title(rs.getString("free_title"));
 				dto.setFree_cont(rs.getString("free_cont"));
@@ -317,6 +320,7 @@ public class FreeBoardDAO {
 			
 			if(rs.next()) {
 				dto.setFree_no(rs.getInt("free_no"));
+				dto.setFree_id(rs.getString("free_id"));
 				dto.setFree_writer(rs.getString("free_writer"));
 				dto.setFree_title(rs.getString("free_title"));
 				dto.setFree_cont(rs.getString("free_cont"));
@@ -418,19 +422,19 @@ public class FreeBoardDAO {
 				count = rs.getInt(1)+1;
 			}
 			
-			sql = "insert into pet_free values(?, ?, ?, ?, ?, default, sysdate, '', ?, ?, ?)";
+			sql = "insert into pet_free values(?, ?, ?, ?, ?, ?, default, sysdate, '', ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, count);
-			
-			pstmt.setString(2, dto.getFree_writer());
-			pstmt.setString(3, dto.getFree_title());
-			pstmt.setString(4, dto.getFree_cont());
-			pstmt.setString(5, dto.getFree_pwd());
-			pstmt.setInt(6, dto.getFree_group());
-			pstmt.setInt(7, dto.getFree_step()+1);
-			pstmt.setInt(8, dto.getFree_indent()+1);
+			pstmt.setString(2, dto.getFree_id());
+			pstmt.setString(3, dto.getFree_writer());
+			pstmt.setString(4, dto.getFree_title());
+			pstmt.setString(5, dto.getFree_cont());
+			pstmt.setString(6, dto.getFree_pwd());
+			pstmt.setInt(7, dto.getFree_group());
+			pstmt.setInt(8, dto.getFree_step()+1);
+			pstmt.setInt(9, dto.getFree_indent()+1);
 			
 			
 			result = pstmt.executeUpdate();
@@ -566,6 +570,7 @@ public class FreeBoardDAO {
 				while(rs.next()) {
 					FreeBoardDTO dto = new FreeBoardDTO();
 					dto.setFree_no(rs.getInt("free_no"));
+					dto.setFree_id(rs.getString("free_id"));
 					dto.setFree_writer(rs.getString("free_writer"));
 					dto.setFree_title(rs.getString("free_title"));
 					dto.setFree_cont(rs.getString("free_cont"));
@@ -604,6 +609,7 @@ public class FreeBoardDAO {
 					FreeBoardDTO dto = new FreeBoardDTO();
 					
 					dto.setFree_no(rs.getInt("free_no"));
+					dto.setFree_id(rs.getString("free_id"));
 					dto.setFree_writer(rs.getString("free_writer"));
 					dto.setFree_title(rs.getString("free_title"));
 					dto.setFree_cont(rs.getString("free_cont"));
@@ -644,6 +650,7 @@ public class FreeBoardDAO {
 					FreeBoardDTO dto = new FreeBoardDTO();
 					
 					dto.setFree_no(rs.getInt("free_no"));
+					dto.setFree_id(rs.getString("free_id"));
 					dto.setFree_writer(rs.getString("free_writer"));
 					dto.setFree_title(rs.getString("free_title"));
 					dto.setFree_cont(rs.getString("free_cont"));
@@ -683,6 +690,7 @@ public class FreeBoardDAO {
 					FreeBoardDTO dto = new FreeBoardDTO();
 					
 					dto.setFree_no(rs.getInt("free_no"));
+					dto.setFree_id(rs.getString("free_id"));
 					dto.setFree_writer(rs.getString("free_writer"));
 					dto.setFree_title(rs.getString("free_title"));
 					dto.setFree_cont(rs.getString("free_cont"));

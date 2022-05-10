@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pet.controller.Action;
 import com.pet.controller.ActionForward;
@@ -16,12 +17,17 @@ public class FreeWriteOkAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+		HttpSession session = request.getSession();
+		
+		String free_id = (String)session.getAttribute("userId");
+		
 		String free_writer = request.getParameter("writer").trim();
 		String free_title = request.getParameter("title").trim();
 		String free_cont = request.getParameter("content").trim();
 		String free_pwd = request.getParameter("pwd").trim();
 		
 		FreeBoardDTO dto = new FreeBoardDTO();
+		dto.setFree_id(free_id);
 		dto.setFree_writer(free_writer);
 		dto.setFree_title(free_title);
 		dto.setFree_cont(free_cont);

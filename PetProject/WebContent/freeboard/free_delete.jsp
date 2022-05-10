@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
 	<br>
 			<h3>비밀번호 확인</h3>
@@ -29,5 +30,6 @@
 	</form>
 	
 	</div>
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>

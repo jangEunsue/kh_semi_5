@@ -4,18 +4,54 @@ public class SalesDTO {
 
 	private int sales_no;
 	private String sales_id;
+	private int  sales_serial;
+	private String sales_name;
 	private String sales_phone;
 	private String sales_addr;
+	private int sales_p_no;
 	private String sales_pname;
 	private String sales_pimage;
 	private int sales_price;
 	private int sales_pqty;
 	private int sales_transcost;
+	private String sales_payment;
+	private String sales_comments;
 	private int sales_mileage;
 	private String sales_date;
-	private String sales_spec;
+
 	
 	
+	
+	public int getSales_serial() {
+		return sales_serial;
+	}
+	public void setSales_serial(int sales_serial) {
+		this.sales_serial = sales_serial;
+	}
+	public int getSales_p_no() {
+		return sales_p_no;
+	}
+	public void setSales_p_no(int sales_p_no) {
+		this.sales_p_no = sales_p_no;
+	}
+	public String getSales_name() {
+		return sales_name;
+	}
+	public void setSales_name(String sales_name) {
+		this.sales_name = sales_name;
+	}
+	public String getSales_payment() {
+		return sales_payment;
+	}
+	public void setSales_payment(String sales_payment) {
+		this.sales_payment = sales_payment;
+	}
+	public String getSales_comments() {
+		return sales_comments;
+	}
+	public void setSales_comments(String sales_comments) {
+		this.sales_comments = sales_comments;
+	}
 	public int getSales_no() {
 		return sales_no;
 	}
@@ -28,6 +64,13 @@ public class SalesDTO {
 	public void setSales_id(String sales_id) {
 		this.sales_id = sales_id;
 	}
+	
+	public String getSales_pname() {
+		return sales_pname;
+	}
+	public void setSales_pname(String sales_pname) {
+		this.sales_pname = sales_pname;
+	}
 	public String getSales_phone() {
 		return sales_phone;
 	}
@@ -39,12 +82,6 @@ public class SalesDTO {
 	}
 	public void setSales_addr(String sales_addr) {
 		this.sales_addr = sales_addr;
-	}
-	public String getSales_pname() {
-		return sales_pname;
-	}
-	public void setSales_pname(String sales_pname) {
-		this.sales_pname = sales_pname;
 	}
 	public String getSales_pimage() {
 		return sales_pimage;
@@ -82,6 +119,5 @@ public class SalesDTO {
 	public void setSales_date(String sales_date) {
 		this.sales_date = sales_date;
 	}
-	
-	
+
 }

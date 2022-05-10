@@ -75,6 +75,7 @@ public class FreeListAction implements Action {
 		request.setAttribute("startBlock", startBlock);
 		request.setAttribute("endBlock", endBlock);
 		request.setAttribute("List", pageList);
+		
 		ActionForward forward = new ActionForward();
 		
 		forward.setRedirect(false);

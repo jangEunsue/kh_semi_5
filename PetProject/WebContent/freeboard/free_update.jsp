@@ -20,11 +20,21 @@ th{
 padding:5px;
 
 }
+textarea {
+	width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    font-family: sans-selif; 
+}
+
 
 </style>
 </head>
 <body>
-
+<jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
 		<c:set var="dto" value="${update }"/>
 		<h3>${dto.getFree_writer() }님 게시글 수정 페이지</h3>
@@ -69,5 +79,6 @@ padding:5px;
 	
 	
 	</div>
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>

@@ -7,8 +7,9 @@ public class CartDTO {
 	private String cart_pname;
 	private int cart_pqty;
 	private int cart_price;
-	private String cart_pcont;
+	private String cart_pspec;
 	private String cart_pimage;
+	private int cart_point;
 	
 	
 	public int getCart_no() {
@@ -47,11 +48,11 @@ public class CartDTO {
 	public void setCart_price(int cart_price) {
 		this.cart_price = cart_price;
 	}
-	public String getCart_pcont() {
-		return cart_pcont;
+	public String getCart_pspec() {
+		return cart_pspec;
 	}
-	public void setCart_pcont(String cart_pcont) {
-		this.cart_pcont = cart_pcont;
+	public void setCart_pspec(String cart_pspec) {
+		this.cart_pspec = cart_pspec;
 	}
 	public String getCart_pimage() {
 		return cart_pimage;
@@ -59,6 +60,14 @@ public class CartDTO {
 	public void setCart_pimage(String cart_pimage) {
 		this.cart_pimage = cart_pimage;
 	}
+	public int getCart_point() {
+		return cart_point;
+	}
+	public void setCart_point(int cart_point) {
+		this.cart_point = cart_point;
+	}
+	
+	
 	
 	
 }

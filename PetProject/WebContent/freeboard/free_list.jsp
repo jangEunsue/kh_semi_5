@@ -7,27 +7,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+h2{
 
-#title{
-
-text-align: left;
+margin:20;
 
 }
+ table {
+        width: 70%;
+        border: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      
+ th, td {
+   border-bottom: 1px solid #444444;
+   padding: 10px;
+
+ }
+      
+ th{
+ 
+ background-color: #E9E1D4;
+ text-align: center;
+ 
+ }
+
+
+#writeBtn{
+
+margin: 25px;
+float: right;
+size: 50px;
+
+}
+
 </style>
 </head>
 <body>
-
+<jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
 		<h2>자유게시판</h2>
 		<br>
 		<br>
-		<table style="text-align: center; border:1px solid #dddddd " width="650">
+		<table>
 			<tr>
-			<th style="background-color: #E9E1D4; text-align: center;">No.</th>
-			<th style="background-color: #E9E1D4; text-align: center;">글제목</th>
-			<th style="background-color: #E9E1D4; text-align: center;">작성자</th>
-			<th style="background-color: #E9E1D4; text-align: center;">조회수</th>
-			<th style="background-color: #E9E1D4; text-align: center;">작성일자</th>
+			<th width="10%">No.</th>
+			<th width="40%">글제목</th>
+			<th width="15%">작성자</th>
+			<th width="10%">조회수</th>
+			<th width="20%">작성일자</th>
 			</tr>
 			
 			<c:set var="list" value="${List }"/>
@@ -36,23 +63,20 @@ text-align: left;
 			<input type="hidden" value="${dto.getFree_indent() }">
 				<tr>
 					<td>${dto.getFree_no() }</td>
-					<td id = "title">
+					<td>
 					<c:if test="${dto.getFree_indent() != 0 }">
 					<c:forEach begin="1" end="${dto.getFree_indent()}">
 						┖
 					</c:forEach>
 					</c:if>
-	
 					<a href="<%=request.getContextPath() %>/free_content.do?no=${dto.getFree_no()}">
 					${dto.getFree_title() }</a>
-					 
 					</td>
-					
-					
 					<td>${dto.getFree_writer() }</td>
 					<td>${dto.getFree_hit() }</td>
 					<td>${dto.getFree_date().substring(0, 10) }</td>
 					</tr>
+					
 			</c:forEach>
 			
 			</c:if>
@@ -65,13 +89,11 @@ text-align: left;
 				</tr>
 			</c:if>
 
-			<tr>
-				<td colspan="5" align="right">
-				<input type="button" value="글쓰기" onclick="location.href='free_write.do'">
-				</td>
-			</tr>	
 				
 			</table>
+			<div id="writeBtn">
+				<input type="button" value="글쓰기" onclick="location.href='free_write.do'">
+				</div>
 			
 			<br>
 		
@@ -110,5 +132,6 @@ text-align: left;
 			<input type="submit" value="검색">
 		</form>
 	</div>
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>

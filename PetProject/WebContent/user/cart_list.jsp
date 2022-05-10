@@ -1,19 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
+<style type="text/css">
+
+.center {
+	text-align: center;
+}
+
+
+
+</style>
+
 <script type="text/javascript">
 
 function goSales(){
 	
-	document.frm.action="<%=request.getContextPath()%>/sales_add.do";
+	document.frm.action="<%=request.getContextPath()%>/cart_to_sales.do";
 	
 	document.frm.submit();
 }
@@ -102,7 +111,7 @@ function updateTotal(){
 		
 		point = total*0.01
 		
-		if(total < 5000000){
+		if(total < 50000){
 			trans=3000
 		}else{
 			trans=0
@@ -114,25 +123,20 @@ function updateTotal(){
 }
 
 </script>
-<style type="text/css">
-
-	.center {
-		text-align: center;
-	}
-
-</style>
 </head>
 <body>
 
+	<!-- top -->
+	<jsp:include page="../inc/pet_top.jsp"/>
 	
-	 <form method="post" name="frm">
-	<table border="1" cellspacing="0" width="650" align="center">
+	 <form method="post" name="frm" action="cart_to_sales.do">
+	         <h3 align="center">장바구니 보기</h3>
+	<table>
+	<br>
 	   <tr>
 	      <td colspan="7" class="center">
-	         <h3>장바구니 보기</h3>
 	      </td>
 	   </tr>
-	
 	   <tr>
 	      <th width="10%">
 	      <input type="checkbox" id="allCheck" name="allcheck" onchange="toggleAllCheck(this)" checked></th>
@@ -141,29 +145,32 @@ function updateTotal(){
 	      <th width="15%">단 가</th> <th width="15%">합계액</th>
 	      <th width="10%">삭 제</th>   
 	   </tr>
-	   
+	    
 	   <c:set var="list" value="${cartList }" />
 	   <c:if test="${!empty list }">
 	      <c:forEach items="${list }" var="dto">
 	         <tr>
-	            <td class="center"><input type="checkbox" id="${dto.getCart_no() }check" name="check" 
-	            onchange="toggleCheck(this)" checked data-price="${dto.getCart_price() }"
-	            data-amount="${dto.getCart_pqty() }"></td>
+	            <td class="center">
+	            	<input type="checkbox" id="${dto.getCart_no() }check" name="check" 
+	            	onchange="toggleCheck(this)" checked data-price="${dto.getCart_price() }"
+	            	data-amount="${dto.getCart_pqty() }">
+	            </td>
 	            
 	            <td class="center"> 
 	               <img src="<%=request.getContextPath() %>/upload/${dto.getCart_pimage() }"
-	                         width="50" height="50"></td>
+	                         width="50" height="50">
+	            </td>
+	            
 	            <td class="center"> ${dto.getCart_pname() } </td>
 	            
-	           <td class="center">
-				<input type="number" name="pqty" min="1" max="100" size=2 value = "${dto.getCart_pqty() }" 
-				onchange="updatePqty(this,'${dto.getCart_no() }modify')">
-					
+	            <td class="center">
+					<input type="number" name="pqty" min="1" max="100" size=2 value = "${dto.getCart_pqty() }" 
+					onchange="updatePqty(this,'${dto.getCart_no() }modify')">
 					<br>
-					
 					<a id="${dto.getCart_no() }modify"
-					href="<%=request.getContextPath() %>/user_cart_update.do?no=${dto.getCart_no() }
-					&pqty=${dto.getCart_pqty()}">[수 정]</a>
+					href="<%=request.getContextPath() %>/cart_update.do?no=${dto.getCart_no() }
+					&pqty=${dto.getCart_pqty()}">
+					<button type="button"class="modiBtn">수 정</button></a>
 					</td>
 					
 	            <td class="center">
@@ -174,18 +181,22 @@ function updateTotal(){
 	               <c:set var="amount" value="${dto.getCart_pqty() }" />
 	               <fmt:formatNumber value="${price * amount }" />원
 	            </td>
+	            
 	            <td class="center"> 
-	               <a href="<%=request.getContextPath() %>/user_cart_delete.do?no=${dto.getCart_no() }">[삭 제]</a>
-	            </td>
+	               <a href="<%=request.getContextPath() %>/cart_delete.do?no=${dto.getCart_no() }">
+					<button type="button"class="modiBtn">수 정</button></a>
+				</td>
 	            
 	            <c:set var="total" value="${total + (price * amount) }" />
 	            <c:set var="point" value="${total * 0.01 }"/>
-	            
+	            <c:set var="trans" value="${total < 5000000 ? 3000 : 0 }"></c:set>
 	         </tr>
 	      </c:forEach>
-	   
-	         <tr>
-	            <td colspan="7" align="right">
+	        </c:if>
+		   </table>
+		   
+		   
+	       	  <div id="calcWrap">
 	               <b><font color="red" >장바구니 총액 : 
 	               <span id="total"><fmt:formatNumber value="${total }" /></span> 원</font></b>
 	               <br>
@@ -194,13 +205,17 @@ function updateTotal(){
 	           		<br>
 	           		<font color="red"> 배송비 총액 : 
 	           		<span id="trans"><fmt:formatNumber value="${trans }"/></span> 원</font>
-	            </td>
-	            <td colspan="3" class="center">
-	               	<a href="javascript:goSales()">[결제하기]</a>&nbsp;&nbsp;&nbsp;
-	               <a href="javascript:history.go(-2);">[계속 쇼핑]</a>
-	            </td>
-	         </tr>
-	   </c:if>
+	            </div>
+	            
+	         	 <div id="submitBtnwrap">
+	            	<button type="submit" id="CartToBuyBtn">결제하기</button>
+	               
+	               	<!--  <a href="javascript:goSales()">[결제하기]</a>-->&nbsp;&nbsp;&nbsp;
+	               <a href="javascript:history.go(-2);">
+	               <button type="button"id="CartToBuyBtn">계속쇼핑</button></a>
+				
+				</div>
+	 
 	   
 	   <c:if test="${empty list }">
 	      <tr>
@@ -209,9 +224,12 @@ function updateTotal(){
 	         </td>
 	      </tr>
 	   </c:if>
-	</table>
-	   </form>      
 	
+	</form>      
+	
+	<!-- bottom -->
+	
+	<jsp:include page="../inc/pet_bottom.jsp"/>
 	
 </body>
 </html>

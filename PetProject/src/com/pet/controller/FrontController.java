@@ -51,7 +51,7 @@ public class FrontController extends HttpServlet {
 		 * -읽어 들일 때 사용하는 메서드는 load() 라는 메서드를 이용하여 파일을 읽어들이게 됨.
 		 */
 		
-		FileInputStream fis = new FileInputStream("C:\\NCS\\workspace(jsp)\\PetProject\\src\\com\\pet\\controller\\mapping.properties");
+		FileInputStream fis = new FileInputStream("C:\\Users\\82102\\git\\kh_semi_5\\PetProject\\src\\com\\pet\\controller\\mapping.properties");
 		
 		prop.load(fis);
 		

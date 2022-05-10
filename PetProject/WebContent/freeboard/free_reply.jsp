@@ -6,9 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+textarea {
+	width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    font-family: Noto Sans, sans-selif; 
+}
+
+
+</style>
 </head>
 <body>
-
+<jsp:include page="../inc/pet_top.jsp" />
 <div align="center">
 		<c:set var="dto" value="${reply}"/>
 			<h3>${dto.getFree_writer() }님에 대한 답글</h3>
@@ -16,6 +29,7 @@
 		
 		<form method="post" action="<%=request.getContextPath()%>/free_reply_ok.do">
 		
+		<input type="hidden" name="userId" value="${userId }">
 		<input type="hidden" name="free_no" value="${dto.getFree_no() }">
 		<input type="hidden" name="free_group" value="${dto.getFree_group() }">
 		<input type="hidden" name="free_step" value="${dto.getFree_step() }">
@@ -24,7 +38,7 @@
 		<table border="1" cellspacing="0" width="800">
 			<tr>
 				<th>작성자</th>
-				<td><input name="re_writer" value="${dto.getFree_writer() }"></td>
+				<td><input name="re_writer"></td>
 			</tr>
 			<tr>
 				<th>글제목</th>
@@ -33,7 +47,7 @@
 		
 			<tr>
 				<th>글내용</th>
-				<td><textarea rows="10" cols="100" name="re_content">${dto.getFree_cont() }</textarea></td>
+				<td><textarea rows="10" cols="100" name="re_content"></textarea></td>
 			</tr>
 		
 			<tr>
@@ -52,5 +66,6 @@
 		
 		</form>
 	</div>
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>

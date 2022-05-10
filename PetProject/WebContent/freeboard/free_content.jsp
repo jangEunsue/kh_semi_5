@@ -12,10 +12,20 @@ th{
 width:10%
 }
 
+textarea {
+	width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    font-family: sans-selif; 
+}
+
 </style>
 </head>
 <body>
-
+<jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
 		<c:set var="dto" value="${Cont }"/>
 	<h3>${dto.getFree_writer()}님 게시글 페이지</h3>
@@ -33,7 +43,7 @@ width:10%
 			
 			<tr>
 				<th>글내용</th>
-				<td><textarea rows="7" cols="70" readonly>${dto.getFree_cont() }</textarea></td>
+				<td><textarea rows="10" readonly>${dto.getFree_cont() }</textarea></td>
 			</tr>
 		
 			<tr>
@@ -79,5 +89,6 @@ width:10%
 		</table>
 	
 	</div>
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>

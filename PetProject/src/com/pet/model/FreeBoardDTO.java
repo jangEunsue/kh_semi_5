@@ -3,6 +3,7 @@ package com.pet.model;
 public class FreeBoardDTO {
 	private int free_no;
 	private String free_writer;
+	private String free_id;
 	private String free_title;
 	private String free_cont;
 	private String free_pwd;
@@ -25,6 +26,13 @@ public class FreeBoardDTO {
 	}
 	public void setFree_writer(String free_writer) {
 		this.free_writer = free_writer;
+	}
+	
+	public String getFree_id() {
+		return free_id;
+	}
+	public void setFree_id(String free_id) {
+		this.free_id = free_id;
 	}
 	public String getFree_title() {
 		return free_title;
