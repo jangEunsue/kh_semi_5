@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <!-- top, button스타일 적용 -->
+<link rel="stylesheet" type="text/css" href="../css/basic.css">
+<link rel="stylesheet" type="text/css" href="../css/design.css">
+<!-- 서브 스타일 -->
+<link rel="stylesheet" type="text/css" href="../css/sub_st.css">
+
 <style>
 /* FAQ */
 .faq{border-bottom:0px solid #ddd;
@@ -19,6 +25,10 @@
 /*.faq .faqBody{margin:0;
 	padding:0}*/
 .faq .faqBody .article{list-style:none}
+.faq{
+	margin-left: 10%;
+	margin-bottom: 5%;
+}
 .faq .q{margin:}
 .faq .q a{display:block;text-align:left;
 	text-decoration: none; 
@@ -47,7 +57,7 @@
 <jsp:include page="../inc/pet_top.jsp"/>
 
 <div align="center">
-
+	<br><br>
 	<h3>자주 묻는 질문</h3>
 </div>
 <div class="faq" align="center">

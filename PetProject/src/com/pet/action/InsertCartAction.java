@@ -22,7 +22,7 @@ public class InsertCartAction implements Action {
 
 		HttpSession session = request.getSession();
 
-		String userId = (String) session.getAttribute("userId");
+		String userId = (String) session.getAttribute("sessionID");
 		int p_num = Integer.parseInt(request.getParameter("no").trim());
 		int pqty = Integer.parseInt(request.getParameter("qty").trim());
 		String location = request.getParameter("location").trim();

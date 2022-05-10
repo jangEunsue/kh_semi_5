@@ -60,21 +60,25 @@
                         %>		
 		                        <li><a href="<%=request.getContextPath() %>/pet_login.do">Login</a></li>
 		                        <li><a href="<%=request.getContextPath() %>/pet_join.do">Join</a></li>
-	                    <%  } else{ %>
-	                    		<li><a href="<%=request.getContextPath() %>/pet_member_mypage.do">MyPage</a></li>
-	                        	<li><a href="<%=request.getContextPath() %>/pet_member_logout.do">Logout</a></li>
-	                    <%	}	%>
+	                    <%  } else{
+		                    	if(session.getAttribute("sessionID") == "admin"){ %>
+		                    		<li><a href="<%=request.getContextPath() %>/admin1/admin_main.jsp">관리자페이지</a></li>
+		                        	<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>
+		                <% 		}else { %>
+		                	   		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">MyPage</a></li>
+	                        		<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>
+		                <%   	} 		
+	                   		}	%>
                     </ul>
                     <div class="clear"></div>
                 </div>
-
-            </div>
+               </div>
         </div>
         <!-- ---------------------------------------------------------------------------------------------------------- -->
         <div id="navwrap_bg" class="clearfix">
             <div id="navwrap">
                 <div id="logo">
-                    <h1><a href="<%=request.getContextPath() %>/pet_main.do"><img src="images/logo.png" alt="logo" border="0"></a></h1>
+                    <h1><a href="<%=request.getContextPath() %>/pet_main.do"><img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" border="0"></a></h1>
                 </div>
             </div>
             <!--2단 메뉴-->
@@ -129,13 +133,13 @@
     <!-- 서브 슬라이드  -->
     <section class="m_slick s_slick slider">
         <div>
-            <img src="images/sub_metapo01.jpg">
+            <img src="<%=request.getContextPath()%>/images/sub_metapo01.jpg">
         </div>
         <div>
-            <img src="images/sub_metapo02.jpg">
+            <img src="<%=request.getContextPath()%>/images/sub_metapo02.jpg">
         </div>
         <div>
-            <img src="images/sub_metapo03.jpg">
+            <img src="<%=request.getContextPath()%>/images/sub_metapo03.jpg">
         </div>
     </section>
     <!-- // 서브 슬라이드  -->

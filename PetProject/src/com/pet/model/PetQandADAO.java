@@ -512,4 +512,78 @@ public class PetQandADAO {
 
 		return list;
 	} // searchBoardList() end
+	
+	// 답변글 step 하나 증가
+			public void replyUpdate(int group, int step) {
+
+				
+					openConn();
+					
+					
+					try {
+						sql = "update pet_QandA set"
+								+ " QA_step = QA_step + 1 "
+								+ " where QA_group = ? and QA_step > ?"; 
+						
+						pstmt = con.prepareStatement(sql);
+					    
+						pstmt.setInt(1, group);
+						
+						pstmt.setInt(2, step);
+						
+						pstmt.executeUpdate();
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+					}
+
+			}//
+		
+		
+			public int replyQa(PetQandADTO dto) {
+				int result = 0, count = 0;
+				
+				
+				try {
+					openConn();
+					
+					sql = "select max(QA_no) from pet_QandA";
+					
+					pstmt = con.prepareStatement(sql);
+				
+					rs = pstmt.executeQuery();
+					
+					
+					if(rs.next()) {
+						count = rs.getInt(1) + 1;
+					}
+					
+					sql = "insert into pet_QandA "
+							+ " values(?, ?, ?, ?, ?, default, sysdate, '', ?, ?, ?)";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, count);
+					
+					pstmt.setString(2, dto.getQA_writer());
+					pstmt.setString(3, dto.getQA_title());
+					pstmt.setString(4, dto.getQA_cont());
+					pstmt.setString(5, dto.getQA_userID());
+					pstmt.setInt(6, dto.getQA_group());
+					pstmt.setInt(7, dto.getQA_step());
+					pstmt.setInt(8, dto.getQA_indent());
+					
+					result = pstmt.executeUpdate();
+					
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					closeConn(rs, pstmt, con);
+				}
+				return result;
+			}
 }
