@@ -21,7 +21,7 @@ public class BoardQAReplyOkAction implements Action {
 			
 			String QA_content = request.getParameter("QA_content").trim();
 			
-			String QA_userId = request.getParameter("QA_userId").trim();
+			String QA_userID = request.getParameter("QA_userID").trim();
 			
 			int QA_no = 
 					Integer.parseInt(request.getParameter("QA_no").trim());
@@ -45,7 +45,7 @@ public class BoardQAReplyOkAction implements Action {
 			
 			dto.setQA_cont(QA_content);
 			
-			dto.setQA_userID(QA_userId);
+			dto.setQA_userID(QA_userID);
 			
 			dto.setQA_group(QA_group);
 			

@@ -560,9 +560,8 @@ public class PetQandADAO {
 					if(rs.next()) {
 						count = rs.getInt(1) + 1;
 					}
-					
 					sql = "insert into pet_QandA "
-							+ " values(?, ?, ?, ?, ?, default, sysdate, '', ?, ?, ?)";
+							+ " values(?, ?, ?, ?, ?, sysdate, '', ?, ?, ?)";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setInt(1, count);

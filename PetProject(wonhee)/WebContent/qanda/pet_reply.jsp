@@ -23,16 +23,17 @@
       <form method="post"
 	      action="<%=request.getContextPath() %>/admin_BoardQA_reply_ok.do">
 	   
-	      <input type="hidden" name="QA_no" value="${dto.getQA_no() }">
-	      <input type="hidden" name="QA_group" value="${dto.getQA_group() }">
-	      <input type="hidden" name="QA_step" value="${dto.getQA_step() }">
-	      <input type="hidden" name="QA_indent" value="${dto.getQA_indent() }">
-	      
+	    <input type="hidden" name="QA_userid" value="${dto.getQA_userID() }">
+		<input type="hidden" name="QA_no" value="${dto.getQA_no() }">
+		<input type="hidden" name="QA_group" value="${dto.getQA_group() }">
+		<input type="hidden" name="QA_step" value="${dto.getQA_step() }">
+		<input type="hidden" name="QA_indent" value="${dto.getQA_indent() }">
+	    <input type="hidden" name="QA_userID"  value="admin" }">  
 	      <table border="1" cellspacing="0" width="400">
 	         <tr>
 	            <th>작성자</th>
 	            <td> <input name="QA_writer"
-	                     value="${dto.getQA_writer() }"> </td>
+	                     value="관리자"> </td>
 	         </tr>
 	         
 	         <tr>
@@ -46,11 +47,6 @@
 	            <td>
 	               <textarea rows="7" cols="30" name="QA_content">${dto.getQA_cont() }</textarea>
 	            </td>
-	         </tr>
-	         
-	         <tr>
-	         	<th>아이디</th>
-	         	<td> <input type="text" name="QA_userId"> </td>
 	         </tr>
 	         
 	         <tr>
