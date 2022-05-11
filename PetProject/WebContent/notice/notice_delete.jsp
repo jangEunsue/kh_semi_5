@@ -15,7 +15,7 @@
     <br>
     
     <form method="post"
-          action="<%=request.getContextPath() %>/notice_delete_ok.do">
+          action="<%=request.getContextPath() %>/admin_notice_delete_ok.do">
         
      <input type="hidden" name="notice_no" value="${param.no }">
      <table border="1" cellpacing="0" width="400">
