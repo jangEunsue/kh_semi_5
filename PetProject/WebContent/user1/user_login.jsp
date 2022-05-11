@@ -15,7 +15,7 @@
     <br>
     
     <form method="post"
-          action="<%=request.getContextPath()%>/member_login_ok.do">
+          action="<%=request.getContextPath()%>/admin_member_login_ok.do">
           
           <table border="1" cellspacing="0" width="400">
             <tr>
