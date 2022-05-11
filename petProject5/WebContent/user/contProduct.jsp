@@ -32,9 +32,9 @@ table tr td {
 }
 </style>
 <script type="text/javascript">
-	$(".btn").mouseover(function() {
-		var btn =${".btn"};
-		btn.style.backgroundColor = '#F1BCAE ';
+$(".btn").mouseover(function() {
+	var btn = document.getElementByClass("btn");
+	btn.style.backgroundColor = '#F1BCAE ';
 	});
 
 	$(function() {
@@ -122,7 +122,7 @@ table tr td {
 <body>
 	<jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
-		<form method="post" name="frm">
+		<form method="post" name="frm" onsubmit="return false">
 			<c:set var="dto" value="${cont}"></c:set>
 			<c:if test="${dto.getP_name() != null}">
 				<br>
@@ -135,7 +135,7 @@ table tr td {
 				<input type="hidden" name="p_price" value="${dto.getP_price() }">
 				<input type="hidden" name="p_image" value="${dto.getP_image() }">
 				<input type="hidden" name="p_spec" value="${dto.getP_spec() }">
-				<input type="hidden" name="m_id" value="${m_id }">
+				<input type="hidden" name="m_id" value="<%=(String)session.getAttribute("sessionID")%>">
 				<input type="hidden" name="p_point" value="${dto.getP_point() }">
 				<input type="hidden" name="p_name" value="${dto.getP_name() }">
 				<table>
@@ -166,9 +166,23 @@ table tr td {
 				</table>
 				<br>
 				<br>
-
+					
 				<br>
 				<br>
+				 <div id="sub_wrap" class="webfont">
+      	  <div id="aside">
+           
+            <div class="mid_nav">
+                <ul class="mid_menu">
+                    <li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>" class="nav_on">
+                    	<i class="fa fa-caret-right"></i>상제정보</a>
+                    </li>
+                    <li><a href="<%=request.getContextPath() %>/selectSalesList.do">
+                    	<i class="fa fa-caret-right"></i>리뷰</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 				<input type="button" value="상세정보" onclick="" id="detail"> &nbsp; &nbsp; &nbsp; &nbsp;
 				<input type="button" value="리뷰" onclick="review()" id="review">
 				<span></span>

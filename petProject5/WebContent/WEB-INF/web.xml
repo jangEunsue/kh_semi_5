@@ -22,15 +22,5 @@
   </servlet-mapping>
   
   
-    <servlet>
-  <servlet-name>FrontController1</servlet-name>
-  <servlet-class>com.admin.controller.FrontController</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>FrontController1</servlet-name>
-  	<url-pattern>*.do</url-pattern>
-  </servlet-mapping>
-  
   
 </web-app>

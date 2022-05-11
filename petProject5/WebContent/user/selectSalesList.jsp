@@ -23,8 +23,28 @@ hr {
 </style>
 </head>
 <body>
+<jsp:include page="../inc/pet_top.jsp" />
+
+<div id="aside">
+            <div class="left_title">
+                <p class="big_title">MEMBER</p>
+                <p class="small_title">MyPage</p>
+                <p class="bl_lt">▼</p>
+            </div>
+            <div class="mid_nav">
+                <ul class="mid_menu">
+                    <li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>" class="nav_on">
+                    	<i class="fa fa-caret-right"></i>회원정보조회</a>
+                    </li>
+                    <li><a href="<%=request.getContextPath() %>/selectSalesList.do">
+                    	<i class="fa fa-caret-right"></i>구매내역확인</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      
 	<%-- 구매내역 확인 --%>
-	<jsp:include page="../inc/pet_top.jsp" />
+	
 	<div align="center">
 		<br>
 		<br>

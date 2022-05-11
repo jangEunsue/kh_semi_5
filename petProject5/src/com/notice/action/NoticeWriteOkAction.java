@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.admin.controller.Action;
-import com.admin.controller.ActionForward;
+import com.pet.controller.Action;
+import com.pet.controller.ActionForward;
 import com.pet.model.NoticeDAO;
 import com.pet.model.NoticeDTO;
 
@@ -47,7 +47,7 @@ public class NoticeWriteOkAction implements Action {
 			out.println("alert('게시물 작성 완료'");
 			out.println("</script>");
 			forward.setRedirect(true);
-			forward.setPath("notice_list.do");
+			forward.setPath("admin_notice_list.do");
 		}else {
 			out.println("<script>");
 			out.println("alert('게시물 작성 실패'");

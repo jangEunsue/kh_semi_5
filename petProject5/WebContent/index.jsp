@@ -63,7 +63,7 @@
 		                        <li><a href="<%=request.getContextPath() %>/pet_join.do">Join</a></li>
 	                    <%  } else{
 		                    	if(session.getAttribute("sessionID") == "admin"){ %>
-		                    		<li><a href="<%=request.getContextPath() %>/pet_admin.do">관리자페이지</a></li>
+		                    		<li><a href="<%=request.getContextPath() %>/admin1/admin_main.jsp">관리자페이지</a></li>
 		                        	<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>
 		                <% 		}else { %>
 		                	   		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID")%>">MyPage</a></li>
