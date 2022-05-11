@@ -21,7 +21,7 @@
       <br>
       
       <form method="post"
-	      action="<%=request.getContextPath() %>/board_reply_ok.do">
+	      action="<%=request.getContextPath() %>/admin_board_reply_ok.do">
 	   
 	      <input type="hidden" name="free_no" value="${dto.getFree_no() }">
 	      <input type="hidden" name="free_group" value="${dto.getFree_group() }">
