@@ -164,9 +164,9 @@
                     </li>
                     <li><a href="#">게시판</a><!---/default/05/01.php?top=5&sub=0-->
                         <ul>
-                            <li><a href="board_list.do">자유게시판</a></li>
-                            <li><a href="boardqa_list.do">Q/A 게시판</a></li>
-                            <li><a href="notice_list.do">공지사항</a></li>                           
+                            <li><a href="admin_board_list.do">자유게시판</a></li>
+                            <li><a href="admin_boardqa_list.do">Q/A 게시판</a></li>
+                            <li><a href="admin_notice_list.do">공지사항</a></li>                           
                         </ul>
                     </li>
                 </ul>
