@@ -38,7 +38,7 @@
 	                     </c:forEach>
 	                  </c:if>
 	                  
-	                  <a href="<%=request.getContextPath() %>/notice_content.do?no=${dto.getNotice_no() }">
+	                  <a href="<%=request.getContextPath() %>/admin_notice_content.do?no=${dto.getNotice_no() }">
 	               				${dto.getNotice_title() } </a>
 	               </td>
 	               <td> ${dto.getNotice_hit() } </td>
@@ -58,7 +58,7 @@
 	      <tr>
 	         <td colspan="7" align="right">
 	            <input type="button" value="글쓰기"
-	               onclick="location.href='notice_write.do'">
+	               onclick="location.href='admin_notice_write.do'">
 	      	 </td>
 	      </tr>
 	   </table>
@@ -68,32 +68,32 @@
 	   <br>
 	   
 	   <c:if test="${page > block }">
-	      <a href="board_list.do?page=1">◀◀</a>
-	      <a href="board_list.do?page=${startBlock -1 }">◀</a>
+	      <a href="admin_board_list.do?page=1">◀◀</a>
+	      <a href="admin_board_list.do?page=${startBlock -1 }">◀</a>
 	   </c:if>
 	   
 	   <c:forEach begin="${startBlock }" end="${endBlock }" var="i">
 	   
 	      <c:if test="${i == page }">
-	         <b><a href="board_list.do?page=${i }">[${i }]</a></b>
+	         <b><a href="admin_board_list.do?page=${i }">[${i }]</a></b>
 	      </c:if>
 	      
 	      <c:if test="${i != page }">
-	         <a href="board_list.do?page=${i }">[${i }]</a>
+	         <a href="admin_board_list.do?page=${i }">[${i }]</a>
 	      </c:if>
 	      
 	   </c:forEach>
 	   
 	   <c:if test="${endBlock < allPage }">
-	      <a href="board_list.do?page=${endBlock + 1 }">▶</a>
-	      <a href="board_list.do?page=${allPage }">▶▶</a>
+	      <a href="admin_board_list.do?page=${endBlock + 1 }">▶</a>
+	      <a href="admin_board_list.do?page=${allPage }">▶▶</a>
 	   </c:if>
 	   
 	   <br> <br>
 	   
 	   
 	    <form method="post"
-	      action="<%=request.getContextPath() %>/board_search.do">
+	      action="<%=request.getContextPath() %>/admin_board_search.do">
 	      
 	      <select name="search_field">
 	         <option value="title">제목</option>

@@ -21,7 +21,7 @@
       <br>
       
       <form method="post"
-	      action="<%=request.getContextPath() %>/notice_reply_ok.do">
+	      action="<%=request.getContextPath() %>/admin_notice_reply_ok.do">
 	   
 	      <input type="hidden" name="Notice_no" value="${dto.getNotice_no() }">
 	      <input type="hidden" name="Notice_group" value="${dto.getNotice_group() }">

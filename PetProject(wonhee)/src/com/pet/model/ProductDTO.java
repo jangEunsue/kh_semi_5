@@ -1,24 +1,24 @@
 package com.pet.model;
 
 public class ProductDTO {
-	
-	private int p_num;
-	private String p_name;
-	private String p_category_fk;
-	private String p_age;
-	private String p_kind_fk;
-	private String p_wetdry;
-	private String p_size;
-	private String p_neutering;
-	private String p_company;
-	private String p_image;
-	private int p_price;
-	private int p_qty;
-	private String p_spec;
-	private String p_content;
-	private int p_point;
-	private String p_inputdate;
-	
+		private int p_num;
+	   private String p_name;
+	   private String p_category_fk;
+	   private String p_age;
+	   private String p_kind_fk;
+	   private String p_wetdry;
+	   private String p_size;
+	   private String p_neutering;
+	   private String p_company;
+	   private String p_image;
+	   private int p_price;
+	   private int p_qty;
+	   private String p_spec;
+	   private String p_content;
+	   private int p_point;
+	   private String p_inputdate;
+	   
+	   
 	public int getP_num() {
 		return p_num;
 	}
@@ -115,6 +115,6 @@ public class ProductDTO {
 	public void setP_inputdate(String p_inputdate) {
 		this.p_inputdate = p_inputdate;
 	}
-	
-	
+	   
+	   
 }

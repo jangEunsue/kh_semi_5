@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pet.model.ProductDAO;
 import com.pet.model.ProductDTO;
-import com.admin.controller.Action;
-import com.admin.controller.ActionForward;
+import com.pet.controller.Action;
+import com.pet.controller.ActionForward;
 
 public class AdminProductSearchAction implements Action {
 

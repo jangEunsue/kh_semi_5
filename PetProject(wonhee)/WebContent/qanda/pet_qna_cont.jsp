@@ -59,12 +59,12 @@
 									String id = (String)session.getAttribute("sessionID");
 								%>				
 				                <input type="button" value="답변글"
-	                                 onclick="location.href='pet_QA_reply.do?no=${dto.getQA_no()}'">
+	                                 onclick="location.href='admin_pet_QA_reply.do?no=${dto.getQA_no()}'">
 				            	<input type="button" value="삭제"
 				               		onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
-				            	   			 	location.href='pet_QA_delete.do?no=${dto.getQA_no() }&page=${page }'
+				            	   			 	location.href='admin_pet_QA_delete.do?no=${dto.getQA_no() }&page=${page }'
 				               				}else{ return; }">
-				               	<input type="button" value="목록" onclick="location.href='boardqa_list.do'">			
+				               	<input type="button" value="목록" onclick="location.href='admin_boardqa_list.do'">			
 							</td>
 						</tr>
 					</table>

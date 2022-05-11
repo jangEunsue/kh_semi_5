@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.coyote.Request;
 
-import com.admin.controller.Action;
-import com.admin.controller.ActionForward;
+import com.pet.controller.Action;
+import com.pet.controller.ActionForward;
 
 public class AdminOrderManagementAction implements Action {
 

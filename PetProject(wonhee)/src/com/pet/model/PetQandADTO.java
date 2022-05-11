@@ -12,6 +12,7 @@ public class PetQandADTO {
     private int QA_step;
     private int QA_indent;
     
+    
 	public int getQA_no() {
 		return QA_no;
 	}
@@ -72,6 +73,5 @@ public class PetQandADTO {
 	public void setQA_indent(int qA_indent) {
 		QA_indent = qA_indent;
 	}
-    
-    
+ 
 }

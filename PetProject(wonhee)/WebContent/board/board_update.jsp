@@ -20,7 +20,7 @@
 	   <br>
       
       <form method="post"
-	      action="<%=request.getContextPath() %>/free_update_ok.do">
+	      action="<%=request.getContextPath() %>/admin_free_update_ok.do">
 	      
 	      <input type="hidden" name="free_no" value="${dto.getFree_no() }">
 	      <table border="1" cellspacing="0" width="400">

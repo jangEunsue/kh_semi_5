@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.admin.controller.Action;
-import com.admin.controller.ActionForward;
+import com.pet.controller.Action;
+import com.pet.controller.ActionForward;
 import com.pet.model.PetQandADAO;
 import com.pet.model.PetQandADTO;
 
@@ -67,7 +67,7 @@ public class BoardQAReplyOkAction implements Action {
 				
 				forward.setRedirect(true);
 				
-				forward.setPath("boardqa_list.do");
+				forward.setPath("admin_boardqa_list.do");
 			}else {
 				out.println("<script>");
 				out.println("alert('게시물 답변글 등록 실패~~~')");

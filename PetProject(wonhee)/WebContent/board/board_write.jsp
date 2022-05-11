@@ -17,7 +17,7 @@
 	   <br>
 	   
 	   <form method="post"
-	      action="<%=request.getContextPath() %>/board_write_ok.do">
+	      action="<%=request.getContextPath() %>/admin_board_write_ok.do">
 	   
 	      <table border="1" cellspacing="0" width="350">
 	         <tr>

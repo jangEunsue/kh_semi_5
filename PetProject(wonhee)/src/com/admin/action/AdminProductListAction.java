@@ -6,8 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.admin.controller.Action;
-import com.admin.controller.ActionForward;
+import com.pet.controller.Action;
+import com.pet.controller.ActionForward;
 import com.pet.model.ProductDAO;
 import com.pet.model.ProductDTO;
 
@@ -19,7 +19,7 @@ public class AdminProductListAction implements Action {
 		// 상품 목록 페이지(view page)로 이동시키는 비지니스 로직.
 		
 		// 페이징 처리 작업 진행
-		int rowsize = 1;		// 한 페이지 당 보여질 게시물의 수
+		int rowsize = 5;		// 한 페이지 당 보여질 게시물의 수
 		int block = 5;			// 아래에 보여질 페이지의 최대 수 - 예)[1][2][3] / [3][4][5]
 		int totalRecord = 0;	// DB상의 게시물의 전체 수
 		int allPage = 0;		// 전체 페이지 수

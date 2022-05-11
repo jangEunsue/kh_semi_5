@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.admin.controller.Action;
-import com.admin.controller.ActionForward;
+import com.pet.controller.Action;
+import com.pet.controller.ActionForward;
 import com.pet.model.NoticeDAO;
 import com.pet.model.NoticeDTO;
 
@@ -50,7 +50,7 @@ public class NoticeUpdateOkAction implements Action {
 	   
 	   if(check > 0) {
 			forward.setRedirect(true);
-			forward.setPath("notice_content.do?no="+notice_no);
+			forward.setPath("admin_notice_content.do?no="+notice_no);
 	   }else if(check == -1) {
 		   out.println("<script>");
 			out.println("alert('비밀번호가 틀립니다.')");
