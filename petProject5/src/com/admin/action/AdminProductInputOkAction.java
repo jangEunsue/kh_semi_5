@@ -22,7 +22,7 @@ public class AdminProductInputOkAction implements Action {
 		
 		// 첨부파일이 저장될 위치(경로)를 설정.
 		String saveFolder = 
-				"C:\\NCS\\workspace(jsp)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\PetProject\\upload";
+				"C:\\NCS\\workspace(jsp)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petProject5\\upload";
 		
 		// 첨부파일 용량(크기) 제한 - 파일 업로드 최대 크기
 		int fileSize = 50 * 1024 * 1024;	// 50MB
