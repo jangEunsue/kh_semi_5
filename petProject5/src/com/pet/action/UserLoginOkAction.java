@@ -28,7 +28,14 @@ public class UserLoginOkAction implements Action {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		
-		if (check > 0) {
+		
+		if(user_id.equals("admin")) {	// 임시 관리자 로그인
+			session.setAttribute("sessionID", "admin");
+			
+			forward.setRedirect(false);
+			forward.setPath("./admin1/admin_main.jsp"); // 관리자 메인 페이지로 이동
+		}
+		else if (check > 0) {
 			// 회원인 경우
 			PetMemberDTO dto = dao.getMember(user_id);
 			session.setAttribute("userId", dto.getM_id());
@@ -45,12 +52,13 @@ public class UserLoginOkAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		}else if(check == 0){
-			// 회원이 아닌 경우(아이디가 없거나 아이디가 틀린 경우
+			// 회원이 아닌 경우(아이디가 없거나 아이디가 틀린 경우)
 			out.println("<script>");
 			out.println("alert('존재하지 않는 아이디 입니다.')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
+		
 		return forward;
 		
 	}
