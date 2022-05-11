@@ -74,18 +74,18 @@
 	      <tr>
 	         <td colspan="2" align="center">
 	            <input type="button" value="글수정"
-	               onclick="location.href='notice_update.do?no=${dto.getNotice_no()}'">
+	               onclick="location.href='admin_notice_update.do?no=${dto.getNotice_no()}'">
 	      
 	            <input type="button" value="글삭제"
 	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
-	            	   			location.href='notice_delete.do?no=${dto.getNotice_no()}'
+	            	   			location.href='admin_notice_delete.do?no=${dto.getNotice_no()}'
 	               			}else {  return;  }">
 	      
 	            <input type="button" value="답변글"
-	               onclick="location.href='notice_reply.do?no=${dto.getNotice_no()}'">
+	               onclick="location.href='admin_notice_reply.do?no=${dto.getNotice_no()}'">
 	      
 	      		<input type="button" value="전체목록"
-	               onclick="location.href='notice_list.do'">
+	               onclick="location.href='admin_notice_list.do'">
 	         </td>
 	      </tr>
 	   </table>

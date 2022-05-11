@@ -51,31 +51,31 @@
 	   
 	   <%-- 검색 페이징 처리 --%>
 	   <c:if test="${page > block }">
-	      <a href="board_search.do?page=1&search_field=${search_field }&search_keyword=${search_keyword}">[맨처음]</a>
-	      <a href="board_search.do?page=${startBlock -1 }&search_field=${search_field }&search_keyword=${search_keyword}">◀</a>
+	      <a href="admin_board_search.do?page=1&search_field=${search_field }&search_keyword=${search_keyword}">[맨처음]</a>
+	      <a href="admin_board_search.do?page=${startBlock -1 }&search_field=${search_field }&search_keyword=${search_keyword}">◀</a>
 	   </c:if>
 	   
 	   <c:forEach begin="${startBlock }" end="${endBlock }" var="i">
 	   
 	      <c:if test="${i == page }">
-	         <b><a href="board_search.do?page=${i }&search_field=${search_field }&search_keyword=${search_keyword}">[${i }]</a></b>
+	         <b><a href="admin_board_search.do?page=${i }&search_field=${search_field }&search_keyword=${search_keyword}">[${i }]</a></b>
 	      </c:if>
 	      
 	      <c:if test="${i != page }">
-	         <a href="board_search.do?page=${i }&search_field=${search_field }&search_keyword=${search_keyword}">[${i }]</a>
+	         <a href="admin_board_search.do?page=${i }&search_field=${search_field }&search_keyword=${search_keyword}">[${i }]</a>
 	      </c:if>
 	      
 	   </c:forEach>
 	   
 	   <c:if test="${endBlock < allPage }">
-	      <a href="board_search.do?page=${endBlock + 1 }&search_field=${search_field }&search_keyword=${search_keyword}">▶</a>
-	      <a href="board_search.do?page=${allPage }&search_field=${search_field }&search_keyword=${search_keyword}">[마지막]</a>
+	      <a href="admin_board_search.do?page=${endBlock + 1 }&search_field=${search_field }&search_keyword=${search_keyword}">▶</a>
+	      <a href="admin_board_search.do?page=${allPage }&search_field=${search_field }&search_keyword=${search_keyword}">[마지막]</a>
 	   </c:if>
 	   
 	   <br> <br>
 	   
 	   <input type="button" value="전체목록"
-	      onclick="location.href='board_list.do?page=1'">
+	      onclick="location.href='admin_board_list.do?page=1'">
 	   
 	</div>
 

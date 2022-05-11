@@ -21,7 +21,7 @@
       <br>
       
       <form method="post"
-	      action="<%=request.getContextPath() %>/BoardQA_reply_ok.do">
+	      action="<%=request.getContextPath() %>/admin_BoardQA_reply_ok.do">
 	   
 	      <input type="hidden" name="QA_no" value="${dto.getQA_no() }">
 	      <input type="hidden" name="QA_group" value="${dto.getQA_group() }">

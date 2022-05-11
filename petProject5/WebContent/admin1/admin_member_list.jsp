@@ -30,7 +30,7 @@
             <c:forEach items="${list }" var="dto">
                <tr>
                  <td> 
-                 <a href="<%=request.getContextPath() %>/member_contend.do?num=${dto.getM_num() }">
+                 <a href="<%=request.getContextPath() %>/admin_member_contend.do?num=${dto.getM_num() }">
                  ${dto.getM_num() }</a></td>
                  <td> ${dto.getM_id() }</td>
                  <td> ${dto.getM_name() }</td>

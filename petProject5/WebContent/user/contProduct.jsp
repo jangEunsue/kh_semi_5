@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>제품 상세정보</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <style type="text/css">
 a {
 	text-decoration: none;
@@ -32,91 +33,52 @@ table tr td {
 }
 </style>
 <script type="text/javascript">
-$(".btn").mouseover(function() {
-	var btn = document.getElementByClass("btn");
-	btn.style.backgroundColor = '#F1BCAE ';
-	});
 
-	$(function() {
-
-		$("#review").on("click", function() {
-
-			let p_num = $("#p_num").val();
-
-			$.ajax({
-				type : "post",
-				url : "selectReviewCont.jsp",
-				data : {
-					pnum : p_num
-				},
-				datatype : "jsp",
-				success : function(data) {
-					document.span.innerHTML = data; //id= cont안에 해당 내역을 넣기
-					alert("통신 성공");
-				},
-				error : function(data) {
-					alert("통신 오류 입니다.");
-				}
-			});
-		});
-
-		
-		
-		$(function cont() {
-
-			let p_num = $("#p_num").val();
-
-			$.ajax({
-				type : "post",
-				url : "selectdetailCont.jsp",
-				data : {
-					pnum : p_num
-				},
-				datatype : "jsp",
-				success : function(data) {
-					document.span.innerHTML = data; //id= cont안에 해당 내역을 넣기
-					alert("통신 성공");
-				},
-				error : function(data) {
-					alert("통신 오류 입니다.");
-				}
-			});
-		});
-
-		$("#detail").on("click", cont());
-
-		cont();
-	});
-	
-	 function cart(num) {
+ function cart(num) {
 		let res = confirm("장바구니로 이동하시겠습니까?");
 		let pqty =$("#pqty").val();
 		if(pqty){
 			location.href = "addCart.do?no="+num+"&qty="+pqty+"&location="+res;
 		}
 	}
-	 
-	 function goCart(){
-		   if(confirm("장바구니에 추가하시겠습니까?") == true ){
-				let data = $("form").serialize();
-		       $.ajax({
-		           url: "cart_add.do",
-		           type: "POST",
-		           data: data,
-		           success: function(tableData){
-		              if(confirm("장바구니로 이동하시겠습니까?")==true){
-		                  location.replace("cart_list.do");
-		              }
-		           }
-		       });
-		    }
-		}
 	
+function goCart(){
+	   if(confirm("장바구니에 추가하시겠습니까?") == true ){
+			let data = $("form").serialize();
+	       $.ajax({
+	           url: "cart_add.do",
+	           type: "POST",
+	           data: data,
+	           success: function(tableData){
+	              if(confirm("장바구니로 이동하시겠습니까?")==true){
+	                  location.replace("cart_list.do");
+	              }
+	           }
+	       });
+	    }
+	}
 	function goSales(){
 		document.frm.action="<%=request.getContextPath()%>/sales_add.do";
-
+		
 		document.frm.submit();
 	}
+
+	
+</script>
+<script type="text/javascript">
+	$(".btn").mouseover(function() {
+	var btn = document.getElementByClass("btn");
+	btn.style.backgroundColor = '#F1BCAE ';
+	});
+	
+ 	$(function () {
+	$("#detail").on("click",cont());
+		
+		cont();
+	});
+		
+		
+
 </script>
 </head>
 <body>
@@ -130,14 +92,7 @@ $(".btn").mouseover(function() {
 				<h3>${dto.getP_name()}</h3>
 				<hr width="30%" color="#C9DECF ">
 				<br>
-				<input type="hidden" name="p_num" value="${dto.getP_num() }"
-					id="p_num">
-				<input type="hidden" name="p_price" value="${dto.getP_price() }">
-				<input type="hidden" name="p_image" value="${dto.getP_image() }">
-				<input type="hidden" name="p_spec" value="${dto.getP_spec() }">
-				<input type="hidden" name="m_id" value="<%=(String)session.getAttribute("sessionID")%>">
-				<input type="hidden" name="p_point" value="${dto.getP_point() }">
-				<input type="hidden" name="p_name" value="${dto.getP_name() }">
+				
 				<table>
 					<tr>
 						<td rowspan="4" align="left"><img
@@ -163,7 +118,16 @@ $(".btn").mouseover(function() {
 								onclick="goSales()">결제하기</button>
 						</td>
 					</tr>
+					
 				</table>
+				<input type="hidden" name="p_num" value="${dto.getP_num() }"
+					id="p_num">
+				<input type="hidden" name="p_price" value="${dto.getP_price() }">
+				<input type="hidden" name="p_image" value="${dto.getP_image() }">
+				<input type="hidden" name="p_spec" value="${dto.getP_spec() }">
+				<input type="hidden" name="m_id" value="<%=(String)session.getAttribute("sessionID")%>">
+				<input type="hidden" name="p_point" value="${dto.getP_point() }">
+				<input type="hidden" name="p_name" value="${dto.getP_name() }">
 				<br>
 				<br>
 					

@@ -15,7 +15,7 @@
     <br>
     
     <form method="post"
-          action="<%=request.getContextPath() %>/board_delete_ok.do">
+          action="<%=request.getContextPath() %>/admin_board_delete_ok.do">
         
      <input type="hidden" name="free_no" value="${param.no }">
      <table border="1" cellpacing="0" width="400">

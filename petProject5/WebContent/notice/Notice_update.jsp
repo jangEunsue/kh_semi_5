@@ -20,7 +20,7 @@
 	   <br>
       
       <form method="post"
-	      action="<%=request.getContextPath() %>/notice_update_ok.do">
+	      action="<%=request.getContextPath() %>/admin_notice_update_ok.do">
 	      
 	      <input type="hidden" name="notice_no" value="${dto.getNotice_no() }">
 	      <table border="1" cellspacing="0" width="400">
