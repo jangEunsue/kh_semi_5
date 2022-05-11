@@ -54,7 +54,7 @@
 	
 	#ptitle {
 		text-align: left;
-		margin-left: 20%;
+		margin-left: 15%;
 		line-height: 10%;
 		border-style: solid; 
 		border-width: 0 0 0 8px; 
@@ -76,6 +76,17 @@
 	  color : black;
 	}
 	
+	.search {
+		font-size: 13px;
+	}
+	
+	#searchbtn {
+		background-color: #C9DECF;
+		border-radius: 1px;
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+	
 </style>
 </head>
 <body>
@@ -87,7 +98,7 @@
 		<h5 id="ptitle">상품관리</h5>
 		<br>
 		
-		<table border="1" cellspacing="0" width="60%">
+		<table border="1" cellspacing="0" width="70%">
 			<tr class="thead">
 				<th>상품번호</th><th>카테고리 코드</th><th>상품명</th><!-- <th>반려동물 나이</th> -->
 				<!-- <th>반려동물 품종</th><th>습건식 여부</th><th>반려동물 크기</th><th>반려동물 중성화 여부</th> -->
@@ -183,18 +194,18 @@
 		<form method="post" 
 				action="<%=request.getContextPath() %>/admin_product_search.do">
 			
-			<select name="search_field">
+			<select name="search_field" class="search">
 				<option value="name">품명</option>
 				<option value="category">상품분류코드</option>
 				<option value="name_content">품명+설명</option>
 				<option value="company">제조사</option>
 			</select>
 			
-			<input name="search_keyword">
-			<input type="submit" value="검색">
-			
+			<input name="search_keyword" class="search">
+			<input type="submit" value="검색" class="search" id="searchbtn">
 			
 		</form>
+		<br>
 	</div>
 
 	<jsp:include page="../include/admin_bottom.jsp"/>
