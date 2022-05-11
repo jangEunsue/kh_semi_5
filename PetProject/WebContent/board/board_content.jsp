@@ -77,15 +77,15 @@
 	      <tr>
 	         <td colspan="2" align="center">
 	            <input type="button" value="글수정"
-	               onclick="location.href='board_update.do?no=${dto.getFree_no()}'">
+	               onclick="location.href='admin_board_update.do?no=${dto.getFree_no()}'">
 	      
 	            <input type="button" value="글삭제"
 	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
-	            	   			location.href='board_delete.do?no=${dto.getFree_no()}'
+	            	   			location.href='admin_board_delete.do?no=${dto.getFree_no()}'
 	               			}else {  return;  }">
 	      
 	            <input type="button" value="답변글"
-	               onclick="location.href='board_reply.do?no=${dto.getFree_no()}'">
+	               onclick="location.href='admin_board_reply.do?no=${dto.getFree_no()}'">
 	      
 	      		<input type="button" value="전체목록"
 	               onclick="location.href='admin_board_list.do'">
