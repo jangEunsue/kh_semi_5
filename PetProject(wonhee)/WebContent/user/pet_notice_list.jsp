@@ -60,15 +60,15 @@
                         <c:if test="${!empty list }">
                             <c:forEach items="${list }" var="dto">
                                 <tr>
-                                    <td align="center"> ${dto.getFree_no() }</td>
+                                    <td align="center"> ${dto.getNotice_no() }</td>
                                     <td>
-                                    	<a href="<%=request.getContextPath() %>/pet_notice_cont.do?no=${dto.getFree_no() }&page=${page }">
-                                            ${dto.getFree_title() }
+                                    	<a href="<%=request.getContextPath() %>/pet_notice_cont.do?no=${dto.getNotice_no() }&page=${page }">
+                                            ${dto.getNotice_title() }
                                         </a>
                                     </td>
-                                    <td> ${dto.getFree_writer() }</td>
-                                    <td> ${dto.getFree_date().substring(0, 10) }</td>
-                                    <td> ${dto.getFree_hit() }</td>
+                                    <td> ${dto.getNotice_writer() }</td>
+                                    <td> ${dto.getNotice_date().substring(0, 10) }</td>
+                                    <td> ${dto.getNotice_hit() }</td>
                                 </tr>
                             </c:forEach>
                         </c:if>

@@ -16,7 +16,7 @@
 		                    <li><a href="<%=request.getContextPath() %>/pet_join.do">회원가입</a></li>
 	                <%  } else{ %>
 	                    	<li><a href="<%=request.getContextPath() %>/pet_member_mypage.do">마이페이지</a></li>
-	                        <li><a href="<%=request.getContextPath() %>/pet_member_logout.do">로그아웃</a></li>
+	                        <li><a href="<%=request.getContextPath() %>/pet_logout.do">로그아웃</a></li>
 	                <%	}	%>
                 </ul>
                 <div class="clear"></div>

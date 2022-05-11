@@ -109,11 +109,12 @@
                     <ul class="clearfix">
                      <a href="#">${adminName }관리자님 환영합니다.</a>
                         <li class="hidden-xs"><a href="admin_main.do">Home</a></li>
+                        <li><a href="<%=request.getContextPath() %>/pet_logout.do">logout</a></li>
                         <%	
                         	// 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
                             if(session.getAttribute("sessionID")==null){ 
                         %>		
-		                        <li><a href="<%=request.getContextPath() %>/admin_logout.do">logout</a></li>
+		                        
 		                        
 	                    <%  }  %>
 	                    		

@@ -119,7 +119,7 @@ public class PetNoticeDAO {
 			openConn();
 			sql = "select * from "
 					+ "(select row_number() "
-					+ "over(order by free_no desc) nnum, "
+					+ "over(order by notice_no desc) nnum, "
 					+ "p.* from pet_notice p) "
 					+ "where nnum >= ? and nnum <= ?";
 			pstmt = con.prepareStatement(sql);
@@ -131,14 +131,14 @@ public class PetNoticeDAO {
 			while (rs.next()) {
 				PetNoticeDTO dto = new PetNoticeDTO();
 				
-				dto.setFree_no(rs.getInt("free_no"));
-                dto.setFree_writer(rs.getString("free_writer"));
-                dto.setFree_title(rs.getString("free_title"));
-                dto.setFree_cont(rs.getString("free_cont"));
-                dto.setFree_pwd(rs.getString("free_pwd"));
-                dto.setFree_hit(rs.getInt("free_hit"));
-                dto.setFree_date(rs.getString("free_date"));
-                dto.setFree_update(rs.getString("free_update"));
+				dto.setNotice_no(rs.getInt("notice_no"));
+                dto.setNotice_writer(rs.getString("notice_writer"));
+                dto.setNotice_title(rs.getString("notice_title"));
+                dto.setNotice_cont(rs.getString("notice_cont"));
+                dto.setNotice_pwd(rs.getString("notice_pwd"));
+                dto.setNotice_hit(rs.getInt("notice_hit"));
+                dto.setNotice_date(rs.getString("notice_date"));
+                dto.setNotice_update(rs.getString("notice_update"));
 				
 				list.add(dto);
 			}
@@ -158,26 +158,26 @@ public class PetNoticeDAO {
 		
 		try {
 			openConn();
-			sql = "update pet_notice set free_hit = free_hit + 1 "
-					+ " where free_no = ?";
+			sql = "update pet_notice set notice_hit = notice_hit + 1 "
+					+ " where notice_no = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			
 			pstmt.executeUpdate();
 			
-			sql = "select * from pet_notice where free_no = ? order by free_no desc";
+			sql = "select * from pet_notice where notice_no = ? order by notice_no desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				dto.setFree_no(rs.getInt("free_no"));
-                dto.setFree_writer(rs.getString("free_writer"));
-                dto.setFree_title(rs.getString("free_title"));
-                dto.setFree_cont(rs.getString("free_cont"));
-                dto.setFree_pwd(rs.getString("free_pwd"));
-                dto.setFree_hit(rs.getInt("free_hit"));
-                dto.setFree_date(rs.getString("free_date"));
-                dto.setFree_update(rs.getString("free_update"));
+				dto.setNotice_no(rs.getInt("notice_no"));
+                dto.setNotice_writer(rs.getString("notice_writer"));
+                dto.setNotice_title(rs.getString("notice_title"));
+                dto.setNotice_cont(rs.getString("notice_cont"));
+                dto.setNotice_pwd(rs.getString("notice_pwd"));
+                dto.setNotice_hit(rs.getInt("notice_hit"));
+                dto.setNotice_date(rs.getString("notice_date"));
+                dto.setNotice_update(rs.getString("notice_update"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -197,7 +197,7 @@ public class PetNoticeDAO {
 		if (field.equals("title")) { // 제목으로 검색
 			try {
 				sql = "select count(*) from pet_notice "
-						+ " where free_title like ?";
+						+ " where notice_title like ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
 				rs = pstmt.executeQuery();
@@ -213,7 +213,7 @@ public class PetNoticeDAO {
 		}else if (field.equals("content")) {// 내용으로 검색
 			try {
 				sql = "select count(*) from pet_notice "
-						+ " where free_cont like ?";
+						+ " where notice_cont like ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
 				rs = pstmt.executeQuery();
@@ -229,8 +229,8 @@ public class PetNoticeDAO {
 		}else if (field.equals("title_content")) {
 			try {
 				sql = "select count(*) from pet_notice "
-						+ " where free_title like ? "
-						+ " or free_cont like ?";
+						+ " where notice_title like ? "
+						+ " or notice_cont like ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
 				pstmt.setString(2, "%"+keyword+"%");
@@ -247,7 +247,7 @@ public class PetNoticeDAO {
 		}else {
 			try {
 				sql = "select count(*) from pet_notice "
-						+ " where free_writer like ?";
+						+ " where notice_writer like ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
 				pstmt.setString(2, "%"+keyword+"%");
@@ -284,8 +284,8 @@ public class PetNoticeDAO {
 				
 				sql = "select * from "
 						+ "(select row_number() "
-						+ "over(order by free_no desc) nnum, "
-						+ "p.* from pet_notice p where free_title like ?) "
+						+ "over(order by notice_no desc) nnum, "
+						+ "p.* from pet_notice p where notice_title like ?) "
 						+ "where nnum >= ? and nnum <= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
@@ -296,14 +296,14 @@ public class PetNoticeDAO {
 				while (rs.next()) {
 					PetNoticeDTO dto = new PetNoticeDTO();
 					
-					dto.setFree_no(rs.getInt("free_no"));
-	                dto.setFree_writer(rs.getString("free_writer"));
-	                dto.setFree_title(rs.getString("free_title"));
-	                dto.setFree_cont(rs.getString("free_cont"));
-	                dto.setFree_pwd(rs.getString("free_pwd"));
-	                dto.setFree_hit(rs.getInt("free_hit"));
-	                dto.setFree_date(rs.getString("free_date"));
-	                dto.setFree_update(rs.getString("free_update"));
+					dto.setNotice_no(rs.getInt("notice_no"));
+	                dto.setNotice_writer(rs.getString("notice_writer"));
+	                dto.setNotice_title(rs.getString("notice_title"));
+	                dto.setNotice_cont(rs.getString("notice_cont"));
+	                dto.setNotice_pwd(rs.getString("notice_pwd"));
+	                dto.setNotice_hit(rs.getInt("notice_hit"));
+	                dto.setNotice_date(rs.getString("notice_date"));
+	                dto.setNotice_update(rs.getString("notice_update"));
 	                list.add(dto);
 				}
 				rs.close(); pstmt.close(); con.close();
@@ -315,8 +315,8 @@ public class PetNoticeDAO {
 			try {
 				sql = "select * from "
 						+ "(select row_number() "
-						+ "over(order by free_no desc) nnum, "
-						+ "p.* from pet_notice p where free_cont like ?) "
+						+ "over(order by notice_no desc) nnum, "
+						+ "p.* from pet_notice p where notice_cont like ?) "
 						+ "where nnum >= ? and nnum <= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
@@ -327,14 +327,14 @@ public class PetNoticeDAO {
 				while (rs.next()) {
 					PetNoticeDTO dto = new PetNoticeDTO();
 					
-					dto.setFree_no(rs.getInt("free_no"));
-	                dto.setFree_writer(rs.getString("free_writer"));
-	                dto.setFree_title(rs.getString("free_title"));
-	                dto.setFree_cont(rs.getString("free_cont"));
-	                dto.setFree_pwd(rs.getString("free_pwd"));
-	                dto.setFree_hit(rs.getInt("free_hit"));
-	                dto.setFree_date(rs.getString("free_date"));
-	                dto.setFree_update(rs.getString("free_update"));
+					dto.setNotice_no(rs.getInt("notice_no"));
+	                dto.setNotice_writer(rs.getString("notice_writer"));
+	                dto.setNotice_title(rs.getString("notice_title"));
+	                dto.setNotice_cont(rs.getString("notice_cont"));
+	                dto.setNotice_pwd(rs.getString("notice_pwd"));
+	                dto.setNotice_hit(rs.getInt("notice_hit"));
+	                dto.setNotice_date(rs.getString("notice_date"));
+	                dto.setNotice_update(rs.getString("notice_update"));
 	                
 	                list.add(dto);
 				}
@@ -347,9 +347,9 @@ public class PetNoticeDAO {
 			try {
 				sql = "select * from "
 						+ "(select row_number() "
-						+ "over(order by free_no desc) nnum, "
-						+ "p.* from pet_notice p where free_title like ?"
-						+ "or free_cont like ?) "
+						+ "over(order by notice_no desc) nnum, "
+						+ "p.* from pet_notice p where notice_title like ?"
+						+ "or notice_cont like ?) "
 						+ "where nnum >= ? and nnum <= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
@@ -361,14 +361,14 @@ public class PetNoticeDAO {
 				while (rs.next()) {
 					PetNoticeDTO dto = new PetNoticeDTO();
 					
-					dto.setFree_no(rs.getInt("free_no"));
-	                dto.setFree_writer(rs.getString("free_writer"));
-	                dto.setFree_title(rs.getString("free_title"));
-	                dto.setFree_cont(rs.getString("free_cont"));
-	                dto.setFree_pwd(rs.getString("free_pwd"));
-	                dto.setFree_hit(rs.getInt("free_hit"));
-	                dto.setFree_date(rs.getString("free_date"));
-	                dto.setFree_update(rs.getString("free_update"));
+					dto.setNotice_no(rs.getInt("notice_no"));
+	                dto.setNotice_writer(rs.getString("notice_writer"));
+	                dto.setNotice_title(rs.getString("notice_title"));
+	                dto.setNotice_cont(rs.getString("notice_cont"));
+	                dto.setNotice_pwd(rs.getString("notice_pwd"));
+	                dto.setNotice_hit(rs.getInt("notice_hit"));
+	                dto.setNotice_date(rs.getString("notice_date"));
+	                dto.setNotice_update(rs.getString("notice_update"));
 	                
 	                list.add(dto);
 				}
@@ -381,8 +381,8 @@ public class PetNoticeDAO {
 			try {
 				sql = "select * from "
 						+ "(select row_number() "
-						+ "over(order by free_no desc) nnum, "
-						+ "p.* from pet_notice p where free_writer like ?)"
+						+ "over(order by notice_no desc) nnum, "
+						+ "p.* from pet_notice p where notice_writer like ?)"
 						+ "where nnum >= ? and nnum <= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%"+keyword+"%");
@@ -393,14 +393,14 @@ public class PetNoticeDAO {
 				while (rs.next()) {
 					PetNoticeDTO dto = new PetNoticeDTO();
 					
-					dto.setFree_no(rs.getInt("free_no"));
-	                dto.setFree_writer(rs.getString("free_writer"));
-	                dto.setFree_title(rs.getString("free_title"));
-	                dto.setFree_cont(rs.getString("free_cont"));
-	                dto.setFree_pwd(rs.getString("free_pwd"));
-	                dto.setFree_hit(rs.getInt("free_hit"));
-	                dto.setFree_date(rs.getString("free_date"));
-	                dto.setFree_update(rs.getString("free_update"));
+					dto.setNotice_no(rs.getInt("notice_no"));
+	                dto.setNotice_writer(rs.getString("notice_writer"));
+	                dto.setNotice_title(rs.getString("notice_title"));
+	                dto.setNotice_cont(rs.getString("notice_cont"));
+	                dto.setNotice_pwd(rs.getString("notice_pwd"));
+	                dto.setNotice_hit(rs.getInt("notice_hit"));
+	                dto.setNotice_date(rs.getString("notice_date"));
+	                dto.setNotice_update(rs.getString("notice_update"));
 	                
 	                list.add(dto);
 				}

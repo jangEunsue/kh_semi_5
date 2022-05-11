@@ -6,6 +6,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+h2{
+
+margin:20;
+
+}
+ table {
+        width: 70%;
+        border: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      
+ th, td {
+   border-bottom: 1px solid #444444;
+   padding: 10px;
+
+ }
+      
+ th{
+ 
+ background-color: #E9E1D4;
+ text-align: center;
+ 
+ }
+
+
+#writeBtn{
+
+margin: 0px;
+float: ri;
+size: 50px;
+
+}
+
+</style>
 </head>
 <body>
  <jsp:include page="../include/admin_top.jsp" />
