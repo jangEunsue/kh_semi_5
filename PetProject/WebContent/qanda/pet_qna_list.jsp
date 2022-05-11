@@ -39,7 +39,7 @@
 							 					↳
 							 				</c:forEach>
 							               </c:if>
-			                            	<a href="<%=request.getContextPath() %>/pet_QA_cont.do?no=${dto.getQA_no() }">
+			                            	<a href="<%=request.getContextPath() %>/admin_pet_QA_cont.do?no=${dto.getQA_no() }">
 	                                            ${dto.getQA_title() }
 	                                        </a>	
                                     </td>
@@ -58,7 +58,7 @@
                         <tr>
                             <td colspan="4" align="right">
                             <input type="button" value="글쓰기" 
-                                  onclick="location.href='pet_QA_write.do'">        
+                                  onclick="location.href='admin_pet_QA_write.do'">        
                             </td>
                         </tr>
                     </table>
@@ -67,22 +67,22 @@
                     
                     <%-- 페이징 부분! --%>
                     <c:if test="${page > block }">
-                        <a href="pet_QA.do?page=1"> ◀◀ </a>
-                        <a href="pet_QA.do?page=${startBlock -1 }"> &lt;<span class="page_s">이전</span> | </a>&nbsp;
+                        <a href="admin_pet_QA.do?page=1"> ◀◀ </a>
+                        <a href="admin_pet_QA.do?page=${startBlock -1 }"> &lt;<span class="page_s">이전</span> | </a>&nbsp;
                     </c:if>
                     
                     <c:forEach begin="${startBlock }" end="${endBlock }" var = "i">
                         <c:if test="${i == page }">
-                            <b><a href = "pet_QA.do?page=${i }">[${i }]</a></b>
+                            <b><a href = "admin_pet_QA.do?page=${i }">[${i }]</a></b>
                         </c:if>
                         <c:if test="${i != page }">
-                            <a href = "pet_QA.do?page=${i }">[${i }]</a>
+                            <a href = "admin_pet_QA.do?page=${i }">[${i }]</a>
                         </c:if>
                     </c:forEach>
                     
                     <c:if test="${endBlock < allPage }">
-                        &nbsp;<a href="pet_QA.do?page=${endBlock + 1 }"> | <span class="page_s">다음</span>&gt; </a>
-                        <a href="pet_QA.do?page=${allPage }"> ▶▶ </a>
+                        &nbsp;<a href="admin_pet_QA.do?page=${endBlock + 1 }"> | <span class="page_s">다음</span>&gt; </a>
+                        <a href="admin_pet_QA.do?page=${allPage }"> ▶▶ </a>
                     </c:if>
                     
                     
@@ -91,7 +91,7 @@
                     <div align="center">
                         <br>
                         <form method="post" 
-                            action="<%=request.getContextPath() %>/pet_QA_search.do">
+                            action="<%=request.getContextPath() %>/admin_pet_QA_search.do">
                             <select name="search_field">
                                 <option value="title">제목</option>
                                 <option value="conten">내용</option>
