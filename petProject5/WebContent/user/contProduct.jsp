@@ -163,9 +163,7 @@ function goCart(){
                 </ul>
             </div>
         </div>
-				<input type="button" value="상세정보" onclick="" id="detail"> &nbsp; &nbsp; &nbsp; &nbsp;
-				<input type="button" value="리뷰" onclick="review()" id="review">
-				<span></span>
+				
 				<span id="detailCont">
 
 					<table>
