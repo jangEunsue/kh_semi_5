@@ -29,7 +29,7 @@ public class SalesAddAction implements Action {
 		
 		int cart_price = Integer.parseInt(request.getParameter("p_price").trim());
 		
-		int cart_pqty = Integer.parseInt(request.getParameter("p_qty").trim());
+		int cart_pqty = Integer.parseInt(request.getParameter("pqty").trim());
 		
 		int cart_no = Integer.parseInt(request.getParameter("p_num").trim());
 		
