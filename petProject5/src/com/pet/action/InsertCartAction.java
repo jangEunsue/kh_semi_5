@@ -57,7 +57,7 @@ public class InsertCartAction implements Action {
 			cDto.setCart_pqty(pqty);
 			cDto.setCart_price(product.getP_price());
 
-			int check = cDao.InsertCart(cDto);
+			int check = cDao.insertCart(cDto);
 
 
 			PrintWriter out = response.getWriter();
