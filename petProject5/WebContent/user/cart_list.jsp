@@ -159,6 +159,7 @@ function updateTotal(){
 	            <td class="center"> 
 	               <img src="<%=request.getContextPath() %>/upload/${dto.getCart_pimage() }"
 	                         width="50" height="50">
+
 	            </td>
 	            
 	            <td class="center"> ${dto.getCart_pname() } </td>
