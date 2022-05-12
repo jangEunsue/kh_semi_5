@@ -8,6 +8,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+h2{
+
+margin:20;
+
+}
+ table {
+        width: 70%;
+        border: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      
+ th, td {
+   border-bottom: 1px solid #444444;
+   padding: 10px;
+
+ }
+      
+ th{
+ 
+ background-color: #E9E1D4;
+ text-align: center;
+ 
+ }
+
+
+#writeBtn{
+
+margin: 0px;
+float: ri;
+size: 50px;
+
+}
+
+</style>
 </head>
 <body>
   
@@ -15,15 +50,18 @@
 
   <div align="center">
 	   <hr width="30%" color="marmoon">
-	      <h3>게시판 전체 리스트 페이지</h3>
+	      <h2>자유 게시판</h3>
 	   <hr width="30%" color="marmoon">
 	   <br>
 	   
 	   <table border="1" cellspacing="0" width="650">
 	      <tr>
-	         <th>글번호</th> <th>글제목</th> <th>조회수</th>
-	         <th>작성일자</th> 
-	      </tr>
+			<th width="10%">No.</th>
+			<th width="40%">글제목</th>
+			<th width="15%">작성자</th>
+			<th width="10%">조회수</th>
+			<th width="20%">작성일자</th>
+			</tr>
 	      
 	      <c:set var="list" value="${List }" />
 	      <c:if test="${!empty list }">
@@ -41,6 +79,7 @@
 	                  <a href="<%=request.getContextPath() %>/admin_free_content.do?no=${dto.getFree_no() }">
 	               				${dto.getFree_title() } </a>
 	               </td>
+	               <td> ${dto.getFree_writer() } </td>
 	               <td> ${dto.getFree_hit() } </td>
 	               <td> ${dto.getFree_date().substring(0, 10) } </td>
 	            </tr>
@@ -55,17 +94,17 @@
 	         </tr>
 	      </c:if>
 	      
-	      <tr>
+	      </table>
+	      <div id="writeBtn">
 	         <td colspan="7" align="right">
 	            <input type="button" value="글쓰기"
 	               onclick="location.href='admin_free_write.do'">
 	      	 </td>
-	      </tr>
-	   </table>
+	      </div>
+	   
 	   
 	   <br>
-	   
-	   <br>
+
 	   
 	   <c:if test="${page > block }">
 	      <a href="admin_board_list.do?page=1">◀◀</a>
