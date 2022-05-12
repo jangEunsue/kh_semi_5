@@ -375,6 +375,7 @@ $(document).ready(function(){
 			</table>
 		</form>
 	</div>
+	<br>
 	
 	<jsp:include page="../include/admin_bottom.jsp"/>
 
