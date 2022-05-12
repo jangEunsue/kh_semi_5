@@ -340,7 +340,7 @@ $(document).ready(function(){
 				<tr>
 					<th>상품 소개</th>
 					<td>
-						<textarea rows="7" cols="30" name="p_content" id="pinputcont" class="pinputsrc">${dto.getP_content() }</textarea>
+						<textarea rows="6" cols="50" name="p_content" id="pinputcont" class="pinputsrc">${dto.getP_content() }</textarea>
 					</td>
 				</tr>
 				
