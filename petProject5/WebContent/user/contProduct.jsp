@@ -212,26 +212,10 @@ function goCart(){
 					<div align="center">
 						<h3 width="80">리뷰</h3>
 						<hr>
-						<c:set var="dto" value="${cont}"></c:set>
-						<a
-							href="<%=request.getContextPath() %>/user_product_view.do?pnum=${dto.getP_num()}">
-							<table>
-								<tr>
-									<td rowspan="2"><img
-										src="<%=request.getContextPath() %>/upload/${dto.getP_image()}"
-										width="25%" /></td>
-									<td>${dto.getP_name()}</td>
-								</tr>
-								<tr>
-									<td>${dto.getP_price()}원</td>
-								</tr>
-							</table>
-						</a>
-						<hr>
 						<table>
 							<c:set var="reviewList" value="${review}" />
 							<c:if test="${!empty reviewList}">
-								<c:forEach items="reviewList" var="rev">
+								<c:forEach items="${reviewList}" var="rev">
 									<tr>
 										<td>${rev.getUserID()}
 											&nbsp;&nbsp;|&nbsp;&nbsp;${rev.getReview_date()}</td>
@@ -247,6 +231,7 @@ function goCart(){
 										<td>${rev.setReview_cont() }</td>
 									</tr>
 									<tr>
+										<td><font>--------------------------------------------------------------</font></td>
 									</tr>
 								</c:forEach>
 							</c:if>
