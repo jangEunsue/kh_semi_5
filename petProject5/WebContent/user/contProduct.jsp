@@ -215,7 +215,7 @@ function goCart(){
 
 					<div align="center">
 						<h3 width="80">리뷰</h3>
-						<hr>
+						<hr width="30%" color="#C9DECF">
 						<table>
 							<c:set var="reviewList" value="${review}" />
 							<c:if test="${!empty reviewList}">
