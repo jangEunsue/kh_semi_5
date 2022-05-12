@@ -228,7 +228,7 @@ function goCart(){
 										</c:if>
 									</tr>
 									<tr>
-										<td>${rev.setReview_cont() }</td>
+										<td>${rev.getReview_cont() }</td>
 									</tr>
 									<tr>
 										<td><font>--------------------------------------------------------------</font></td>
