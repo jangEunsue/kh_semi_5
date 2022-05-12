@@ -114,10 +114,12 @@
                    			<li><a href="#" onclick="loginAlert()">마이페이지</a>
 	                        	<ul>
 	                          		<li><a href="#" onclick="loginAlert()">회원정보수정</a></li>
+						<li><a href="#" onclick="loginAlert()">장바구니</a></li>
                     <%  }else {  %>
                     		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">마이페이지</a>
 	                            <ul>
 	                            	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID")%>">회원정보조회</a></li>
+					<li><a href="<%=request.getContextPath() %>/cart_list.do">장바구니</a></li>
 	                             <% }%>
 	                                <li><a href="<%=request.getContextPath() %>/selectSalesList.do">구매내역</a></li>
 	                            </ul>
