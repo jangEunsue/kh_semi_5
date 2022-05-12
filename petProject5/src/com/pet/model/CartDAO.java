@@ -252,7 +252,7 @@ public class CartDAO {
 		try {
 			openConn();
 			
-			sql = "update pet_cart set cart_pqty=? and cart_no=?";
+			sql = "update pet_cart set cart_pqty=? where cart_no=?";
 			
 			pstmt = con.prepareStatement(sql);
 
