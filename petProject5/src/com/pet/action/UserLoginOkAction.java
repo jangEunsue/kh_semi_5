@@ -29,11 +29,7 @@ public class UserLoginOkAction implements Action {
 		HttpSession session = request.getSession();
 		
 		
-<<<<<<< HEAD
 		if(user_id.equals("admin")) {
-=======
-		if(user_id.equals("admin")) {	// 임시 관리자 로그인
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 			session.setAttribute("sessionID", "admin");
 			
 			forward.setRedirect(false);

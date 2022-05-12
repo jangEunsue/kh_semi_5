@@ -42,17 +42,11 @@
             
             <!-- 본문 시작 -->
             <div id="sub_contents">
-<<<<<<< HEAD
             <div id="board_wrap">
-=======
-            
-                <div id="board_wrap">
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                     <c:set var="dto" value="${Cont }"></c:set>
                     <table border="0" cellspacing="0" width="100%">
                         <tr>
                             <th>글제목</th>
-<<<<<<< HEAD
                             <td> ${dto.getNotice_title() } </td>
                         </tr>
                         <tr>
@@ -69,42 +63,16 @@
                             <c:if test="${!empty dto.getNotice_update() }">
                                 <th>수정일자</th>
                                 <td> ${dto.getNotice_update().substring(0,10) } </td>
-=======
-                            <td> ${dto.getFree_title() } </td>
-                        </tr>
-                        <tr>
-                            <th>작성자</th>
-                            <td> ${dto.getFree_writer() } </td>
-                        </tr>
-                      
-                        <tr>
-                            <c:if test="${empty dto.getFree_update() }">
-                                <th>작성일자</th>
-                                <td> ${dto.getFree_date().substring(0,10) } </td>
-                            </c:if>
-                         
-                            <c:if test="${!empty dto.getFree_update() }">
-                                <th>수정일자</th>
-                                <td> ${dto.getFree_update().substring(0,10) } </td>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                             </c:if>
                         </tr>
                         <tr>
                             <th>조회수</th>
-<<<<<<< HEAD
                             <td> ${dto.getNotice_hit() } </td>
-=======
-                            <td> ${dto.getFree_hit() } </td>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                         </tr>
                         <tr>
                             <th>글내용</th>
                             <td class="board_cont"> 
-<<<<<<< HEAD
                                 <textarea readonly>${dto.getNotice_cont() }</textarea>
-=======
-                                <textarea readonly>${dto.getFree_cont() }</textarea>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                             </td>
                         </tr>
 

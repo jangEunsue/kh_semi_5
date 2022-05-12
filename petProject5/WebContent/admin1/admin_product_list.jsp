@@ -54,11 +54,7 @@
 	
 	#ptitle {
 		text-align: left;
-<<<<<<< HEAD
 		margin-left: 20%;
-=======
-		margin-left: 15%;
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 		line-height: 10%;
 		border-style: solid; 
 		border-width: 0 0 0 8px; 
@@ -80,20 +76,6 @@
 	  color : black;
 	}
 	
-<<<<<<< HEAD
-=======
-	.search {
-		font-size: 13px;
-	}
-	
-	#searchbtn {
-		background-color: #C9DECF;
-		border-radius: 1px;
-		padding-left: 3px;
-		padding-right: 3px;
-	}
-	
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 </style>
 </head>
 <body>
@@ -105,11 +87,7 @@
 		<h5 id="ptitle">상품관리</h5>
 		<br>
 		
-<<<<<<< HEAD
 		<table border="1" cellspacing="0" width="60%">
-=======
-		<table border="1" cellspacing="0" width="70%">
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 			<tr class="thead">
 				<th>상품번호</th><th>카테고리 코드</th><th>상품명</th><!-- <th>반려동물 나이</th> -->
 				<!-- <th>반려동물 품종</th><th>습건식 여부</th><th>반려동물 크기</th><th>반려동물 중성화 여부</th> -->
@@ -205,37 +183,21 @@
 		<form method="post" 
 				action="<%=request.getContextPath() %>/admin_product_search.do">
 			
-<<<<<<< HEAD
 			<select name="search_field">
-=======
-			<select name="search_field" class="search">
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 				<option value="name">품명</option>
 				<option value="category">상품분류코드</option>
 				<option value="name_content">품명+설명</option>
 				<option value="company">제조사</option>
 			</select>
 			
-<<<<<<< HEAD
 			<input name="search_keyword">
 			<input type="submit" value="검색">
 			
 			
 		</form>
-=======
-			<input name="search_keyword" class="search">
-			<input type="submit" value="검색" class="search" id="searchbtn">
-			
-		</form>
-		<br>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 	</div>
 
 	<jsp:include page="../include/admin_bottom.jsp"/>
 
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698

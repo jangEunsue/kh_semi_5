@@ -9,25 +9,18 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <style type="text/css">
-
 .center {
 	text-align: center;
 }
-
-
-
 </style>
 
 <script type="text/javascript">
-
 function goSales(){
 	
 	document.frm.action="<%=request.getContextPath()%>/cart_to_sales.do";
 	
 	document.frm.submit();
 }
-
-
 function updatePqty(obj,id){
 	
 	//업데이트가 되어야 하는 기존 값..
@@ -47,7 +40,6 @@ function updatePqty(obj,id){
 	document.getElementById(id).setAttribute('href', newlink)
 	
 }
-
 function toggleAllCheck(obj){
 	
 	let cbValue = document.getElementById("allCheck").checked
@@ -66,7 +58,6 @@ function toggleAllCheck(obj){
  		updateTotal()
  	}
 }
-
 function toggleCheck(obj){
 	let tcValue = obj.checked
 	console.log(tcValue);
@@ -87,7 +78,6 @@ function toggleCheck(obj){
 		document.getElementById("allCheck").checked=true
 	}
 }
-
 function updateTotal(){
 	
 	let tcValues = document.getElementsByName("check")
@@ -121,7 +111,6 @@ function updateTotal(){
 		document.getElementById("point").textContent=point.toLocaleString('en-US');
 		document.getElementById("trans").textContent=trans.toLocaleString('en-US');
 }
-
 </script>
 </head>
 <body>
@@ -159,6 +148,7 @@ function updateTotal(){
 	            <td class="center"> 
 	               <img src="<%=request.getContextPath() %>/upload/${dto.getCart_pimage() }"
 	                         width="50" height="50">
+
 	            </td>
 	            
 	            <td class="center"> ${dto.getCart_pname() } </td>
@@ -193,6 +183,14 @@ function updateTotal(){
 	         </tr>
 	      </c:forEach>
 	        </c:if>
+		
+		 <c:if test="${empty list }">
+	      	 <tr>
+	         	<td colspan="7" class="center">
+	            	<h3>장바구니가 비어 있습니다.....</h3>
+	         	</td>
+	     	 </tr>
+	   	</c:if>
 		   </table>
 		   
 		   
@@ -217,13 +215,7 @@ function updateTotal(){
 				</div>
 	 
 	   
-	   <c:if test="${empty list }">
-	      <tr>
-	         <td colspan="7" class="center">
-	            <h3>장바구니가 비어 있습니다.....</h3>
-	         </td>
-	      </tr>
-	   </c:if>
+	  
 	
 	</form>      
 	

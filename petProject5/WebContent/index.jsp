@@ -38,7 +38,6 @@
     });
 </script>
 <script type="text/javascript">
-
     function loginAlert() {
         alert("사용 권한이 없습니다. 로그인 해주세요");
     }
@@ -89,7 +88,7 @@
                     <li><a href="<%=request.getContextPath() %>/pet_greeting.do">사이트 소개</a>
                         <ul>
                             <li><a href="<%=request.getContextPath() %>/pet_greeting.do">인사말</a></li>
-                            <li><a href="#">오시는 길</a></li>
+                            <li><a href="<%=request.getContextPath() %>/Direction.do">오시는 길</a></li>
                         </ul>
                     </li>
                     <li><a href="#">제품소개</a>
@@ -114,12 +113,16 @@
                    			<li><a href="#" onclick="loginAlert()">마이페이지</a>
 	                        	<ul>
 	                          		<li><a href="#" onclick="loginAlert()">회원정보수정</a></li>
+						<li><a href="#" onclick="loginAlert()"></a></li>
+						<li><a href="#" onclick="loginAlert()">장바구니</a></li>
                     <%  }else {  %>
                     		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">마이페이지</a>
 	                            <ul>
 	                            	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID")%>">회원정보조회</a></li>
+					<li><a href="<%=request.getContextPath() %>/selectSalesList.do">구매내역</a></li>
+					<li><a href="<%=request.getContextPath() %>/cart_list.do">장바구니</a></li>    
 	                             <% }%>
-	                                <li><a href="<%=request.getContextPath() %>/selectSalesList.do">구매내역</a></li>
+	                                
 	                            </ul>
 	                        </li>
                 </ul>

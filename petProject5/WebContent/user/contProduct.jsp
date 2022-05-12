@@ -13,11 +13,9 @@ a {
 	text-decoration: none;
 	color: black;
 }
-
 table tr td {
 	text-indent: 3em;
 }
-
 .btn {
 	background-color: #c9decf;
 	border: none;
@@ -33,7 +31,6 @@ table tr td {
 }
 </style>
 <script type="text/javascript">
-
  function cart(num) {
 		let res = confirm("장바구니로 이동하시겠습니까?");
 		let pqty =$("#pqty").val();
@@ -62,7 +59,6 @@ function goCart(){
 		
 		document.frm.submit();
 	}
-
 	
 </script>
 <script type="text/javascript">
@@ -72,11 +68,6 @@ function goCart(){
 	});
 	
  	$(function () {
-<<<<<<< HEAD
-	$("#detail").on("click",cont());
-		
-		cont();
-=======
 		$("#detail").on("click",cont());
 		
 		cont();
@@ -96,11 +87,9 @@ function goCart(){
 			$("#detailCont").hide();
 			
 		});
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 	});
 		
 		
-
 </script>
 </head>
 <body>
@@ -156,17 +145,6 @@ function goCart(){
 				<br>
 				<br>
 				 <div id="sub_wrap" class="webfont">
-<<<<<<< HEAD
-      	  <div id="aside">
-           
-            <div class="mid_nav">
-                <ul class="mid_menu">
-                    <li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>" class="nav_on">
-                    	<i class="fa fa-caret-right"></i>상제정보</a>
-                    </li>
-                    <li><a href="<%=request.getContextPath() %>/selectSalesList.do">
-                    	<i class="fa fa-caret-right"></i>리뷰</a>
-=======
       	   <div id="aside">
            
             <div class="mid_nav">
@@ -176,20 +154,12 @@ function goCart(){
                     </li>
                     <li><a href="#">
                     	<i class="fa fa-caret-right" id="review"></i>리뷰</a>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                     </li>
                 </ul>
             </div>
         </div>
-<<<<<<< HEAD
-				<input type="button" value="상세정보" onclick="" id="detail"> &nbsp; &nbsp; &nbsp; &nbsp;
-				<input type="button" value="리뷰" onclick="review()" id="review">
-				<span></span>
-				<span id="detail">
-=======
 				
 				<span id="detailCont">
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 
 					<table>
 						<tr>
@@ -232,35 +202,15 @@ function goCart(){
 
 				</span>
 
-<<<<<<< HEAD
-				<span id="review"> <%-- 제품 리스트에서 보여지는 리뷰 --%>
-=======
 				<span id="reviewCont"> <%-- 제품 리스트에서 보여지는 리뷰 --%>
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 
 					<div align="center">
 						<h3 width="80">리뷰</h3>
 						<hr>
-						<c:set var="dto" value="${cont}"></c:set>
-						<a
-							href="<%=request.getContextPath() %>/user_product_view.do?pnum=${dto.getP_num()}">
-							<table>
-								<tr>
-									<td rowspan="2"><img
-										src="<%=request.getContextPath() %>/upload/${dto.getP_image()}"
-										width="25%" /></td>
-									<td>${dto.getP_name()}</td>
-								</tr>
-								<tr>
-									<td>${dto.getP_price()}원</td>
-								</tr>
-							</table>
-						</a>
-						<hr>
 						<table>
 							<c:set var="reviewList" value="${review}" />
 							<c:if test="${!empty reviewList}">
-								<c:forEach items="reviewList" var="rev">
+								<c:forEach items="${reviewList}" var="rev">
 									<tr>
 										<td>${rev.getUserID()}
 											&nbsp;&nbsp;|&nbsp;&nbsp;${rev.getReview_date()}</td>
@@ -276,6 +226,7 @@ function goCart(){
 										<td>${rev.setReview_cont() }</td>
 									</tr>
 									<tr>
+										<td><font>--------------------------------------------------------------</font></td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -297,13 +248,6 @@ function goCart(){
 				href="<%=request.getContextPath()%>/dokindList.do">[품종 선택]</a>
 		</form>
 	</div>
-<<<<<<< HEAD
-	<jsp:include page="../inc/pet_bottom.jsp" />
-=======
 		<jsp:include page="../inc/pet_bottom.jsp" />
->>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 </body>
 </html>
-
-
-

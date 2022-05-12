@@ -29,7 +29,7 @@
 		<input type="hidden" name="QA_step" value="${dto.getQA_step() }">
 		<input type="hidden" name="QA_indent" value="${dto.getQA_indent() }">
 	    <input type="hidden" name="QA_userID"  value="admin" }">  
-	      <table border="1" cellspacing="0" width="400">
+	      <table border="1" cellspacing="0" width="350">
 	         <tr>
 	            <th>작성자</th>
 	            <td> <input name="QA_writer"
@@ -45,7 +45,7 @@
 	         <tr>
 	            <th>글내용</th>
 	            <td>
-	               <textarea rows="7" cols="30" name="QA_content">${dto.getQA_cont() }</textarea>
+	               <textarea rows="10" cols="100" name="QA_content">${dto.getQA_cont() }</textarea>
 	            </td>
 	         </tr>
 	         
@@ -61,6 +61,6 @@
 	   </form>
       
     </div>
-    
+    <jsp:include page="../include/admin_bottom.jsp" />
 </body>
 </html>

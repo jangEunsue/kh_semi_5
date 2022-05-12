@@ -49,7 +49,7 @@
                     <form method="post" action="<%=request.getContextPath() %>/pet_QA_write_ok.do" >
                     	<input type="hidden" name="userID" value="${dto.getM_id() }">
                     	<input type="hidden" name="page" value="${page }">
-                        <table border="0" cellspacing="0" width="100%" class="table write_table">
+                        <table border="1" cellspacing="0" width="100%" class="table write_table">
                             <tr>
 								<th>작성자</th>
 								<td>
