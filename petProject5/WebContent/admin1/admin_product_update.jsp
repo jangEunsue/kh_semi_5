@@ -204,7 +204,7 @@ $(document).ready(function(){
 			
 				<tr>
 					<th>상품명</th>
-					<td> <input name="p_name" class="pinputsrc"
+					<td> <input name="p_name" class="pinputsrc" size="40"
 								value="${dto.getP_name() }" readonly> </td>
 				</tr>
 				
