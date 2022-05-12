@@ -16,11 +16,12 @@
 	}
 
 	#btn_input {
-		margin-right: 170px;
+		margin-right: 20%;
 	}
 		
 	.tbody {
 		font-size: 12px;
+		height: 75px;
 	}
 	
 	.tbody:nth-child(2n-1) {
@@ -31,6 +32,7 @@
 		background-color: #C9DECF;	
 		font-size: 13px;
 		text-align: center;
+		height: 30px;
 	}
 	
 	.greenbtn {
@@ -80,6 +82,7 @@
 	
 	.search {
 		font-size: 13px;
+		border: 1px solid #dddddd;
 	}
 	
 	#searchbtn {
@@ -96,6 +99,10 @@
 		padding-right: 3px;
 	}
 	
+	.pinputtable {
+		border: 1px solid #aaaaaa;  
+	}
+	
 </style>
 </head>
 <body>
@@ -106,7 +113,7 @@
 		<h5 id="ptitle">상품관리</h5>
 		<br>
 			
-		<table border="1" cellspacing="0" width="70%">
+		<table border="1" cellspacing="0" width="70%" class="pinputtable">
 			<tr bgcolor="E9E1D4" class="thead">
 				<th>상품번호</th><th>카테고리 코드</th><th>상품명</th>
 				<th>이미지</th> <th>상품 가격</th><th>재고수량</th> <th>게시 종류</th>
