@@ -14,7 +14,7 @@
             
                 <div id="board_wrap">
                     <c:set var="dto" value="${Cont }"></c:set>
-					<table border="" cellspacing="0" width="550">
+					<table border="" cellspacing="0" width="1000">
 						<tr>
 				        	<th>글제목</th>
 				        	<td> ${dto.getQA_title() } </td>

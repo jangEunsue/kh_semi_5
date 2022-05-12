@@ -8,26 +8,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+table{
+  margin: auto;
+}
+
+table, td, th {
+    border-collapse: collapse;
+    border : 1px soild black;
+}
+
+</style>
 </head>
 <body>
 
  <jsp:include page="../include/admin_top.jsp" />
-
-        <div id="sub_contents">
-	    <div id="board_wrap">
+        <div align="center">
+    
+            <div class="page_count_bg"> 
+                <div id="page_count" class="clearfix">
+                   
+                </div>
+            </div>  
+        
+        <div >
+	    <div >
 	   <c:set var="dto" value="${Cont }" />
 
-	   <table border="0" cellspacing="0" width="100%">
-	      <tr>
+	   <table border="1" cellspacing="0" width="100%">
+	                    <tr align="center">
                             <th>글제목</th>
                             <td> ${dto.getNotice_title() } </td>
                         </tr>
-                        <tr>
+                        <tr align="center">
                             <th>작성자</th>
                             <td> ${dto.getNotice_writer() } </td>
                         </tr>
                       
-                        <tr>
+                        <tr align="center">
                             <c:if test="${empty dto.getNotice_update() }">
                                 <th>작성일자</th>
                                 <td> ${dto.getNotice_date().substring(0,10) } </td>
@@ -38,11 +57,11 @@
                                 <td> ${dto.getNotice_update().substring(0,10) } </td>
                             </c:if>
                         </tr>
-                        <tr>
+                        <tr align="center">
                             <th>조회수</th>
                             <td> ${dto.getNotice_hit() } </td>
                         </tr>
-                        <tr>
+                        <tr align="center">
                             <th>글내용</th>
                             <td class="board_cont"> 
                                 <textarea readonly>${dto.getNotice_cont() }</textarea>
@@ -78,6 +97,7 @@
 	   </div>
 	</div>
 	</div>
+	
         <jsp:include page="../include/admin_bottom.jsp" />
 </body>
 </html>
