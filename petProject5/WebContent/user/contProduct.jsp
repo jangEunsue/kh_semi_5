@@ -34,15 +34,12 @@ table tr td {
 </style>
 <script type="text/javascript">
 
- function cart(num) {
-		let res = confirm("장바구니로 이동하시겠습니까?");
-		let pqty =$("#pqty").val();
-		if(pqty){
-			location.href = "addCart.do?no="+num+"&qty="+pqty+"&location="+res;
-		}
-	}
-	
 function goCart(){
+	
+	let id = $("mId").val();
+	if(id == null){
+		location.href = "pet_login.do";
+	}else{
 	   if(confirm("장바구니에 추가하시겠습니까?") == true ){
 			let data = $("form").serialize();
 	       $.ajax({
@@ -57,10 +54,17 @@ function goCart(){
 	       });
 	    }
 	}
+	
+	}
 	function goSales(){
-		document.frm.action="<%=request.getContextPath()%>/sales_add.do";
-		
-		document.frm.submit();
+		let id = $("mId").val();
+		if(id == null){
+			location.href = "pet_login.do";
+		}else{
+			document.frm.action="<%=request.getContextPath()%>/sales_add.do";
+
+			document.frm.submit();
+		}
 	}
 
 	
@@ -141,7 +145,7 @@ function goCart(){
 				<input type="hidden" name="p_price" value="${dto.getP_price() }">
 				<input type="hidden" name="p_image" value="${dto.getP_image() }">
 				<input type="hidden" name="p_spec" value="${dto.getP_spec() }">
-				<input type="hidden" name="m_id" value="<%=(String)session.getAttribute("sessionID")%>">
+				<input type="hidden" name="m_id" value="<%=(String)session.getAttribute("sessionID")%>" id="mId">
 				<input type="hidden" name="p_point" value="${dto.getP_point() }">
 				<input type="hidden" name="p_name" value="${dto.getP_name() }">
 				<br>
