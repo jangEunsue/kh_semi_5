@@ -194,6 +194,14 @@ function updateTotal(){
 	         </tr>
 	      </c:forEach>
 	        </c:if>
+		
+		 <c:if test="${empty list }">
+	      	 <tr>
+	         	<td colspan="7" class="center">
+	            	<h3>장바구니가 비어 있습니다.....</h3>
+	         	</td>
+	     	 </tr>
+	   	</c:if>
 		   </table>
 		   
 		   
@@ -218,13 +226,7 @@ function updateTotal(){
 				</div>
 	 
 	   
-	   <c:if test="${empty list }">
-	      <tr>
-	         <td colspan="7" class="center">
-	            <h3>장바구니가 비어 있습니다.....</h3>
-	         </td>
-	      </tr>
-	   </c:if>
+	  
 	
 	</form>      
 	
