@@ -201,7 +201,49 @@ public class CartDAO {
 		}//deleteCart()메서드end
 	
 	//장비구니에 상품을 넣는 비지니스 로직
+<<<<<<< HEAD
 	
+=======
+	public int InsertCart(CartDTO dto) {
+		int resut = 0, count = 0;
+		
+		openConn();
+		
+		try {
+			//cart_no 조회
+			sql = "select max(cart_no) from pet_cart";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql= "insert into pet_cart values(?,?,?,?,?,?,?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, count);
+			pstmt.setInt(2, dto.getCart_pno());
+			pstmt.setString(3, dto.getCart_Id());
+			pstmt.setString(4, dto.getCart_pname());
+			pstmt.setInt(5, dto.getCart_pqty());
+			pstmt.setInt(6, dto.getCart_price());
+			pstmt.setString(7, dto.getCart_pspec());
+			pstmt.setString(8, dto.getCart_pimage());
+			
+			resut = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		return resut;
+	}//InsertCart end
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 	
 	public int insertCart(CartDTO dto) {
 		int result = 0, count=0;
@@ -220,7 +262,11 @@ public class CartDAO {
 				count=rs.getInt(1)+1;
 			}
 			
+<<<<<<< HEAD
 			sql = "insert into pet_cart values(?,?,?,?,?,?,?,?,?)";
+=======
+			sql = "insert int pet_cart values(?,?,?,?,?,?,?,?,?)";
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -252,7 +298,11 @@ public class CartDAO {
 		try {
 			openConn();
 			
+<<<<<<< HEAD
 			sql = "update pet_cart set cart_pqty=? where cart_no=?";
+=======
+			sql = "update pet_cart set cart_pqty=? and cart_no=?";
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 			
 			pstmt = con.prepareStatement(sql);
 

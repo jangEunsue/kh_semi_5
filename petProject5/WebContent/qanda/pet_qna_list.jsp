@@ -90,7 +90,16 @@ size: 50px;
                             </tr>
                         </c:if>
                         
+<<<<<<< HEAD
                         
+=======
+                        <tr>
+                            <td colspan="4" align="right">
+                            <input type="button" value="글쓰기" 
+                                  onclick="location.href='admin_pet_QA_write.do'">        
+                            </td>
+                        </tr>
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                     </table>
         
                     <br>

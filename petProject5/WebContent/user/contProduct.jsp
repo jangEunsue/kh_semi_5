@@ -72,9 +72,31 @@ function goCart(){
 	});
 	
  	$(function () {
+<<<<<<< HEAD
 	$("#detail").on("click",cont());
 		
 		cont();
+=======
+		$("#detail").on("click",cont());
+		
+		cont();
+		
+	
+ 		$("#reviewCont").hide( );
+ 		
+ 		
+		$("#detail").on("click",function(){
+			$("#review").hide();
+			$("#detailCont").show();
+			
+		});
+		
+		$("#review").on("click",function(){
+			$("#reviewCont").show();
+			$("#detailCont").hide();
+			
+		});
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 	});
 		
 		
@@ -134,6 +156,7 @@ function goCart(){
 				<br>
 				<br>
 				 <div id="sub_wrap" class="webfont">
+<<<<<<< HEAD
       	  <div id="aside">
            
             <div class="mid_nav">
@@ -143,14 +166,30 @@ function goCart(){
                     </li>
                     <li><a href="<%=request.getContextPath() %>/selectSalesList.do">
                     	<i class="fa fa-caret-right"></i>리뷰</a>
+=======
+      	   <div id="aside">
+           
+            <div class="mid_nav">
+                <ul class="mid_menu">
+                    <li><a href="#%>" class="nav_on">
+                    	<i class="fa fa-caret-right" id="detail"></i>상제정보</a>
+                    </li>
+                    <li><a href="#">
+                    	<i class="fa fa-caret-right" id="review"></i>리뷰</a>
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                     </li>
                 </ul>
             </div>
         </div>
+<<<<<<< HEAD
 				<input type="button" value="상세정보" onclick="" id="detail"> &nbsp; &nbsp; &nbsp; &nbsp;
 				<input type="button" value="리뷰" onclick="review()" id="review">
 				<span></span>
 				<span id="detail">
+=======
+				
+				<span id="detailCont">
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 
 					<table>
 						<tr>
@@ -193,7 +232,11 @@ function goCart(){
 
 				</span>
 
+<<<<<<< HEAD
 				<span id="review"> <%-- 제품 리스트에서 보여지는 리뷰 --%>
+=======
+				<span id="reviewCont"> <%-- 제품 리스트에서 보여지는 리뷰 --%>
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 
 					<div align="center">
 						<h3 width="80">리뷰</h3>
@@ -254,7 +297,11 @@ function goCart(){
 				href="<%=request.getContextPath()%>/dokindList.do">[품종 선택]</a>
 		</form>
 	</div>
+<<<<<<< HEAD
 	<jsp:include page="../inc/pet_bottom.jsp" />
+=======
+		<jsp:include page="../inc/pet_bottom.jsp" />
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 </body>
 </html>
 

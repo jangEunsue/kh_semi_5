@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>YamYamPet 관리자 모드</title>
+<<<<<<< HEAD
 <style type="text/css">
 h2{
 
@@ -42,6 +43,8 @@ size: 50px;
 }
 
 </style>
+=======
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
 </head>
 <body>
   
@@ -66,8 +69,14 @@ size: 50px;
                <tr>
                  <td>${dto.getM_num() }</td>
                  <td> 
+<<<<<<< HEAD
                  <a href="<%=request.getContextPath() %>/member_contend.do?num=${dto.getM_num() }">
                  ${dto.getM_id() }</a></td>
+=======
+                 <a href="<%=request.getContextPath() %>/admin_member_contend.do?num=${dto.getM_num() }">
+                 ${dto.getM_num() }</a></td>
+                 <td> ${dto.getM_id() }</td>
+>>>>>>> b1e99634e43de79f9936b39c9781e52fd7d99698
                  <td> ${dto.getM_name() }</td>
                  <td> ${dto.getM_regdate().substring(0,10) }</td>
                </tr>

@@ -1,0 +1,10 @@
+1. 인덱스 메뉴바, 탑 메뉴바 링크 붙여넣기 코드
+                    <li><a href="<%=request.getContextPath() %>/pet_greeting.do">사이트 소개</a>
+                        <ul>
+                            <li><a href="<%=request.getContextPath() %>/pet_greeting.do">인사말</a></li>
+                            <li><a href="#">오시는 길</a></li>
+                        </ul>
+                    </li>
+
+2. 매핑 추가
+pet_greeting.do = user/greeting.jsp
