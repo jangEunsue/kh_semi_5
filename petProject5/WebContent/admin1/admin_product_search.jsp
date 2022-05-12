@@ -214,6 +214,7 @@
 				onclick="location.href='admin_product_list.do'">
 		</form>
 	</div>
+	<br>
 
 	<jsp:include page="../include/admin_bottom.jsp"/>
 
