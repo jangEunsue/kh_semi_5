@@ -7,6 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>YamYamPet 관리자 모드</title>
+<script type="text/javascript">
+
+	function check(num) {
+		let res = confirm("정말로 상품을 삭제하시겠습니까?");
+		
+		if(res) {
+			location.href="admin_product_delete.do?p_num="+num+"&page=${page }";
+		}
+	}
+	
+</script>
 <style type="text/css">
 	
 	td {
@@ -145,7 +156,7 @@
 							<%-- <a href="<%=request.getContextPath() %>/admin_product_update.do?p_num=${dto.getP_num() }">수 정</a> --%>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="button" value="삭제" class="greenbtn"
-								onclick="location.href='<%=request.getContextPath() %>/admin_product_delete.do?p_num=${dto.getP_num() }&page=${page }'">
+								onclick="check(${dto.getP_num() })">
 							<%-- <a href="<%=request.getContextPath() %>/admin_product_delete.do?p_num=${dto.getP_num() }">삭 제</a> --%>
 							&nbsp;
 						</td>
