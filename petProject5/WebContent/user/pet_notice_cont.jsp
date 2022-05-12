@@ -42,38 +42,37 @@
             
             <!-- 본문 시작 -->
             <div id="sub_contents">
-            
-                <div id="board_wrap">
+            <div id="board_wrap">
                     <c:set var="dto" value="${Cont }"></c:set>
                     <table border="0" cellspacing="0" width="100%">
                         <tr>
                             <th>글제목</th>
-                            <td> ${dto.getFree_title() } </td>
+                            <td> ${dto.getNotice_title() } </td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td> ${dto.getFree_writer() } </td>
+                            <td> ${dto.getNotice_writer() } </td>
                         </tr>
                       
                         <tr>
-                            <c:if test="${empty dto.getFree_update() }">
+                            <c:if test="${empty dto.getNotice_update() }">
                                 <th>작성일자</th>
-                                <td> ${dto.getFree_date().substring(0,10) } </td>
+                                <td> ${dto.getNotice_date().substring(0,10) } </td>
                             </c:if>
                          
-                            <c:if test="${!empty dto.getFree_update() }">
+                            <c:if test="${!empty dto.getNotice_update() }">
                                 <th>수정일자</th>
-                                <td> ${dto.getFree_update().substring(0,10) } </td>
+                                <td> ${dto.getNotice_update().substring(0,10) } </td>
                             </c:if>
                         </tr>
                         <tr>
                             <th>조회수</th>
-                            <td> ${dto.getFree_hit() } </td>
+                            <td> ${dto.getNotice_hit() } </td>
                         </tr>
                         <tr>
                             <th>글내용</th>
                             <td class="board_cont"> 
-                                <textarea readonly>${dto.getFree_cont() }</textarea>
+                                <textarea readonly>${dto.getNotice_cont() }</textarea>
                             </td>
                         </tr>
 
