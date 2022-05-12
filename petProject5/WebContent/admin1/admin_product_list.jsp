@@ -30,6 +30,7 @@
 	
 	.tbody {
 		font-size: 12px;
+		height: 75px;
 	}
 	
 	.tbody:nth-child(2n-1) {
@@ -40,6 +41,7 @@
 		background-color: #C9DECF;	
 		font-size: 13px;
 		text-align: center;
+		height: 30px;
 	}
 	
 	.greenbtn {
@@ -89,6 +91,7 @@
 	
 	.search {
 		font-size: 13px;
+		border: 1px solid #dddddd;
 	}
 	
 	#searchbtn {
@@ -96,6 +99,10 @@
 		border-radius: 1px;
 		padding-left: 3px;
 		padding-right: 3px;
+	}
+	
+	.pinputtable {
+		border: 1px solid #aaaaaa;  
 	}
 	
 </style>
@@ -109,7 +116,7 @@
 		<h5 id="ptitle">상품관리</h5>
 		<br>
 		
-		<table border="1" cellspacing="0" width="70%">
+		<table border="1" cellspacing="0" width="70%" class="pinputtable">
 			<tr class="thead">
 				<th>상품번호</th><th>카테고리 코드</th><th>상품명</th><!-- <th>반려동물 나이</th> -->
 				<!-- <th>반려동물 품종</th><th>습건식 여부</th><th>반려동물 크기</th><th>반려동물 중성화 여부</th> -->
