@@ -100,6 +100,9 @@ public class InsertReviewAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		
+		request.setAttribute("no", SaleNo);
+		request.setAttribute("pno", pnum);
+		
 		if(check>0) {
 			
 			forward.setRedirect(true);
