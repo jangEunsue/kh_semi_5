@@ -169,19 +169,17 @@ public class ReviewDAO {
 	}//insertReview end
 	
 	//구매내역에서 작성한 리뷰를 확인하는 메서드
-	public ReviewDTO selectMyReview(String id, int saleNum, int pNum) {
+	public ReviewDTO selectMyReview(int saleNum) {
 		ReviewDTO dto = new ReviewDTO();
 		
 		openConn();
 		
 		try {
-			sql = "select * from pet_review where userID=? and pnum=? and sale_no=?  order by review_no desc";
+			sql = "select * from pet_review where sale_no=?  ";
 			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
-			pstmt.setInt(2, pNum);
-			pstmt.setInt(3, saleNum);
+			pstmt.setInt(1, saleNum);
 			
 			rs = pstmt.executeQuery();
 			
