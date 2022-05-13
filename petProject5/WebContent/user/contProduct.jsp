@@ -39,7 +39,7 @@ table tr td {
 	
 function goCart(){
 	
-	let id = $("mId").val();
+	let id = $("#mId").val();
 	
 	if(id == null){
 		location.href = "pet_login.do";
@@ -61,7 +61,7 @@ function goCart(){
 	
 	}
 	function goSales(){
-		let id = $("mId").val();
+		let id = $("#mId").val();
 		
 		if(id == null){
 			location.href = "pet_login.do";
