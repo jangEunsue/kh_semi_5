@@ -217,15 +217,13 @@ public class ReviewDAO {
 		openConn();
 		
 		try {
-			sql = "update pet_review set review_cont = ? ,rimage = ? where userID = ? and pnum = ? and sale_no =? ";
+			sql = "update pet_review set review_cont = ? ,rimage = ? where  sale_no =? ";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getReview_cont());
 			pstmt.setString(2, dto.getRimage());
-			pstmt.setString(3, dto.getUserID());
-			pstmt.setInt(4, dto.getPnum());
-			pstmt.setInt(5, dto.getSale_no());
+			pstmt.setInt(3, dto.getSale_no());
 			
 			result = pstmt.executeUpdate();
 			
