@@ -71,6 +71,15 @@ function goCart(){
 			document.frm.submit();
 		}
 	}
+	
+	function detail() {
+		$("#reviewCont").hide(1);
+		$("#detailCont").show(1);		
+	}
+	function review() {
+		$("#reviewCont").show(1);
+		$("#detailCont").hide(1);
+	}
 </script>
 <script type="text/javascript">
 	$(".btn").mouseover(function() {
@@ -185,10 +194,10 @@ function goCart(){
 
 						<div class="mid_nav">
 							<ul class="mid_menu">
-								<li><a href="#detailCont" class="nav_on"> <i
+								<li><a href="#detailCont" class="nav_on" onclick="detail()"> <i
 										class="fa fa-caret-right" id="detail"></i>상제정보
 								</a></li>
-								<li><a href="#reviewCont"> <i class="fa fa-caret-right"
+								<li><a href="#reviewCont" onclick="review()"> <i class="fa fa-caret-right"
 										id="review"></i>리뷰
 								</a></li>
 							</ul>
@@ -251,7 +260,7 @@ function goCart(){
 									<c:forEach items="${reviewList}" var="rev">
 										<tr>
 											<td>${rev.getUserID()}
-												&nbsp;&nbsp;|&nbsp;&nbsp;${rev.getReview_date()}</td>
+												&nbsp;&nbsp;|&nbsp;&nbsp;${rev.getReview_date().substring(0,10)}</td>
 										</tr>
 										<tr>
 											<c:if test="${rev.getRimage() != null }">
@@ -264,7 +273,7 @@ function goCart(){
 											<td>${rev.getReview_cont() }</td>
 										</tr>
 										<tr>
-											<td><font>--------------------------------------------------------------</font></td>
+											<td></td>
 										</tr>
 									</c:forEach>
 								</c:if>
