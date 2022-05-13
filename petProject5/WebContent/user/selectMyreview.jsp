@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>작성한 리뷰</title>
+<title>YamYam PET</title>
 <script type="text/javascript">
 
 function check(ReviewNo,Pnum) {
