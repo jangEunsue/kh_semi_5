@@ -43,38 +43,38 @@
 			<table width="90%">
 			<tr>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/allProductList.do"><img alt="전체" src="../image/dogs.jpg" width="90%"><br>전체</a>
+					<a href="<%=request.getContextPath()%>/allProductList.do"><img alt="전체" src="<%=request.getContextPath() %>/image/dogs.jpg" width="90%"><br>전체</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=01"><img alt="닥스훈트" src="../image/foxhound.jpg" width="90%"><br>닥스훈트</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=01"><img alt="닥스훈트" src="<%=request.getContextPath() %>/image/foxhound.jpg" width="90%"><br>닥스훈트</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=02"><img alt="말티즈" src="../image/maltese.jpg" width="90%"><br>말티즈</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=02"><img alt="말티즈" src="<%=request.getContextPath() %>/image/maltese.jpg" width="90%"><br>말티즈</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=03"><img alt="슈나우저" src="../image/schnauzer.jpg" width="90%"><br>슈나우저</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=03"><img alt="슈나우저" src="<%=request.getContextPath() %>/image/schnauzer.jpg" width="90%"><br>슈나우저</a>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=04"><img alt="비숑프리제" src="../image/bichon.jpg" width="90%"><br>비숑프리제</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=04"><img alt="비숑프리제" src="<%=request.getContextPath() %>/image/bichon.jpg" width="90%"><br>비숑프리제</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=05"><img alt="시츄" src="../image/shih.jpg" width="90%"><br>시츄</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=05"><img alt="시츄" src="<%=request.getContextPath() %>/image/shih.jpg" width="90%"><br>시츄</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=06"><img alt="요크셔 테리어" src="../image/yorkshire.jpg" width="90%"><br>요크셔 테리어</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=06"><img alt="요크셔 테리어" src="<%=request.getContextPath() %>/image/yorkshire.jpg" width="90%"><br>요크셔 테리어</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=07"><img alt="포메라니안" src="../image/pomeranian.jpg" width="90%"><br>포메라니안</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=07"><img alt="포메라니안" src="<%=request.getContextPath() %>/image/pomeranian.jpg" width="90%"><br>포메라니안</a>
 				</td>
 			</tr>
 			<tr align="left">
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=08"><img alt="푸들" src="../image/poodle.jpg" width="90%"><br>푸들</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=08"><img alt="푸들" src="<%=request.getContextPath() %>/image/poodle.jpg" width="90%"><br>푸들</a>
 				</td>
 				<td align="center" width="20%">
-					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=09"><img alt="프렌치 불록" src="../image/french.jpg" width="90%" height="110%"><br>프렌치 블록</a>
+					<a href="<%=request.getContextPath()%>/selectProductList.do?petKind=09"><img alt="프렌치 불록" src="<%=request.getContextPath() %>/image/french.jpg" width="90%" height="110%"><br>프렌치 블록</a>
 				</td>
 			</tr>
 			</table>
