@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 작성 페이지</title>
+<title>YamYam PET</title>
 </head>
 <body>
 	<%-- 구매 내역 -> 버튼 클릭 -> 받은 제품 정보 출력 --%>
