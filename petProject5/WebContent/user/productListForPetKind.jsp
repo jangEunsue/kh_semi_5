@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>반려견 상품</title>
+<title>YamYam PET</title>
 <%-- 반려견 품종에 따른 상품 페이지 --%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
