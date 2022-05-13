@@ -21,14 +21,37 @@ public class AdminSalesSearchAction implements Action {
 
 		String searchDateStart = request.getParameter("searchDate_start").trim();
 		String searchDateEnd = request.getParameter("searchDate_end").trim();
-		String searchPname = request.getParameter("searchPname").trim();
+		String search_field = request.getParameter("search_field").trim();
+		String search_keyword = request.getParameter("search_keyword").trim();
 
+		// 페이징 처리 작업 진행
+		int rowsize = 10;		// 한 페이지 당 보여질 게시물의 수
+		int block = 5;			// 아래에 보여질 페이지의 최대 수 - 예)[1][2][3] / [3][4][5]
+		int totalRecord = 0;	// DB상의 게시물의 전체 수
+		int allPage = 0;		// 전체 페이지 수
+		
+		int page = 0;			// 현재 페이지 변수
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		} else {	// 처음으로 [전체 게시물 목록] a 태그를 선택한 경우
+			page = 1;
+		}
+		
+		// 해당 페이지에서 시작 번호
+		int startNo = (page * rowsize) - (rowsize - 1);
+		
+		// 해당 페이지에서 끝 번호
+		int endNo = (page * rowsize);
+		
+		// 해당 페이지에서 시작 블럭
+		int startBlock = (((page - 1) / block) * block) + 1;
+		
+		// 해당 페이지에서 끝 블럭
+		int endBlock = (((page - 1) / block) * block) + block;
+		
 		SalesDAO dao = SalesDAO.getInstance();
-
-		System.out.println(searchDateStart);
-		System.out.println(searchDateEnd);
-		System.out.println(searchPname);
-
+		
 		if (!(searchDateStart.equals(""))) {
 			searchDateStart = searchDateStart.substring(2, 4) + "/" + searchDateStart.substring(5, 7) + "/"
 					+ searchDateStart.substring(8, 10);
@@ -38,12 +61,25 @@ public class AdminSalesSearchAction implements Action {
 			searchDateEnd = searchDateEnd.substring(2, 4) + "/" + searchDateEnd.substring(5, 7) + "/"
 					+ searchDateEnd.substring(8, 10);
 		}
+		
+		// DB상의 전체 게시물 수를 확인하는 메서드 호출
+		totalRecord = dao.searchListCount(searchDateStart, searchDateEnd, search_field, search_keyword);
+		
+		// 전체 게시물의 수를 한 페이지당 보여질 게시물의 수로 나누어 주어야 함.
+		// 이 과정을 거치면 전체 페이지 수가 나오게 됨.
+		// 전체 페이지 수가 나올 때 나머지가 있으면 무조건 페이지 수를 하나 올려주어야 함.
+		allPage = (int)Math.ceil(totalRecord / (double)rowsize);
+		
+		if(endBlock > allPage) {
+			endBlock = allPage;
+		}
 
-		List<SalesDTO> list = dao.searchSalesList(searchDateStart, searchDateEnd, searchPname);
+		List<SalesDTO> list = dao.searchSalesList(searchDateStart, searchDateEnd, search_field, search_keyword, 
+													page, rowsize);
 
-		int psum = dao.getSalesPsum(searchDateStart, searchDateEnd, searchPname);
-		int transcostsum = dao.getSalesTranscostsum(searchDateStart, searchDateEnd, searchPname);
-		int sumall = dao.getSalesSumall(searchDateStart, searchDateEnd, searchPname);
+		int psum = dao.getSalesPsum(searchDateStart, searchDateEnd, search_field, search_keyword);
+		int transcostsum = dao.getSalesTranscostsum(searchDateStart, searchDateEnd, search_field, search_keyword);
+		int sumall = dao.getSalesSumall(searchDateStart, searchDateEnd, search_field, search_keyword);
 
 		searchDateStart = request.getParameter("searchDate_start").trim();
 		searchDateEnd = request.getParameter("searchDate_end").trim();
@@ -64,25 +100,46 @@ public class AdminSalesSearchAction implements Action {
 				 out.println("</script>"); 
 				 
 			 } else {
+				request.setAttribute("page", page);
+				request.setAttribute("rowsize", rowsize);
+				request.setAttribute("block", block);
+				request.setAttribute("totalRecord", totalRecord);
+				request.setAttribute("allPage", allPage);
+				request.setAttribute("startNo", startNo);
+				request.setAttribute("endNo", endNo);
+				request.setAttribute("startBlock", startBlock);
+				request.setAttribute("endBlock", endBlock); 
+				 
 				request.setAttribute("psum", psum);
 				request.setAttribute("transcostsum", transcostsum);
 				request.setAttribute("sumall", sumall);
 				request.setAttribute("searchDateStart", searchDateStart);
 				request.setAttribute("searchDateEnd", searchDateEnd);
-				request.setAttribute("searchPname", searchPname);
+				request.setAttribute("search_field", search_field);
+				request.setAttribute("search_keyword", search_keyword);
 				request.setAttribute("List", list);
 			
 				forward.setRedirect(false);
 				forward.setPath("admin1/admin_sales_search.jsp");
 			 }
 		} else {
+			request.setAttribute("page", page);
+			request.setAttribute("rowsize", rowsize);
+			request.setAttribute("block", block);
+			request.setAttribute("totalRecord", totalRecord);
+			request.setAttribute("allPage", allPage);
+			request.setAttribute("startNo", startNo);
+			request.setAttribute("endNo", endNo);
+			request.setAttribute("startBlock", startBlock);
+			request.setAttribute("endBlock", endBlock);
 			
 			request.setAttribute("psum", psum);
 			request.setAttribute("transcostsum", transcostsum);
 			request.setAttribute("sumall", sumall);
 			request.setAttribute("searchDateStart", searchDateStart);
 			request.setAttribute("searchDateEnd", searchDateEnd);
-			request.setAttribute("searchPname", searchPname);
+			request.setAttribute("search_field", search_field);
+			request.setAttribute("search_keyword", search_keyword);
 			request.setAttribute("List", list);
 		
 			forward.setRedirect(false);
