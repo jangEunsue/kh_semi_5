@@ -145,6 +145,6 @@ size: 50px;
 	   </form>
 	   
 	</div>
-
+<jsp:include page="../include/admin_bottom.jsp" />
 </body>
 </html>
