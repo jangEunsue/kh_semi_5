@@ -7,8 +7,7 @@ import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -45,7 +44,8 @@ public class InsertReviewAction implements Action {
 		//자료실 폼 체이비에서 넘어온 데이터들을 받아 주자
 		String cont = multi.getParameter("cont").trim();
 
-		String userId = multi.getParameter("userId").trim(); //세션에서 받아온 ID
+		HttpSession sseeion = request.getSession();
+		String userId = (String)sseeion.getAttribute("userId"); //세션에서 받아온 ID
 		
 		int pnum = Integer.parseInt(multi.getParameter("pnum").trim());
 		int SaleNo = Integer.parseInt(multi.getParameter("SaleNo").trim());
