@@ -66,6 +66,6 @@ h3{
 			</div>
 		</div>
 	</div>
-	<jsp:include page="<%=request.getContextPath()%>/inc/pet_bottom.jsp" />
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
 </html>
