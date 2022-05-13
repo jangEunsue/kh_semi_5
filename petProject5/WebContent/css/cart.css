@@ -50,25 +50,25 @@ text-align: center;
 
 }
 #CartToBuyBtn{
-	background-color:#c9decf;
-	border-radius:7px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:sans-serif;
-	font-size:12px;
-	padding:6px 12px;
-	text-decoration:none;
-	float: center;
-	webkit-appearance: none;
-    moz-appearance: none;
-    appearance: none;
-    border: none;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
+background-color:#c9decf;
+border-radius:7px;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:sans-serif;
+font-size:12px;
+padding:6px 12px;
+text-decoration:none;
+float: center;
+webkit-appearance: none;
+moz-appearance: none;
+appearance: none;
+border: none;
+color: white;
+text-align: center;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
 
 }
 
@@ -119,31 +119,31 @@ text-align: center;
 
 
 .modiBtn{
-	background-color:#c9decf;
-	border-radius:7px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:sans-serif;
-	font-size:12px;
-	padding:6px 12px;
-	text-decoration:none;
-	cursor: pointer;
-	text-align: center;
-	margin: 4px 2px;
-	webkit-appearance: none;
-  	moz-appearance: none;
-  	appearance: none;
-  	border: none;
+background-color:#c9decf;
+border-radius:7px;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:sans-serif;
+font-size:12px;
+padding:6px 12px;
+text-decoration:none;
+cursor: pointer;
+text-align: center;
+margin: 4px 2px;
+webkit-appearance: none;
+moz-appearance: none;
+appearance: none;
+border: none;
 }
 
 #deleteBtn{
-	text-align: center;
-	webkit-appearance: none;
-  	moz-appearance: none;
-  	appearance: none;
-	background-color:transparent;
- border: none;
+text-align: center;
+webkit-appearance: none;
+moz-appearance: none;
+appearance: none;
+background-color:transparent;
+border: none;
 
 }
 
