@@ -25,7 +25,7 @@ public class UpdateOkReviewAction implements Action {
 		ReviewDTO dto = new  ReviewDTO();
 
 		// 첨부파일이 저장될 경로
-		String saveFolder = "D:\\ncs\\workspace(jsp)\\PetProject\\WebContent\\review";
+		String saveFolder = "D:\\ncs\\workspace(jsp)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petProject5\\review";
 
 		// 첨부파일 최대 크기 지정
 		int fileSize = 10 * 1024 * 1024; // 10 * 1Mb(1024*1024) => 10MB
@@ -98,7 +98,7 @@ public class UpdateOkReviewAction implements Action {
 		if(check>0) {
 			
 			forward.setRedirect(true);
-			forward.setPath("selectMyReview.do");
+			forward.setPath("selectMyReview.do?no="+SaleNo+"&pno="+pnum);
 		}else {
 			PrintWriter out = response.getWriter();
 			
