@@ -12,6 +12,111 @@
 	#list_table {
 		text-align: center;
 	}
+	
+	td {
+		text-align: center;	
+	}
+
+	#btn_input {
+		margin-right: 20%;
+	}
+	
+	.tbody {
+		font-size: 12px;
+		height: 50px;
+	}
+	
+	.tbody:nth-child(2n-1) {
+		background-color: #F4F4F4;	
+	}
+	
+
+	.thead1 {
+		background-color: #E9E1D4;	
+		font-size: 15px;
+		text-align: center;
+		height: 30px;
+	}
+	
+	.thead2 {
+		background-color: #C9DECF;	
+		font-size: 13px;
+		text-align: center;
+		height: 30px;
+	}
+	
+	.pageNum {
+		font-size: 13px;
+	}
+	
+	#ptitle {
+		text-align: left;
+		margin-left: 13%;
+		line-height: 10%;
+		border-style: solid; 
+		border-width: 0 0 0 8px; 
+		padding: 12px; 
+		word-break: break-all;
+		border-color: #E9E1D4;
+	}
+	
+	.pinputtable {
+		border: 1px solid #aaaaaa;  
+	}
+	
+	a:link {
+	  color : #585858;
+	}
+	a:visited {
+	  color : #585858;
+	}
+	a:hover {
+	  color : black;
+	}
+	a:active {
+	  color : black;
+	}
+	
+	#datepick {
+		text-align: center;
+	}
+	
+	input[type="date"] {
+	     -webkit-align-items: center;
+	     display: -webkit-inline-flex;
+	     overflow: hidden;
+	     font-size: 14px;
+	     padding: 0;
+	     -webkit-padding-start: 1px;
+	}
+	
+	input::-webkit-datetime-edit {
+	    -webkit-flex: 1;
+	    -webkit-user-modify: read-only !important;
+	    display: inline-block;
+	    min-width: 0;
+	    overflow: hidden;
+	}
+	
+	input::-webkit-datetime-edit-fields-wrapper {
+	    -webkit-user-modify: read-only !important;
+	    display: inline-block;
+	    padding: 1px 0;
+	    white-space: pre;
+	}
+	
+	.pinputbtn {
+		background-color: #C9DECF;
+		color: white;
+		font-size: 14px;
+		padding: 3px 6px 3px 6px;
+	}
+	
+	.pinputsrc {
+		font-size: 14px;
+		border: 1px solid #dddddd;
+		padding-left: 3px;
+	}
 
 </style>
 </head>
@@ -20,15 +125,14 @@
 	<jsp:include page="../include/admin_top.jsp"/>
 	
 	<div align="center">
-		<hr width="80%" color="E9E1D4">
-			<h3>PET_SALES 테이블 매출 전체 리스트 페이지</h3>
-		<hr width="80%" color="E9E1D4">
+		<h5 id="ptitle">매출관리</h5>
 		<br>
 		
 		<c:set var="list" value="${List }"/>
 		<c:set var="searchDateStart" value="${searchDateStart }"/>
 		<c:set var="searchDateEnd" value="${searchDateEnd }"/>
-		<c:set var="searchPname" value="${searchPname }"/>
+		<c:set var="search_field" value="${search_field }"/>
+		<c:set var="search_keyword" value="${search_keyword }"/>
 		
 		<c:set var="psum" value="${psum }"/>
 		<c:set var="transcostsum" value="${transcostsum }"/>
@@ -37,40 +141,61 @@
 		<form method="post"
 					action="<%=request.getContextPath() %>/admin_sales_search.do">
 
-					기  간 &nbsp;&nbsp;&nbsp;
-					<input type="date" name="searchDate_start"
+					<span style="font-size: 14px;">기  간 &nbsp;&nbsp;&nbsp;</span>
+					<input type="date" name="searchDate_start" id="datepick" class="pinputsrc"
 							value="${searchDateStart }">
-					~
-					<input type="date" name="searchDate_end"
+					&nbsp;~&nbsp;
+					<input type="date" name="searchDate_end" id="datepick" class="pinputsrc"
 							value="${searchDateEnd }">
-					&nbsp;|&nbsp;
+					&nbsp;&nbsp;|&nbsp;&nbsp;
 
-					상 품 명 &nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="searchPname" value="${searchPname }">
-					&nbsp;|&nbsp;
-					<input type="submit" value="검색">
-					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-					<input type="button" value="전체"
+					<%-- 상 품 명 &nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="searchPname" value="${searchPname }"> --%>
+					<select name="search_field" class="pinputsrc">
+						<option value="p_name"
+							<c:if test="${search_field == 'p_name' }">selected</c:if> >상품명</option>
+						<option value="m_id"
+							<c:if test="${search_field == 'm_id' }">selected</c:if> >고객 ID</option>
+					</select>
+					
+					<input name="search_keyword" class="pinputsrc" value=${search_keyword }>
+					<input type="submit" value="검색" class="pinputbtn">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="전체" class="pinputbtn"
 						onclick="location.href='admin_sales_list.do'">
 		</form>	
 		<br>
-		<table id="list_table" border="1" cellspacing="0" width="80%" >
+		<table id="list_table" class="pinputtable" border="1" cellspacing="0" width="80%" >
 
-			<tr>
-				<td colspan="10" align="left">
-					총 ${list.size() }건
-				</td>
+			<tr class="thead1">
+				<th colspan="2">
+					총 ${totalRecord }건
+				</th>
+				
+				<th colspan="8">
+					총 합계 : <fmt:formatNumber value="${sumall }" />원
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					상품 합계 : <fmt:formatNumber value="${psum }" />원
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					배송비 합계 : <fmt:formatNumber value="${transcostsum }" />원
+				</th>
 			</tr>
 			
 			<tr>
-			<tr bgcolor="E9E1D4">
+			<tr class="thead2">
 				<th>주문날짜</th><th>주문번호</th><th>고객 ID</th><th>연락처</th><th>주 소</th><th>상품명</th>
 				<th>상품가격</th><th>주문수량</th><th>금 액</th><th>배송비</th>
 			</tr>
 
 			<c:if test="${!empty list }">
 				<c:forEach items="${list }" var="dto">
-					<tr>
+					<tr class="tbody">
 						<td>${dto.getSales_date() }</td>
 						<td>${dto.getSales_serial() }</td>
 						<td>${dto.getSales_id() }</td>
@@ -85,26 +210,29 @@
 					</tr>
 				</c:forEach>
 				
-				<tr>
-					<th colspan="6">합  계</th>
-					<th colspan="3">
-						<fmt:formatNumber value="${psum }" />원
-					</th>
-					<th>
-						<fmt:formatNumber value="${transcostsum }" />원
-					</th>
-				</tr>
-				
-				<tr>
-					<th colspan="6">총 합계</th>
-					<th colspan="4">
-						<fmt:formatNumber value="${sumall }" />원
+				<tr class="thead1">
+					
+					<th colspan="10">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						총 합계 : <fmt:formatNumber value="${sumall }" />원
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						상품 합계 : <fmt:formatNumber value="${psum }" />원
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						배송비 합계 : <fmt:formatNumber value="${transcostsum }" />원
 					</th>
 				</tr>
 			</c:if>
 			
 			<c:if test="${empty list }">
-				<tr>
+				<tr class="tbody">
 					<td colspan="10" align="center">
 						<h3>검색된 주문 내역이 없습니다.</h3>
 					</td>
@@ -112,8 +240,38 @@
 			</c:if>
 
 		</table>
+		
+		<div style="line-height: 30%;"><br></div>
+		<br>
+		
+		<%-- 검색 페이징 처리 --%>
+		<div class="pageNum">
+			<c:if test="${page > block }">
+				<a href="admin_sales_search.do?page=1&searchDate_start=${searchDateStart }&searchDate_end=${searchDateEnd }&search_field=${search_field }&search_keyword=${search_keyword}">&lt;&lt;</a>&nbsp;
+				<a href="admin_sales_search.do?page=${startBlock - 1 }&searchDate_start=${searchDateStart }&searchDate_end=${searchDateEnd }&search_field=${search_field }&search_keyword=${search_keyword}">&lt;&nbsp;</a>
+			</c:if>
+			
+			<c:forEach begin="${startBlock }" end="${endBlock }" var="i">
+			
+				<c:if test="${i == page }">
+					<b><a href="admin_sales_search.do?page=${i }&searchDate_start=${searchDateStart }&searchDate_end=${searchDateEnd }&search_field=${search_field }&search_keyword=${search_keyword}">&nbsp;${i }&nbsp;</a></b>
+				</c:if>
+				
+				<c:if test="${i != page }">
+					<a href="admin_sales_search.do?page=${i }&searchDate_start=${searchDateStart }&searchDate_end=${searchDateEnd }&search_field=${search_field }&search_keyword=${search_keyword}">&nbsp;${i }&nbsp;</a>
+				</c:if>
+				
+			</c:forEach>
+			
+			<c:if test="${endBlock < allPage }">
+				<a href="admin_sales_search.do?page=${endBlock + 1 }&searchDate_start=${searchDateStart }&searchDate_end=${searchDateEnd }&search_field=${search_field }&search_keyword=${search_keyword}">&nbsp;&gt;</a>&nbsp;
+				<a href="admin_sales_search.do?page=${allPage }&searchDate_start=${searchDateStart }&searchDate_end=${searchDateEnd }&search_field=${search_field }&search_keyword=${search_keyword}">&gt;&gt;</a>
+			</c:if>
+		</div>
+		
+		<br>
 	</div>
-
+	
 	<jsp:include page="../include/admin_bottom.jsp"/>
 
 </body>
