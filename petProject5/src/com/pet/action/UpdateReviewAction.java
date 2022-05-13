@@ -21,7 +21,7 @@ public class UpdateReviewAction implements Action {
 
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("sessionID");
-		int pnum = Integer.parseInt(request.getParameter("Pnum").trim());
+		int pnum = Integer.parseInt(request.getParameter("num").trim());
 		int snum = Integer.parseInt(request.getParameter("no").trim());
 
 		ReviewDAO dao = ReviewDAO.getInstance();
