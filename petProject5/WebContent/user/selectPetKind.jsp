@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>반려견 상품</title>
+<title>YamYam PET</title>
 <!-- top, button스타일 적용 -->
 <link rel="stylesheet" type="text/css" href="../css/basic.css">
 <link rel="stylesheet" type="text/css" href="../css/design.css">
