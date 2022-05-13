@@ -60,7 +60,7 @@ function check(ReviewNo,Pnum) {
 			<td>${rev.getReview_cont()}</td>
 		</tr>
 		<tr>
-			<td><input type="button" value="수정하기" onclick="location.href='updateReview.do?no=${rev.getReview_no()}&pnum=${rev.getPnum() }'"></td>
+			<td><input type="button" value="수정하기" onclick="location.href='updateReview.do?no=${rev.getReview_no()}'"></td>
 			<td><input type="button" value="삭제하기" onclick="check(${rev.getReview_no()})"></td>
 		</tr>
 	</table>
