@@ -8,6 +8,8 @@
 <title>리뷰 수정 페이지</title>
 </head>
 <body>
+<jsp:include page="../inc/pet_top.jsp" />
+<div align="center">
 <br><br>
 <h3>리뷰 수정</h3>
 <hr width="30%">
@@ -61,8 +63,8 @@
 		</tr>
 	</table>
 	</form>
-	
- <jsp:include page="../inc/pet_bottom.jsp" />
 </div>
+ <jsp:include page="../inc/pet_bottom.jsp" />
+
 </body>
 </html>
