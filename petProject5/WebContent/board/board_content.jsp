@@ -16,7 +16,7 @@
    <div align="center">
 	   <c:set var="dto" value="${Cont }" />
 	   <hr width="30%" color="marmoon">
-	      <h3>${dto.getFree_writer() } 님 자유게시판 상세 내역 페이지</h3>
+	      <h3>${dto.getFree_writer() } 님 자유게시판 상세 내역</h3>
 	   <hr width="30%" color="marmoon">
 	   <br>
 	   
