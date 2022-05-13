@@ -25,7 +25,7 @@ public class DeleteReviewAction implements Action {
 		
 		if(check > 0) {
 			foward.setRedirect(true);
-			foward.setPath("");
+			foward.setPath("selectSalesList.do");
 		}else {
 			PrintWriter out = response.getWriter();
 			
