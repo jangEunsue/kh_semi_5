@@ -19,19 +19,16 @@ public class UpdateReviewAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 리뷰 수정 전 원래 내용을 가져오는 비지니스 로직
 
-		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("sessionID");
-		int pnum = Integer.parseInt(request.getParameter("pnum").trim());
 		int snum = Integer.parseInt(request.getParameter("no").trim());
 
 		ReviewDAO dao = ReviewDAO.getInstance();
 
-		ReviewDTO dto = dao.selectMyReview(userId, snum, pnum);
+		ReviewDTO dto = dao.selectMyReview(snum);
 
 		ActionForward forward = new ActionForward();
 
 		SalesDAO sDao = SalesDAO.getInstance();
-		SalesDTO sDto = sDao.selectSaleProductcont(pnum, snum, userId);
+		SalesDTO sDto = sDao.selectSaleProductcont(snum);
 
 		request.setAttribute("sales", sDto);
 
