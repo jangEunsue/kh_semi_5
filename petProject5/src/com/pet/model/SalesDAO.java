@@ -158,20 +158,18 @@ public class SalesDAO {
 		return list;
 	}// selectUserSaleDate end
 
-	// 해당 사용자의 해당 주문번호, 해당 상품에 해당하는 구매 내역 조회
-	public SalesDTO selectSaleProductcont(int pnum, int saleNo, String userId) {
+	// 주문번호에 해당하는 구매 내역 조회
+	public SalesDTO selectSaleProductcont(int saleNo) {
 		SalesDTO dto = new SalesDTO();
 
 		openConn();
 
 		try {
-			sql = "select * from pet_sales where sales_p_no = ? and sales_id = ? and sales_no = ? order by sales_no desc";
+			sql = "select * from pet_sales where sales_no = ?";
 
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setInt(1, pnum);
-			pstmt.setString(2, userId);
-			pstmt.setInt(3, saleNo);
+			pstmt.setInt(1, saleNo);
 
 			rs = pstmt.executeQuery();
 
