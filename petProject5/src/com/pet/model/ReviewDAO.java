@@ -244,9 +244,9 @@ public class ReviewDAO {
 		 
 		 openConn();
 		 
-		 try {
+		try {
 			 //리뷰 삭제
-			sql = "delete from pet_sales where sales_no = ?";
+			sql = "delete from pet_review where review_no = ?";
 			 
 			pstmt = con.prepareStatement(sql);
 			
@@ -255,7 +255,7 @@ public class ReviewDAO {
 			result = pstmt.executeUpdate();
 
 			//삭제된 번호이후인 리뷰 번호 하나씩 내려가기
-			sql = "update pet_sales set sales_no = sales_no -1 where sales_no > ? ";
+			sql = "update pet_review set review_no = review_no -1 where review_no > ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			
