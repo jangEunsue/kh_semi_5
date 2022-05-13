@@ -101,13 +101,10 @@ public class InsertReviewAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		
-		request.setAttribute("no", SaleNo);
-		request.setAttribute("pno", pnum);
-		
 		if(check>0) {
 			
 			forward.setRedirect(true);
-			forward.setPath("selectMyReview.do");
+			forward.setPath("selectMyReview.do?no="+SaleNo+"&pno="+pnum);
 		}else {
 			PrintWriter out = response.getWriter();
 			
