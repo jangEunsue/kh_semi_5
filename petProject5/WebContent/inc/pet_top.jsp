@@ -35,7 +35,7 @@
         autoplaySpeed: 3000,
       });
     });
-</script>\
+</script>
 <script type="text/javascript">
 
 	function loginAlert() {
