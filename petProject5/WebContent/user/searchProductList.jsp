@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YamYam PET</title>
 <style type="text/css">
 
 h3{
@@ -57,10 +57,12 @@ h3{
 					</c:forEach>
 					</tr>
 					</c:if>
+					
 					<c:if test="${empty productlist }">
 						<tr>
-							<td rowspan="2"></td>
+							<td><h3>해당 상품은 에 없는 상품입니다.</h3><br> 검색어 확인 부탁드립니다</td>
 						</tr>
+					</c:if>
 					</c:if>
 				</table>
 			</div>
