@@ -103,7 +103,7 @@ public class UpdateOkReviewAction implements Action {
 			PrintWriter out = response.getWriter();
 			
 			out.println("<script>");
-			out.println("alert('게시글 추가 실패')");
+			out.println("alert('리뷰 수정 실패')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
