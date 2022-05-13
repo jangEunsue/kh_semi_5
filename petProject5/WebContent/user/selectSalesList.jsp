@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YamYam PET</title>
 <style type="text/css">
 font {
 	size: 5em;
