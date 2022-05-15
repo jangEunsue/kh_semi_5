@@ -42,6 +42,8 @@ public class PaymentOkACtion implements Action {
 		int sales_transcost = Integer.parseInt(request.getParameter("transcost"));
 		int sales_mileage = Integer.parseInt(request.getParameter("mileage").trim());
 		int sales_total = Integer.parseInt(request.getParameter("total").trim());	
+		String bankName = request.getParameter("bankName").trim();
+		String payer = request.getParameter("payer").trim();
 		
 		
 		ProductDAO productDao = ProductDAO.getInstance();
@@ -50,6 +52,11 @@ public class PaymentOkACtion implements Action {
 		int serialMaxNum = salesDao.getMaxSerial();
 		
 		int result = 1, totalQty=0;
+		
+		if(sales_payment.equals("account")) {
+			sales_payment = payer+"/"+ "account"+"/"+bankName;
+		}
+		
 		
 		for(int i=0; i<sales_pno.length; i++) {
 			int pnum = Integer.parseInt(sales_pno[i]);
@@ -98,12 +105,12 @@ public class PaymentOkACtion implements Action {
 				}
 			}
 			String payment = "";
-			if(sales_payment == "credit") {
+			if(sales_payment.equals("credit")) {
 				payment = "신용카드";
-			}else if(sales_payment == "account") {
-				payment = "무통장 입금";
+			}else if(sales_payment.equals(payer+"/"+"account"+"/"+bankName)) {
+				payment = "무통장입금";
 			}else {
-				payment="휴대폰 결제";
+				payment="휴대폰결제";
 			}
 			
 			request.setAttribute("payment", payment);
