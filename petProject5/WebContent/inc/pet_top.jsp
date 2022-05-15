@@ -87,7 +87,7 @@
                     <li><a href="<%=request.getContextPath() %>/pet_greeting.do">사이트 소개</a>
                         <ul>
                             <li><a href="<%=request.getContextPath() %>/pet_greeting.do">인사말</a></li>
-                            <li><a href="#">오시는 길</a></li>
+                            <li><a href="<%=request.getContextPath() %>/Direction.do">오시는 길</a></li>
                         </ul>
                     </li>
                     <li><a href="#">제품소개</a>
