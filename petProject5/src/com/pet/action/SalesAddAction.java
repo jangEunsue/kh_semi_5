@@ -31,7 +31,7 @@ public class SalesAddAction implements Action {
 		
 		int cart_pqty = Integer.parseInt(request.getParameter("pqty").trim());
 		
-		int cart_no = Integer.parseInt(request.getParameter("p_num").trim());
+		int cart_pno = Integer.parseInt(request.getParameter("p_num").trim());
 		
 		String cart_pimage = request.getParameter("p_image").trim();
 
@@ -47,7 +47,7 @@ public class SalesAddAction implements Action {
 		
 		List<CartDTO> list = new ArrayList<CartDTO>();
 		
-		dto.setCart_no(cart_no);
+		dto.setCart_pno(cart_pno);
 		dto.setCart_pimage(cart_pimage);
 		dto.setCart_pname(cart_pname);
 		dto.setCart_pqty(cart_pqty);
