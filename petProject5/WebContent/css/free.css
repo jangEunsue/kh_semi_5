@@ -19,8 +19,6 @@ border-bottom: 2px solid lightgray;
 width:1000px;
 }
 
-tr:nth-of-type(even) { background: white; }
-tr:nth-of-type(odd) { background: #F1F7F3; }
 
 .freeTh{
 border-bottom: 1px solid lightgray;
