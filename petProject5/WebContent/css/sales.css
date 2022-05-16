@@ -1,0 +1,260 @@
+@charset "UTF-8";
+
+.wrapper{
+	
+display: flex;
+justify-content: center;
+}
+
+#orderH2{
+font-size: 24px;
+font-family: sans-serif;
+color: gray;
+line-height: 40px;
+margin:52px auto 8px 8px;
+padding:2px 8px 2px 0px;
+border-bottom: 3px solid gray;
+text-align: left;
+	
+}
+
+.salesTh1{
+background-color: #f5ddad;
+font-weight: bold;
+border-bottom: 1px solid #f5ddad;
+padding: 8px;
+color: gray;
+text-align: center;
+
+}
+
+.salesTd1{
+text-align: center;
+padding: 8px;	
+border-bottom: 1px dashed #f5ddad;
+padding-bottom: 16px;
+font-weight: bold;
+	
+}
+
+.salesTh2{
+background-color: #f5ddad;
+font-weight: bold;
+padding: 8px;
+width: 15%;
+text-align:	-webkit-center;
+color: dimgray;
+}
+
+.salesTd2{
+border-bottom: 1px solid #f1ddad;	
+
+}
+
+.salesTh3{
+background-color: #f5ddad;
+font-weight: bold;
+padding: 8px;
+width: 15%;
+color: dimgray;
+border-bottom: 1px dotted #DAC79D;
+border-right: 1px dotted #DAC79D;
+}
+
+.salesTd3{
+border-bottom: 1px dotted #DAC79D;
+padding-top: 16px;
+padding-left: 8px;
+}
+
+.buyer{
+background-color: #f5ddad;
+font-weight: bold;
+border-bottom: 1px solid #f5ddad;
+padding: 8px;
+width: 15%;
+text-align:	-webkit-center;
+color: dimgray;
+}
+
+.center{
+
+text-align: center;
+font-weight: bold;
+border-bottom: 1px solid #f5ddad;
+}
+
+.salesCalc{
+
+padding: 16px 8px;
+text-align: right;
+	
+}
+.salesTable1{
+
+border-bottom: 2px dotted #f5ddad;
+margin: 8px;
+padding: 8px;
+width: 1000px;
+
+}
+.salesTable2{
+border-bottom: 2px solid #f5ddad;
+margin: 10px;
+padding: 8px;
+padding-bottom: 24px;
+width: 1000px;
+
+}
+
+.salesTable3{
+
+width: 700px;
+margin: 40px 16px;
+border: 2px dotted #f1ddad
+
+}
+
+.salesTable4{
+
+padding: 10px;
+width: 700px;
+border: 1px solid #f5ddad;
+
+}
+
+#sales_name{
+padding: 8px;	
+}
+
+#sales_phone{
+padding: 8px;	
+}
+
+#sales_addr{
+padding: 8px;		
+}
+
+.radioTd{
+border-bottom: 1px solid lightgray;
+
+}
+
+
+
+#salesInvoice{
+	border:2px dotted #f1ddad;
+}
+
+#sameBuyer{
+	
+background-color:#c9decf;
+border-radius:7px;
+display:inline-block;
+cursor:pointer;
+color: gray;
+font-family:sans-serif;
+padding:6px 12px;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+font-weight: bold;
+	
+}
+#sameBuyer:hover{
+	background-color:#f5ddad;
+}
+
+#sameBuyer:active{
+	position:relative;
+	top:1px;
+}
+#resetBtn{
+background-color:#f1bcae;
+border-radius:7px;
+display:inline-block;
+cursor:pointer;
+color: gray;
+font-family:sans-serif;
+padding:6px 12px;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+font-weight: bold;	
+}
+
+#resetBtn:hover{
+	background-color:#f5ddad;
+}
+
+#resetBtn:active{
+	position:relative;
+	top:1px;
+}
+
+.input_border{
+border-color: lightgray;
+border-style: dashed;
+margin: 4px;
+}
+
+#payerP{
+	
+float:left;
+padding-top: 4px;
+
+}
+
+#deliveryInfo{
+font-size: 14px;
+line-height: 150%;
+float:right;
+margin-right: 16px;
+	
+}
+
+.payInfo{
+font-size: 14px;
+line-height: 150%;
+float:left;
+
+}
+.salesBtn1{
+margin:16px;
+position: relative;
+top: 20px;
+right: 230px;
+}
+
+.salesBtn2{
+text-align: center;
+padding: 32px;
+}
+
+.submitBtn{
+background-color:#c9decf;
+border-radius:7px;
+color: gray;
+font-family:sans-serif;
+padding:6px 12px;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+font-weight: bold;	
+
+}
+
+.submitBtn:hover{
+	background-color:#f5ddad;
+}
+
+.submitBtn:active{
+	position:relative;
+	top:1px;
+}
