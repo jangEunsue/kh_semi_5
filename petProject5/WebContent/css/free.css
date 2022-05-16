@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+#freeListH2{
+font-size: 24px;
+font-family: sans-serif;
+color:gray;
+line-height: 40px;
+margin-top: 32px;
+padding:2px 8px 2px 0px;
+border-bottom: 3px solid #c9decf;
+font-weight: bold;
+width:1000px;
+
+}
+
+.freeTable{
+border-top: 2px solid lightgray;
+border-bottom: 2px solid lightgray;
+width:1000px;
+}
+
+.freeTh{
+border-bottom: 1px solid lightgray;
+background-color: #c9decf;
+text-align: center;
+padding: 8px;
+
+}
+
+.freeTd{
+text-align: center;	
+padding: 8px;
+}
+
+.freeInput{
+width: 100%;
+box-sizing: border-box;
+resize: none;
+border: none;
+outline: none;
+font-family: sans-selif; 	
+}
+
+
+
+#searchKeyword{
+border: 1px solid lightgray;	
+	
+}
+
+
+.freeSearch{
+margin: 16px;
+}
+
+
+
+#freeContH3{
+font-size: 24px;
+font-family: sans-serif;
+color:gray;
+line-height: 40px;
+margin-top: 32px;
+padding:2px 8px 2px 0px;
+border-bottom: 3px solid #c9decf;
+font-weight: bold;
+width:1000px;
+margin-bottom: 32px;
+}
+
+
+.freeContTable{
+border: 2px solid #c9decf;
+width:1000px;
+margin: 16px;
+	
+}
+
+.freeContTh{
+border-bottom: 1px solid lightgray;
+background-color: #c9decf;
+text-align: center;
+padding: 8px;
+width: 100px;
+color: gray;
+}
+
+.freeContTd{
+padding-left: 16px;
+margin-left: 16px;
+border: 1px solid #c9decf;
+}
+
+
+#freeContText{
+width: 100%;
+box-sizing: border-box;
+resize: none;
+padding: 16px;
+border: none;
+outline: none;
+font-family: sans-selif; 
+}
+
+.freeContBtnWrap{
+padding: 8px;
+padding-bottom: 40px;
+}
+
+.freeContBtn{
+background-color:#c9decf;
+border-radius:7px;
+color:gray;
+text-decoration:none;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 14px;
+margin: 4px 2px;
+font-weight: bold;
+margin-top: 16px;
+margin-bottom: 24px;
+padding: 8px 16px;
+}
+
+.freeContBtn:hover{
+background-color:#f1bcae;
+}
+
+.freeContBtn:active{
+position:relative;
+top:1px;
+}
+
+#freeDeleteH2{
+font-size: 24px;
+font-family: sans-serif;
+color:gray;
+line-height: 40px;
+margin-top: 32px;
+padding:2px 8px 2px 0px;
+border-bottom: 3px solid #c9decf;
+font-weight: bold;
+width:400px;
+margin-bottom: 8px;	
+}
+
+.freeDeleteTable{
+width: 300px;
+border: 1px solid #c9decf;
+margin-bottom: 8px;
+}
+
+.freeDeleteBtn{
+background-color:#c9decf;
+border-radius:7px;
+color:gray;
+text-decoration:none;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 14px;
+margin: 4px 2px;
+font-weight: bold;
+margin-top: 16px;
+margin-bottom: 24px;
+padding: 8px 16px;	
+}
+
+
+#freeDeleteTh{
+background-color: #c9decf;
+text-align: center;
+padding: 8px;
+color: gray;
+width: 184px;
+border: none;
+}
