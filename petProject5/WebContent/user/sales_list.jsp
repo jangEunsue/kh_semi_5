@@ -8,92 +8,28 @@
 <head>
 <meta charset="UTF-8">
 <title>주문/결제</title>
-<style type="text/css">
-.buyer{
-
-	width="20%"
-
-}
-</style>
-<script type="text/javascript">
-
-var sameBuyer = document.querySelector("#sameBuyer")
-
-sameBuyer.addEventListener("click", function (ev) {
-	ev.preventDefault();
-	console.log("buyer clicked");
-	
-	var sales_name = document.querySelector("#sales_name")
-	var sales_phone = document.querySelector("#sales_phone")
-	
-	document.frm.name.value = sales_name.innerText
-	document.frm.phone.value = sales_phone.innerText
-})
-
-function goMain(){
-	
-	document.frm.action="<%=request.getContextPath()%>/pet_main.do";
-	
-	document.frm.submit();
-}
-
-function billCheck(){
-	
-	var name = document.querySelector("#name");
-	var phone = document.querySelector("#phone");
-	var sample6_postcode = document.querySelector("#sample6_postcode");
-	var sample6_address = document.querySelector("#sample6_address");
-	var sample6_detailAddress = document.querySelector("#sample6_detailAddress");
-	
-	if(!name.value){
-		alert("수령인을 입력해주세요");
-		name.focus();
-		return false;
-	};
-	
-	if(!phone.value){
-		alert("배송지 연락처를 입력해주세요");
-		phone.focus();
-		return false;
-	};
-	
-	if(!sample6_postcode.value){
-		alert("우편번호를 입력해주세요");
-		sample6_postcode.focus();
-		return false;
-	};
-	if(!sample6_address.value){
-		alert("배송지 주소를 입력해주세요");
-		sample6_address.focus();
-		return false;
-	};
-	if(!sample6_detailAddress.value){
-		alert("상세 주소를 입력해주세요");
-		sample6_detailAddress.focus();
-		return false;
-	};
-	
-	 ev.target.submit();
-}
-
-</script>
+<link rel="stylesheet" type="text/css" href="css/sales.css">
 </head>
 <body>
+	<jsp:include page="../inc/pet_top.jsp" />
 
+	<div class="wrapper">
 	<form method="post" name="frm" action="payment_ok.do" onsubmit="return billCheck();">
+		<h2 id="orderH2">주문/결제</h2>
 		<c:set var="type" value="${type }" />
 		<c:set var="cartIds" value="${cartIds }"/>
 		<input type="hidden" value="${type }" name="type" />
 		<input type="hidden" value="${cartIds }" name="cart_ids" />
 	<div align="center">
-		<h2>주문/결제</h2>
 		<br>
 		
-		<table border="1" cellspacing ="0" width="800">
+		<table class="salesTable1">
 			<tr>
-				<th width="10%">이미지</th><th width="20%">상품명</th>
-				<th width="10%">수량</th><th width="20%">상품금액</th>
-				<th width="20%">상품 총금액</th>
+				<th class="salesTh1">이미지</th>
+				<th class="salesTh1">상품명</th>
+				<th class="salesTh1">수량</th>
+				<th class="salesTh1">상품금액</th>
+				<th class="salesTh1">상품 총금액</th>
 			</tr>
 			
 			<c:set var="list" value="${salesList }"/>
@@ -101,22 +37,22 @@ function billCheck(){
 			<c:forEach items="${list }" var="dto">
 			<tr>
 				<td class="center">
-					<img src="<%=request.getContextPath() %>/upload/${dto.getSales_pimage() }"
+					<img src="<%=request.getContextPath() %>/upload/${dto.getCart_pimage() }"
 	                         width="50" height="50">
 	            </td>
 	            
 	            <td class="center">${dto.getCart_pname() }</td>
 	            <td class="center">${dto.getCart_pqty() }</td>
 	            <td class="center">
-	            	<fmt:formatNumber value="${dto.getCart_price() }"> 원</fmt:formatNumber>
+	            	<fmt:formatNumber value="${dto.getCart_price() }"/> 원
 	            
 	            	 <!-- 카트 정보를 지우기위해 cart no 을 넘겨야한다. -->
-				     <input type="hidden" name="sales_no" value="${dto.getCart_num() }">
+				     <input type="hidden" name="sales_no" value="${dto.getCart_no() }">
 				     <!-- product no 을 이용해서 구매정보를 등록하기 위함 -->
-				     <input type="hidden" name="sales_pno" value="${dto.getCart_pnum() }">
+				     <input type="hidden" name="sales_pno" value="${dto.getCart_pno() }">
 				     <!-- 수량은 유동적이므로 따로 보내야 한다.(cart는 상관없지만 바로 구매버튼 클릭시 필요) -->
 				     <input type="hidden" name="sales_qty" value="${dto.getCart_pqty() }">
-	            
+	            	
 	            </td>
 				
 				<td class="center">
@@ -127,95 +63,96 @@ function billCheck(){
 			</tr>
 			</c:forEach>
 			<tr>
-		        <td colspan="5" align="right">
+		        <td colspan="5" class="salesCalc">
 		            <c:set var="total" value="${total }" />
 		            <c:set var="trans" value="${transcost }"/>
 		            <c:set var="point" value="${point }"/>
 		            <input type="hidden" name="transcost" value="${trans }"/>
 				    <input type="hidden" name="mileage" value="${point }"/>
 				    <input type="hidden" name="total" value="${total }"/>
-		            <b><font color="red" >장바구니 총액 : 
-		            <span id="total"><fmt:formatNumber value="${total }" /></span> 원</font></b>
+		            <b><font color="gray" >장바구니 총액 : 
+		            <span id="total" ><fmt:formatNumber value="${total }" /></span> 원</font></b>
 		            <br>
-		            <b><font color="red" >적립예정 마일리지 : 
+		            <b><font color="gray" >적립예정 마일리지 : 
 		            <span id="point"><fmt:formatNumber value="${point }" /></span> 원</font></b>
 		           	<br>
-		           	<font color="red"> 배송비 총액 : 
+		           	<font color="gray"> 배송비 총액 : 
 			           	<span id="trans">
-			           		<fmt:formatNumber value="${trans }"/>
-			           			
+			           		<fmt:formatNumber value="${trans }" />
 		           		</span> 원
 	           		</font>
 		           		
-		           </td>
-	            </tr>
+		       </td>
+	        </tr>
 			</c:if>
-
-
 		</table>
-		<br>
-			<br>
-			<table border="1" cellspacing="0" width="800">
+
+			<table class="salesTable2">
 				<tr>
-				<th>총 상품금액</th><th>총 배송비</th><th>총 결제금액</th>
+				<th class="salesTh1">총 상품금액</th>
+				<th class="salesTh1">총 배송비</th>
+				<th class="salesTh1">총 결제금액</th>
 				</tr>
 				<tr>
-				<td>${total }원</td><td>${trans }원</td><td>${total+trans }원</td>
+				<td class="salesTd1">${total }원</td>
+				<td class="salesTd1">${trans }원</td>
+				<td class="salesTd1">${total+trans }원</td>
 				</tr>
 			</table>
+	        <p id="deliveryInfo">- 배송정보 : 50,000원 미만시 3,000원 부과</p>
 			
 			<br>
 			<br>
 			<c:set var="member" value="${memberInfo }"/>
-			<hr width="40%">
-			<div>
-			<h3>구매자 정보</h3>
-			<table border="1" cellspacing="0" width="800">
+			
+			
+			<h2 id="orderH2">구매자 정보</h2>
+			<table class="salesTable3">
 			<tr>
-			<th width="10%">구매자 : </th>
-			<td>
+			<th width="10%" class="salesTh2">구매자 : </th>
+			<td class="salesTd2">
 				<span id="sales_name">${member.getM_name() }</span>
 			</td>
 			</tr>
 			
 			<tr>
-			<th width="10%">연락처 : </th>
-			<td>
+			<th width="10%" class="salesTh2">연락처 : </th>
+			<td class="salesTd2">
 				<span id="sales_phone">${member.getM_phone() }</span>
 			</td>
 			</tr>
 			
 			
 			<tr>
-			<th width="10%">주 소 : </th>
-			<td>
+			<th width="10%" class="salesTh2">주 소 : </th>
+			<td class="salesTd2">
 				<span id="sales_addr">${member.getM_addr() }</span>
 			</td>
 			</tr>
 			</table>
 			
 			
-			<h3>배송지 정보</h3>
+			<h2 id="orderH2">배송지 정보</h2>
 			
-			<div>	
-					<button id="sameBuyer">주문자 정보와 동일</button>
+			<div class="salesBtn1">	
+					<button id="sameBuyer">구매자 정보와 동일</button>
 					<button id="resetBtn" type="reset">새로운 배송지</button>
 			</div>
 			
-			<table border="1" cellspacing="0" width="650">
+			<table border="1" cellspacing="0" width="650" id="salesInvoice" class="salesTable3">
 			
 			<tr>
-				<th class="buyer">수령인 : </th>
-				<td><input name="name" id="name"></td>
+				<th class="buyer" class="salesTh2">수령인<span style="color:red">*</span></th>
+				<td><input name="name" id="name" placeholder="수령인" class="input_border"></td>
 			</tr>	
 			
 			<tr>
-				<th class="buyer">연락처 : </th>
-				<td><input name="phone" id="phone"></td>
+				<th class="buyer" class="salesTh2">연락처<span style="color:red">*</span></th>
+				<td><input name="phone" id="phone" placeholder="연락처" class="input_border"></td>
 			</tr>
 			
 			 <tr>
-                 <th><i class="fa fa-map-marker"></i></th>
+                 <th class="salesTh2"><i class="fa fa-map-marker"></i>주소<span style="color:red">*</span></th>
                  <td class="left">
                      <input id="sample6_postcode" placeholder="우편번호" class="input_border" name="user_addr_no">
 			<input type="button" class="input_btn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -278,46 +215,123 @@ function billCheck(){
              </tr>
 		
 			<tr>
-				<th class="buyer">배송 메모 : </th>
-				<td><input name="comments"></td>
+				<th class="salesTh2">배송 메모</th>
+				<td><input name="comments" class="input_border"></td>
 			</tr>
 			</table>
 			
-			<h3>결제 수단</h3>
+			<h2 id="orderH2">결제 수단</h2>
 			<br>
-			<table border="1" cellspacing="0" width="600">
+			<table class="salesTable4">
 			<tr>
-				<td>
+				<th class="salesTh3">
 				<input type="radio" name="payment" value="account">무통장입금
+				</th>
+				<td class="salesTd3">
+					<p id="payerP">입금자명 :</p><input name="payer" size=10;>
+					<select id="userListSB" name="bankName">
+					
+					<option value="">계좌를 선택하세요.</option>
+					<option value="woori">우리 526-101</option>
+					<option value="shinhan">신한 110-335</option>
+					<option value="kakao">카카오 3333-17</option>
+					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<th class="salesTh3">
 				<input type="radio" name="payment" value="credit">신용카드
+				</th>
+				
+				<td class="salesTd3">
+				<p class="payInfo">- 결제방식별 할인은 결제시에 반영됩니다.</p>
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<th class="salesTh3">
 				<input type="radio" name="payment" value="phone">휴대폰결제
+				</th>
+				<td class="salesTd3">
+				<p class="payInfo">- 결제후, 휴대폰 요금청구서에 '소액결제'로 표기됩니다.
+				<br>- 결제후, 결제건의 취소는 해당 달에만 가능합니다.
+				<br>- 결제방식별 할인은 결제시에 반영됩니다.</p>
 				</td>
 			</tr>
 			</table>
 			</div>
 				
 				
-			<table>
-			<tr>			
-			<td>
-			<button type="submit" value="결제하기">결제하기</button>
-			</td>
-			
-			<td align="center">
-			<button type="submit" value="계속쇼핑" onclick="goMain()">계속쇼핑</button>
-			</td>
-			</tr>
-			</table>
+			<div class="salesBtn2">
+			<button type="submit" value="결제하기" class="submitBtn">결제하기</button>
+			&nbsp;&nbsp;&nbsp;
+			<button type="submit" value="계속쇼핑" onclick="goMain()" class="submitBtn">계속쇼핑</button>
+			</div>
+	</form>
 	</div>
-		</form>
-		
+	
+	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
+
+<script type="text/javascript">
+
+var sameBuyer = document.querySelector("#sameBuyer")
+
+sameBuyer.addEventListener("click", function (ev) {
+	ev.preventDefault();
+	console.log("buyer clicked");
+	
+	var sales_name = document.querySelector("#sales_name")
+	var sales_phone = document.querySelector("#sales_phone")
+	
+	document.frm.name.value = sales_name.innerText
+	document.frm.phone.value = sales_phone.innerText
+})
+
+function goMain(){
+	
+	document.frm.action="<%=request.getContextPath()%>/pet_main.do";
+	
+	document.frm.submit();
+}
+
+function billCheck(){
+	
+	var name = document.querySelector("#name");
+	var phone = document.querySelector("#phone");
+	var sample6_postcode = document.querySelector("#sample6_postcode");
+	var sample6_address = document.querySelector("#sample6_address");
+	var sample6_detailAddress = document.querySelector("#sample6_detailAddress");
+	
+	if(!name.value){
+		alert("수령인을 입력해주세요");
+		name.focus();
+		return false;
+	};
+	
+	if(!phone.value){
+		alert("배송지 연락처를 입력해주세요");
+		phone.focus();
+		return false;
+	};
+	
+	if(!sample6_postcode.value){
+		alert("우편번호를 입력해주세요");
+		sample6_postcode.focus();
+		return false;
+	};
+	if(!sample6_address.value){
+		alert("배송지 주소를 입력해주세요");
+		sample6_address.focus();
+		return false;
+	};
+	if(!sample6_detailAddress.value){
+		alert("상세 주소를 입력해주세요");
+		sample6_detailAddress.focus();
+		return false;
+	};
+	
+	 ev.target.submit();
+}
+
+</script>
 </html>
