@@ -5,56 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/free.css">
 <title>Insert title here</title>
-<style type="text/css">
-h2{
 
-margin:20;
-
-}
- table {
-        width: 70%;
-        border: 1px solid #444444;
-        border-collapse: collapse;
-      }
-      
- th, td {
-   border-bottom: 1px solid #444444;
-   padding: 10px;
-
- }
-      
- th{
- 
- background-color: #E9E1D4;
- text-align: center;
- 
- }
-
-
-#writeBtn{
-
-margin: 25px;
-float: right;
-size: 50px;
-
-}
-
-</style>
 </head>
 <body>
 <jsp:include page="../inc/pet_top.jsp" />
-	<div align="center">
-		<h2>자유게시판</h2>
+	<div align="center" class="freeListDiv">
+		<h2 id="freeListH2">자유게시판</h2>
 		<br>
 		<br>
-		<table>
+		<table class="freeTable">
 			<tr>
-			<th width="10%">No.</th>
-			<th width="40%">글제목</th>
-			<th width="15%">작성자</th>
-			<th width="10%">조회수</th>
-			<th width="20%">작성일자</th>
+			<th width="10%" class="freeTh">No.</th>
+			<th width="40%" class="freeTh">글제목</th>
+			<th width="15%" class="freeTh">작성자</th>
+			<th width="10%" class="freeTh">조회수</th>
+			<th width="20%" class="freeTh">작성일자</th>
 			</tr>
 			
 			<c:set var="list" value="${List }"/>
@@ -62,8 +29,8 @@ size: 50px;
 			<c:forEach items="${list }" var="dto">
 			<input type="hidden" value="${dto.getFree_indent() }">
 				<tr>
-					<td>${dto.getFree_no() }</td>
-					<td>
+					<td class="freeTd">${dto.getFree_no() }</td>
+					<td class="freeTd1">
 					<c:if test="${dto.getFree_indent() != 0 }">
 					<c:forEach begin="1" end="${dto.getFree_indent()}">
 						┖
@@ -72,9 +39,9 @@ size: 50px;
 					<a href="<%=request.getContextPath() %>/free_content.do?no=${dto.getFree_no()}">
 					${dto.getFree_title() }</a>
 					</td>
-					<td>${dto.getFree_writer() }</td>
-					<td>${dto.getFree_hit() }</td>
-					<td>${dto.getFree_date().substring(0, 10) }</td>
+					<td class="freeTd">${dto.getFree_writer() }</td>
+					<td class="freeTd">${dto.getFree_hit() }</td>
+					<td class="freeTd">${dto.getFree_date().substring(0, 10) }</td>
 					</tr>
 					
 			</c:forEach>
@@ -91,9 +58,7 @@ size: 50px;
 
 				
 			</table>
-			<div id="writeBtn">
-				<input type="button" value="글쓰기" onclick="location.href='free_write.do'">
-				</div>
+				<input type="button" value="글쓰기" class="freeContBtn" onclick="location.href='free_write.do'">
 			
 			<br>
 		
@@ -119,7 +84,7 @@ size: 50px;
 		</c:if>
 		<br>
 		<br>
-		
+		<div class="freeSearch">
 		<form method="post" action="<%=request.getContextPath() %>/free_search.do">
 			<select name="searchField">
 				<option value="title">제목</option>
@@ -128,9 +93,10 @@ size: 50px;
 				<option value="writer">작성자</option>
 			</select>
 			
-			<input name="searchKeyword">
+			<input name="searchKeyword" id="searchKeyword">
 			<input type="submit" value="검색">
 		</form>
+		</div>
 	</div>
 	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
