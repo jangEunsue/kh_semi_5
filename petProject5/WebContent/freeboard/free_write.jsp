@@ -48,9 +48,9 @@
 		</table>
 
 			<div class="freeContBtnWrap">
-					<input type="submit" class="freeContBtn" value="글쓰기">&nbsp;&nbsp;&nbsp;
-					<input type="reset" class="freeContBtn" value="다시작성">&nbsp;&nbsp;&nbsp;
-					<input type="button" class="freeContBtn" value="전체목록" onclick="location.href='free_list.do'">
+				<input type="submit" class="freeContBtn" value="글쓰기">&nbsp;&nbsp;&nbsp;
+				<input type="reset" class="freeContBtn" value="다시작성">&nbsp;&nbsp;&nbsp;
+				<input type="button" class="freeContBtn" value="전체목록" onclick="location.href='free_list.do'">
 			</div>
 		
 		</form>
