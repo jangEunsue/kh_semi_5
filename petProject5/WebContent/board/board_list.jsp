@@ -49,9 +49,6 @@ size: 50px;
    <jsp:include page="../include/admin_top.jsp" />
 
   <div align="center">
-	   <hr width="30%" color="marmoon">
-	      <h2>자유 게시판</h3>
-	   <hr width="30%" color="marmoon">
 	   <br>
 	   
 	   <table border="1" cellspacing="0" width="650">
@@ -147,6 +144,8 @@ size: 50px;
 	   </form>
 	   
 	</div>
+	
+ <jsp:include page="../include/admin_bottom.jsp" />
 
 </body>
 </html>
