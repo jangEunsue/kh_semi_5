@@ -209,4 +209,161 @@ public class OrderDAO {
 					return pay_a;
 					
 				}
+				// 주문내역 전체를 조회하는 메서드
+				public List<OrderDTO> selectOrder(){
+					
+					List<OrderDTO> list = new ArrayList<OrderDTO>();
+					try {
+						openConn();
+						sql="select * from pet_order order by p_order_no desc";
+						pstmt = con.prepareStatement(sql);
+						rs = pstmt.executeQuery();
+						while(rs.next()) {
+							OrderDTO dto = new OrderDTO();
+							
+							dto.setP_order_no(rs.getInt("p_order_no"));
+							dto.setP_order_del(rs.getInt("p_order_del"));
+							dto.setP_order_pay(rs.getInt("p_order_pay"));
+							
+							list.add(dto);
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+						
+					}
+					return list;
+				}
+				
+				// 구매내역 전체를 조회하는 매서드
+				
+				public List<SalesDTO> selectAdminSale(){
+					List<SalesDTO> list = new ArrayList<SalesDTO>();
+					
+					try {
+						openConn();
+						sql="select * from pet_sales order by sales_no desc";
+						pstmt = con.prepareStatement(sql);
+						rs = pstmt.executeQuery();
+						while(rs.next()) {
+							SalesDTO dto = new SalesDTO();
+							dto.setSales_no(rs.getInt("sales_no"));
+							dto.setSales_id(rs.getString("sales_id"));
+							dto.setSales_name(rs.getString("sales_name"));
+							dto.setSales_phone(rs.getString("sales_phone"));
+							dto.setSales_addr(rs.getString("sales_addr"));
+							dto.setSales_pname(rs.getString("sales_pname"));
+							dto.setSales_pimage(rs.getString("sales_pimage"));
+							dto.setSales_price(rs.getInt("sales_price"));
+							dto.setSales_pqty(rs.getInt("sales_pqty"));
+							dto.setSales_transcost(rs.getInt("sales_transcost"));
+							dto.setSales_payment(rs.getString("sales_payment"));
+							dto.setSales_comments(rs.getString("sales_comments"));
+							dto.setSales_mileage(rs.getInt("sales_mileage"));
+							dto.setSales_date(rs.getString("sales_date"));
+							dto.setSales_p_no(rs.getInt("sales_p_no"));
+							dto.setSales_serial(rs.getInt("sales_serial"));
+
+							list.add(dto);
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+					}
+					return list;
+				}
+				
+				
+				
+				// 주문번호에 따른 배송상태를 조회하는 메서드
+				public int selectTrans(int no) {
+					int trans=0;
+					
+					try {
+						openConn();
+						sql="select p_order_del from pet_order where p_order_no=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, no);
+						rs = pstmt.executeQuery();
+						if(rs.next()) {
+							trans = rs.getInt("p_order_del");
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+					}
+					return trans;
+				}
+				// 주문번호에 따른 결제 상태를 조회하는 메서드
+				public int selectPay(int no) {
+					int pay=0;
+					
+					try {
+						openConn();
+						sql="select p_order_pay from pet_order where p_order_no=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, no);
+						rs = pstmt.executeQuery();
+						if(rs.next()) {
+							pay = rs.getInt("p_order_pay");
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+					}
+					return pay;
+				}
+				
+				// 결제 취소, 완료를 바꾸어주는 메서드
+				public int completePay(int no) {
+					int result = 0;
+					int count=1;
+					try {
+						openConn();
+						sql="update pet_order set p_order_pay = ? where p_order_no=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, count);
+						pstmt.setInt(2, no);
+						result = pstmt.executeUpdate();
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+						
+					
+					}
+					return result;
+				}
+				
+				public int canclePay(int no) {
+					int result = 0;
+					int count=0;
+					try {
+						openConn();
+						sql="update pet_order set p_order_pay = ? where p_order_no=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, count);
+						pstmt.setInt(2, no);
+						result = pstmt.executeUpdate();
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally {
+						closeConn(rs, pstmt, con);
+						
+					
+					}
+					return result;
+				}
 }
