@@ -204,3 +204,7 @@ insert into pet_sales
 insert into pet_sales
 	values(25, 'hanhanssmm99', 16, '강동원', '010-6855-3205', '(29384) 서울시 강남구 테헤란로 419', 3, 
 			'now 나우 강아지사료 그레인프리 시니어 5.44kg', '나우 시니어 사료.PNG', 84000, 2, 0, '강동원/account/shinhan', '상태 잘 보고 보내주세요', 1680, '22/05/16');
+
+-- 관리자 id
+insert into admin_pet
+    values('admin', '1234', '관리자', 'admin123@naver.com', sysdate);
