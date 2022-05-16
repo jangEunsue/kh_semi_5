@@ -163,7 +163,7 @@ window.onload(){
 		<a href="#biscuit">비스킷</a>&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a href="#beefJerky">육포 및 어포</a>&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a href="#can">캔</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a href="#treat">트릿</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#trear">트릿</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#milk">펫 밀크</a>
 		<hr color=#C9DECF width="50%">
 	</div>
