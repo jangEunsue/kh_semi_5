@@ -28,7 +28,7 @@
 			<c:if test="${!empty list }">
 			<c:forEach items="${list }" var="dto">
 			<input type="hidden" value="${dto.getFree_indent() }">
-				<tr>
+				<tr class="freeTr">
 					<td class="freeTd">${dto.getFree_no() }</td>
 					<td class="freeTd1">
 					<c:if test="${dto.getFree_indent() != 0 }">
