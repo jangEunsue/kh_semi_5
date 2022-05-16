@@ -94,9 +94,9 @@
 				<th class="salesTh1">총 결제금액</th>
 				</tr>
 				<tr>
-				<td class="salesTd1">${total }원</td>
+				<td class="salesTd1"><fmt:formatNumber value="${total }" />원</td>
 				<td class="salesTd1">${trans }원</td>
-				<td class="salesTd1">${total+trans }원</td>
+				<td class="salesTd1"><fmt:formatNumber value="${total+trans }" />원</td>
 				</tr>
 			</table>
 	        <p id="deliveryInfo">- 배송정보 : 50,000원 미만시 3,000원 부과</p>
