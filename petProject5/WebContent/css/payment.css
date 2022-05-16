@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+#paymentH2{
+	margin-top: 96px;
+	margin-bottom: 16px;
+}
+#paymentH3{
+font-size: 24px;
+font-family: sans-serif;
+color: gray;
+line-height: 40px;
+padding:2px 8px 2px 0px;
+border-bottom: 3px solid gray;
+text-align: left;
+width: 1000px;
+margin-top: 80px;
+}
+
+#h3Wrap{
+align-items: center;
+}
+.payOkTable1{
+
+border-bottom: 2px dotted #f5ddad;
+margin: 40px 16px;
+padding: 8px;
+width: 1000px;
+
+}
+
+.payOkTh1{
+background-color: #f5ddad;
+font-weight: bold;
+border-bottom: 1px solid #f5ddad;
+padding: 8px;
+color: gray;
+text-align: center;
+width: 30%;
+border: 1px solid #f5ddad;
+}
+
+.payOkTd1{
+text-align: center;
+padding: 8px;	
+border-bottom: 1px dashed #f5ddad;
+padding-bottom: 16px;
+font-weight: bold;
+border-left: 1px solid #f5ddad;
+border-right:1px solid #f5ddad;
+padding-top: 16px;
+}
+
+.payOkTd1-1{
+border-left: 1px solid #f5ddad;
+border-right:1px solid #f5ddad;
+}
+
+.payOkP{
+text-align:center;
+margin-top: 10px;
+}
+
+
+.payOkTable2{
+	
+width: 700px;
+margin: 40px 16px;
+border: 2px dotted #f1ddad
+
+}
+
+.payOkTh2{
+background-color: #f5ddad;
+font-weight: bold;
+padding: 8px;
+width: 15%;
+color: dimgray;
+border-bottom: 1px dotted #DAC79D;
+border-right: 1px dotted #DAC79D;
+}
+
+.payOkTd2{
+border-bottom: 1px dotted #DAC79D;
+padding-left: 8px;
+}
+
+#SubmitBtn1{
+background-color:#c9decf;
+border-radius:7px;
+display:inline-block;
+cursor:pointer;
+color: gray;
+font-family:sans-serif;
+padding:6px 12px;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+font-weight: bold;
+	
+}
+#SubmitBtn1:hover{
+	background-color:#f5ddad;
+}
+
+#SubmitBtn1:active{
+	position:relative;
+	top:1px;
+}
+#SubmitBtn2{
+background-color:#c9decf;
+border-radius:7px;
+display:inline-block;
+cursor:pointer;
+color: gray;
+font-family:sans-serif;
+padding:6px 12px;
+border: none;
+text-align: center;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+font-weight: bold;	
+	
+}
+#SubmitBtn2:hover{
+	background-color:#f5ddad;
+}
+
+#SubmitBtn2:active{
+	position:relative;
+	top:1px;
+}
