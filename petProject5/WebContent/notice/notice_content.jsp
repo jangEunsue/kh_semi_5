@@ -36,7 +36,7 @@ table, td, th {
 	    <div >
 	   <c:set var="dto" value="${Cont }" />
 
-	   <table border="1" cellspacing="0" width="100%">
+	   <table border="1" cellspacing="0" width="850">
 	                    <tr align="center">
                             <th>글제목</th>
                             <td> ${dto.getNotice_title() } </td>
@@ -64,7 +64,7 @@ table, td, th {
                         <tr align="center">
                             <th>글내용</th>
                             <td class="board_cont"> 
-                                <textarea readonly>${dto.getNotice_cont() }</textarea>
+                                <textarea rows="7" cols="50" readonly>${dto.getNotice_cont() }</textarea>
                             </td>
                         </tr>
 	      
@@ -76,7 +76,10 @@ table, td, th {
 	         </tr>
 	      </c:if>
 	      
-	      <tr>
+	      
+	   </table>
+	   <br>
+	   <tr>
 	         <td colspan="2" align="center">
 	            <input type="button" value="글수정"
 	               onclick="location.href='admin_notice_update.do?no=${dto.getNotice_no()}'">
@@ -93,11 +96,10 @@ table, td, th {
 	               onclick="location.href='admin_notice_list.do'">
 	         </td>
 	      </tr>
-	   </table>
 	   </div>
 	</div>
 	</div>
-	
+	<br>
         <jsp:include page="../include/admin_bottom.jsp" />
 </body>
 </html>
