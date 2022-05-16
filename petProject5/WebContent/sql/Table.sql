@@ -1,7 +1,7 @@
 -- 상품 테이블
 create table pet_product(
 	p_num number(5) primary key,			-- 상품 번호
-	p_name varchar2(100) not null,			-- 상품명
+	p_name varchar2(70) not null,			-- 상품명
 	p_category_fk varchar2(10) not null,	-- 상품 카테고리
 	p_age varchar2(10)                      -- 상품 추천 나이
         constraint age_check check(p_age in('전연령','퍼피','어덜트','시니어')),						
@@ -39,10 +39,10 @@ create table pet_kind_category{
 -- Q&A 게시판
 create table pet_QandA( 
     QA_no number(5) primary key,                --글 번호
-    QA_writer varchar2(5) not null,             -- 글 작성자
-    QA_title varchar2(10) not null,             -- 제목
-    QA_cont varchar2(100),                      -- 글 내용
-    QA_userID varchar2(10) not null,            -- 이용자 아이디
+    QA_writer varchar2(30) not null,             -- 글 작성자
+    QA_title varchar2(100) not null,             -- 제목
+    QA_cont varchar2(3000),                      -- 글 내용
+    QA_userID varchar2(30) not null,            -- 이용자 아이디
     QA_date date,                               -- 작성일
     QA_update date,                             -- 수정일 
     QA_group number(5) not null,                -- 글 그룹
@@ -122,7 +122,7 @@ create table pet_sales(
    sales_price number(10) not null,      -- 상품 가격
    sales_pqty number(10) not null,         -- 상품 수량
    sales_transcost number(10) not null,   -- 상품 배송비
-    sales_payment varchar2(20) not null,   --결제 수단
+    sales_payment varchar2(40) not null,   --결제 수단
     sales_comments varchar(200),            --배송메시지
    sales_mileage number(5) not null,      -- 상품 마일리지
    sales_date varchar2(30)                        -- 판매일
@@ -139,15 +139,15 @@ create table admin_pet(
 
 -- 공지사항 테이블
 create table pet_notice(
-   free_no number(5) primary key,      -- 게시판 글 번호
-   free_writer varchar2(30) not null,  -- 게시판 글 작성자
-   free_title varchar2(1000) not null, -- 게시판 글 제목
-   free_cont varchar2(2000) not null,  -- 게시판 글 내용
-   free_pwd varchar2(30) not null,     -- 게시판 글 비밀번호
-   free_hit number(10) default 0,      -- 게시판 글 조회수
-   free_date date,                     -- 게시판 글 작성일자
-   free_update date,                   -- 게시판 글 수정일자
-   free_group number(5),               -- 게시판 글 그룹
-   free_step number(5),                -- 게시판 글 답변 단계
-   free_indent number(5)               -- 게시판 답변글 들여쓰기
+   notice_no number(5) primary key,      -- 공지사항 글 번호
+   notice_writer varchar2(30) not null,  -- 공지사항 글 작성자
+   notice_title varchar2(1000) not null, -- 공지사항 글 제목
+   notice_cont varchar2(2000) not null,  -- 공지사항 글 내용
+   notice_pwd varchar2(30) not null,     -- 공지사항 글 비밀번호
+   notice_hit number(10) default 0,      -- 공지사항 글 조회수
+   notice_date date,                     -- 공지사항 글 작성일자
+   notice_update date,                   -- 공지사항 글 수정일자
+   notice_group number(5),               -- 공지사항 글 그룹
+   notice_step number(5),                -- 공지사항 글 답변 단계
+   notice_indent number(5)               -- 공지사항 답변글 들여쓰기
 );
