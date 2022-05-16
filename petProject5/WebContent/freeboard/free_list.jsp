@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/free.css">
-<title>Insert title here</title>
+<title>YamYam PET</title>
 
 </head>
 <body>
