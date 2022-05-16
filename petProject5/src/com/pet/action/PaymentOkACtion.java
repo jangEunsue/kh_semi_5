@@ -122,6 +122,7 @@ public class PaymentOkACtion implements Action {
 			request.setAttribute("sales_addr", sales_addr);
 			request.setAttribute("sales_serial", serialMaxNum);
 			request.setAttribute("total_qty", totalQty);
+			request.setAttribute("sales_comments", sales_comments);
 			
 			forward.setRedirect(false);
 			forward.setPath("user/payment_list.jsp");
