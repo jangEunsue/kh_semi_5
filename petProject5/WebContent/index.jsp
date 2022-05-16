@@ -41,7 +41,6 @@
 
     function loginAlert() {
         alert("사용 권한이 없습니다. 로그인 해주세요");
-	location.href="pet_login.do";
     }
         
 </script>
@@ -55,22 +54,17 @@
             <div id="top_header" class="clearfix">
                 <div id="g_nav">
                     <ul class="clearfix">
-                        <li class="hidden-xs"><a href="#">Home</a></li>
+                        <li class="hidden-xs"><a href="<%=request.getContextPath() %>/pet_main.do">Home</a></li>
                         <%	
                         	// 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
                             if(session.getAttribute("sessionID")==null){ 
                         %>		
 		                        <li><a href="<%=request.getContextPath() %>/pet_login.do">Login</a></li>
 		                        <li><a href="<%=request.getContextPath() %>/pet_join.do">Join</a></li>
-	                    <%  } else{
-		                    	if(session.getAttribute("sessionID") == "admin"){ %>
-		                    		<li><a href="<%=request.getContextPath() %>/admin1/admin_main.jsp">관리자페이지</a></li>
-		                        	<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>
-		                <% 		}else { %>
-		                	   		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID")%>">MyPage</a></li>
-	                        		<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>
-		                <%   	} 		
-	                   		}	%>
+	                    <%  } else{%>
+		                    	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">MyPage</a></li>
+	                        	<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>	
+	                   	<%	}	%>
                     </ul>
                     <div class="clear"></div>
                 </div>
@@ -93,40 +87,41 @@
                             <li><a href="<%=request.getContextPath() %>/Direction.do">오시는 길</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">제품소개</a>
+                    <li><a href="<%=request.getContextPath()%>/user/selectPetKind.jsp">제품소개</a>
                         <ul>
                             <li><a href="<%=request.getContextPath()%>/user/selectPetKind.jsp">제품소개</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">고객센터</a>
-                    	 <ul>
-                    		 <li><a href="<%=request.getContextPath() %>/pet_notice.do">공지사항</a></li>
+                    <li><a href="<%=request.getContextPath() %>/pet_notice.do">고객센터</a>
+                    	<ul>
+                    		<li><a href="<%=request.getContextPath() %>/pet_notice.do">공지사항</a></li>
                             <li><a href="<%=request.getContextPath()%>/user/fqa.jsp">자주하는 질문</a></li>
-                            <li><a href="<%=request.getContextPath()%>/pet_QA.do">Q&A</a></li>
-                        </ul> 
-                    </li>
-                    <li><a href="#">커뮤니티</a>
-                        <ul>
-                            <li><a href="<%=request.getContextPath()%>/free_list.do">커뮤니티</a></li>
+                        	<li><a href="<%=request.getContextPath() %>/pet_QA.do">Q&A</a></li>
                         </ul>
                     </li>
-                    <%	// 로그인 안되었을 경우 -
+                    <li><a href="<%=request.getContextPath() %>/free_list.do">커뮤니티</a>
+                        <ul>
+                            <li><a href="<%=request.getContextPath() %>/free_list.do">커뮤니티</a></li>
+                        </ul>
+                    </li>
+                     <%	// 로그인 안되었을 경우 -
                     	if(session.getAttribute("sessionID")==null){ %>
                    			<li><a href="#" onclick="loginAlert()">마이페이지</a>
 	                        	<ul>
-	                          		<li><a href="#" onclick="loginAlert()">회원정보수정</a></li>
-						<li><a href="#" onclick="loginAlert()">구매내역</a></li>
+	                          		<li><a href="#" onclick="loginAlert()">회원정보조회</a></li>
+	                             		<li><a href="#" onclick="loginAlert()">구매내역</a></li>
 						<li><a href="#" onclick="loginAlert()">장바구니</a></li>
-                    <%  }else {  %>
-                    		<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">마이페이지</a>
+	                          	</ul>
+	                      	</li> 
+                    <%  }else { %>
+                    		<li><a href="<%=request.getContextPath()%>/pet_modify.do">마이페이지</a>
 	                            <ul>
-	                            	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID")%>">회원정보조회</a></li>
-					<li><a href="<%=request.getContextPath() %>/selectSalesList.do">구매내역</a></li>
-					<li><a href="<%=request.getContextPath() %>/cart_list.do">장바구니</a></li>    
-	                             <% }%>
-	                                
+	                            	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">회원정보수정</a></li>
+	                                <li><a href="<%=request.getContextPath() %>/selectSalesList.do">구매내역</a></li>
+									<li><a href="<%=request.getContextPath() %>/cart_list.do">장바구니</a></li>
 	                            </ul>
 	                        </li>
+                    <% }%>
                 </ul>
             </nav>
             <!-- // 2단 메뉴--> 
@@ -153,30 +148,30 @@
         <div class="main_banner">
             <ul class="base04">
                 <li class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0s"> 
-                    <a href="#">
+                    <a href="<%=request.getContextPath() %>/pet_greeting.do">
                         <div class="type_img"><img src="images/banner01.jpg" width="100%" alt=""/></div>
                         <div class="main_banner_title"> COMPANY</div>
                         <p class="main_banner_dec">고객님과 반려동물을 진심으로 생각하는 기업입니다 </p>
                     </a>
                 </li>
                 <li class="wow flipInY" data-wow-duration="1s" data-wow-delay="0.2s"> 
-                    <a href="#">
+                    <a href="<%=request.getContextPath()%>/user/selectPetKind.jsp">
                         <div class="type_img"><img src="images/banner02.jpg" width="100%" alt=""/></div>
                         <div class="main_banner_title"> PRODUCT</div>
                         <p class="main_banner_dec">사랑하는 반려동물의 전반적인 건강과 감각적인 웰빙을 지원합니다.</p>
                     </a>
                 </li>
                 <li class="wow flipInY" data-wow-duration="1s" data-wow-delay="0.4s"> 
-                    <a href="#">
+                    <a href="<%=request.getContextPath() %>/pet_QA.do">
                         <div class="type_img"><img src="images/banner03.jpg" width="100%" alt=""/></div>
                         <div class="main_banner_title"> Q&A</div>
                         <p class="main_banner_dec">어떠한 궁금증도 신속하고 친절하게 상담해드리겠습니다.</p>
                     </a>
                 </li>
                 <li class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.6s"> 
-                    <a href="#">
+                    <a href="<%=request.getContextPath() %>/free_list.do">
                         <div class="type_img"><img src="images/banner04.jpg" width="100%" alt=""/></div>
-                        <div class="main_banner_title"> SAMPLE</div>
+                        <div class="main_banner_title"> COMMUNITY</div>
                         <p class="main_banner_dec">반려동물의 입맛에 최적을 찾기 위해 샘플을 보내드립니다.</p>
                     </a>
                 </li>
@@ -196,7 +191,7 @@
                             <span class="bbs_big_title" >공지사항</span> <span class="small_title">Notice</span> <span class="pull-right btn btn-grey btn-xs"> more + </span>
                         </a>
                         <div class="bbs_out"> </div>
-                        <div class="bbs_origin hidden">공지사항 내용 </div>
+                        <div class="bbs_origin hidden"> </div>
                         <script src="{{$template}}/img/homepee/js/bbs/bbs_scroll.js"></script> 
                     </div>
                 </div>
@@ -245,15 +240,16 @@
                 	<li><a href="<%=request.getContextPath() %>/pet_main.do">Home</a></li>
                     <!-- 로그인 메뉴 -->
                     <%	
-                        // 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
-                        if(session.getAttribute("sessionID")==null){ 
+                       	// 로그인 안되었을 경우 - 로그인, 회원가입 버튼을 보여준다.
+                           if(session.getAttribute("sessionID")==null){ 
                     %>		
-		                	<li><a href="<%=request.getContextPath() %>/pet_login.do">로그인</a></li>
-		                    <li><a href="<%=request.getContextPath() %>/pet_join.do">회원가입</a></li>
-	                <%  } else{ %>
-	                    	<li><a href="<%=request.getContextPath() %>/pet_member_mypage.do">마이페이지</a></li>
-	                        <li><a href="<%=request.getContextPath() %>/pet_member_logout.do">로그아웃</a></li>
-	                <%	}	%>
+	                        <li><a href="<%=request.getContextPath() %>/pet_login.do">Login</a></li>
+	                        <li><a href="<%=request.getContextPath() %>/pet_join.do">Join</a></li>
+                    <%  } else{%>
+	                    	<li><a href="<%=request.getContextPath() %>/pet_info.do?id=<%=(String)session.getAttribute("sessionID") %>">MyPage</a></li>
+                        	<li><a href="<%=request.getContextPath() %>/pet_logout.do">Logout</a></li>	
+                   	<%	}	%>
+	                
                 </ul>
                 <div class="clear"></div>
             </div>
