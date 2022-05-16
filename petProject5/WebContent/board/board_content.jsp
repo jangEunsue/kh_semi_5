@@ -20,7 +20,7 @@
 	   <hr width="30%" color="marmoon">
 	   <br>
 	   
-	   <table border="1" cellspacing="0" width="400">
+	  <table border="1" cellspacing="0" width="850">
 	      <tr>
 	         <th>작성자</th>
 	      	 <td> ${dto.getFree_writer() } </td>
@@ -34,7 +34,7 @@
 	      <tr>
 	         <th>글내용</th>
 	      	 <td>
-	      	    <textarea rows="7" cols="25" readonly>${dto.getFree_cont() }</textarea>
+	      	    <textarea rows="7" cols="45" readonly>${dto.getFree_cont() }</textarea>
 	         </td>
 	      </tr>
 	      
@@ -74,7 +74,10 @@
 	         </tr>
 	      </c:if>
 	      
-	      <tr>
+	      
+	   </table>
+	 <br>
+	   <tr>
 	         <td colspan="2" align="center">
 	            <input type="button" value="글수정"
 	               onclick="location.href='admin_board_update.do?no=${dto.getFree_no()}'">
@@ -91,8 +94,6 @@
 	               onclick="location.href='admin_board_list.do'">
 	         </td>
 	      </tr>
-	   </table>
-	
 	</div>
 	<br>
  <jsp:include page="../include/admin_bottom.jsp" />
