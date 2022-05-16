@@ -166,12 +166,22 @@ function goCart(){
 						</td>
 					</tr>
 					<tr>
-						<td>
+						 <%	// 로그인 안되었을 경우 -
+                    			if(session.getAttribute("sessionID")==null){ %>
+                   			<td>
+							<button value="장바구니" class="btn" onclick="location.href='<%=request.getContextPath()%>/pet_login.do'">장바구니</button>
+							&nbsp; &nbsp; &nbsp; &nbsp;
+							<button type="submit" value="결제하기" class="btn"
+								onclick="location.href='<%=request.getContextPath()%>/pet_login.do'">결제하기</button>
+						</td>
+                  		  <%  }else {  %>
+                    			 <td>
 							<button value="장바구니" class="btn" onclick="goCart(event)">장바구니</button>
 							&nbsp; &nbsp; &nbsp; &nbsp;
 							<button type="submit" value="결제하기" class="btn"
 								onclick="goSales()">결제하기</button>
 						</td>
+	                             <% }%>
 					</tr>
 
 				</table>
