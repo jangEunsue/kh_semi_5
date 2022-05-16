@@ -53,6 +53,7 @@ function toggleAllCheck(obj){
  	
  	if(cbValue==false){
  		document.getElementById("total").textContent="0"
+		document.getElementById("point").textContent="0"
  	}else{
  		updateTotal()
  	}
