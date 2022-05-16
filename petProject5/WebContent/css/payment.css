@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 #paymentH2{
-	margin-top: 96px;
-	margin-bottom: 16px;
+margin-top: 96px;
+margin-bottom: 16px;
 }
 #paymentH3{
 font-size: 24px;
@@ -101,12 +101,12 @@ font-weight: bold;
 	
 }
 #SubmitBtn1:hover{
-	background-color:#f5ddad;
+background-color:#f5ddad;
 }
 
 #SubmitBtn1:active{
-	position:relative;
-	top:1px;
+position:relative;
+top:1px;
 }
 #SubmitBtn2{
 background-color:#c9decf;
@@ -125,10 +125,10 @@ font-weight: bold;
 	
 }
 #SubmitBtn2:hover{
-	background-color:#f5ddad;
+background-color:#f5ddad;
 }
 
 #SubmitBtn2:active{
-	position:relative;
-	top:1px;
+position:relative;
+top:1px;
 }
