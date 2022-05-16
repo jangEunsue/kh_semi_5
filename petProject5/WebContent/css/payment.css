@@ -87,7 +87,6 @@ padding-left: 8px;
 #SubmitBtn1{
 background-color:#c9decf;
 border-radius:7px;
-display:inline-block;
 cursor:pointer;
 color: gray;
 font-family:sans-serif;
@@ -98,6 +97,7 @@ display: inline-block;
 font-size: 12px;
 margin: 4px 2px;
 font-weight: bold;
+margin-bottom:40px
 	
 }
 #SubmitBtn1:hover{
@@ -111,7 +111,6 @@ top:1px;
 #SubmitBtn2{
 background-color:#c9decf;
 border-radius:7px;
-display:inline-block;
 cursor:pointer;
 color: gray;
 font-family:sans-serif;
@@ -122,6 +121,7 @@ display: inline-block;
 font-size: 12px;
 margin: 4px 2px;
 font-weight: bold;	
+margin-bottom:40px
 	
 }
 #SubmitBtn2:hover{
