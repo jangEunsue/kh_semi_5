@@ -48,10 +48,6 @@
 	            </td>
 	         </tr>
 	         
-	         <tr>
-	         	<th>아이디</th>
-	         	<td> <input type="text" name="QA_userId"> </td>
-	         </tr>
 	         
 	         <tr>
 	            <td colspan="2" align="center">
