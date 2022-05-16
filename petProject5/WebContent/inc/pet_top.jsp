@@ -40,6 +40,7 @@
 
 	function loginAlert() {
 	    alert("사용 권한이 없습니다. 로그인 해주세요");
+	    location.href="pet_login.do";
 	}
         
 </script>
