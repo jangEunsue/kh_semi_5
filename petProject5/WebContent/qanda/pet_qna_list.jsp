@@ -137,6 +137,6 @@ size: 50px;
             </div>
     
         </div>
- <jsp:include page="../include/admin_top.jsp" />
+ <jsp:include page="../include/admin_bottom.jsp" />
 </body>
 </html>
