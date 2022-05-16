@@ -2531,4 +2531,54 @@ public class SalesDAO {
 			return count;
 			
 		}	// searchListCount() 메서드 end
+	
+			
+	
+	// 전체 매출 목록 리스트를 조회하는 메서드
+      public List<SalesDTO> getSalesList() {
+         
+         List<SalesDTO> list = new ArrayList<SalesDTO>();
+
+         try {      
+            openConn();
+            
+            sql = "select * from pet_sales order by sales_serial desc";
+            
+            pstmt = con.prepareStatement(sql);
+            
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()) {
+               
+               SalesDTO dto = new SalesDTO();
+               
+               dto.setSales_no(rs.getInt("sales_no"));
+               dto.setSales_id(rs.getString("sales_id"));
+               dto.setSales_serial(rs.getInt("sales_serial"));
+               dto.setSales_name(rs.getString("sales_name"));
+               dto.setSales_phone(rs.getString("sales_phone"));
+               dto.setSales_addr(rs.getString("sales_addr"));
+               dto.setSales_p_no(rs.getInt("sales_p_no"));
+               dto.setSales_pname(rs.getString("sales_pname"));
+               dto.setSales_pimage(rs.getString("sales_pimage"));
+               dto.setSales_price(rs.getInt("sales_price"));
+               dto.setSales_pqty(rs.getInt("sales_pqty"));
+               dto.setSales_transcost(rs.getInt("sales_transcost"));
+               dto.setSales_payment(rs.getString("sales_payment"));
+               dto.setSales_comments(rs.getString("sales_comments"));
+               dto.setSales_mileage(rs.getInt("sales_mileage"));
+               dto.setSales_date(rs.getString("sales_date"));
+               
+               list.add(dto);
+            }
+            
+         } catch (SQLException e) {
+            
+            e.printStackTrace();
+         } finally {
+            closeConn(rs, pstmt, con);
+         }
+
+         return list;
+      }   // getSalesList() 메서드 end
 }
