@@ -6,49 +6,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
+<link rel="stylesheet" type="text/css" href="css/free.css">
 
-th{
-width:10%
-}
-
-textarea {
-	width: 100%;
-    box-sizing: border-box;
-    resize: none;
-    padding: 10px 16px;
-    border: none;
-    outline: none;
-    font-family: sans-selif; 
-}
-
-</style>
 </head>
 <body>
 <jsp:include page="../inc/pet_top.jsp" />
 	<div align="center">
 		<c:set var="dto" value="${Cont }"/>
-	<h3>${dto.getFree_writer()}님 게시글 페이지</h3>
+	<h3 id="freeContH3">${dto.getFree_writer()}님 게시글 페이지</h3>
 		
-		<table style="text-align: left; border:1px solid #dddddd; padding:100;" width="700">
+		<table class="freeContTable">
 			<tr>
-				<th>글제목</th>
-				<td>${dto.getFree_title() }</td>
+				<th class="freeContTh">글제목</th>
+				<td class="freeContTd">${dto.getFree_title() }</td>
 			</tr>
 			
 			<tr>
-				<th>글쓴이</th>
-				<td>${dto.getFree_writer() }</td>
+				<th class="freeContTh">글쓴이</th>
+				<td class="freeContTd">${dto.getFree_writer() }</td>
 			</tr>
 			
 			<tr>
-				<th>글내용</th>
-				<td><textarea rows="10" readonly>${dto.getFree_cont() }</textarea></td>
+				<th class="freeContTh">글내용</th>
+				<td class="freeContTd"><textarea id="freeContText" rows="10" readonly>${dto.getFree_cont() }</textarea></td>
 			</tr>
 		
 			<tr>
-				<th>비밀번호</th>
-				<td><c:if test="${!empty dto.getFree_pwd() }">
+				<th class="freeContTh">비밀번호</th>
+				<td class="freeContTd"><c:if test="${!empty dto.getFree_pwd() }">
 					<c:forEach begin="1" end="${dto.getFree_pwd().length() }">
 					*
 					</c:forEach>
@@ -57,14 +42,14 @@ textarea {
 			
 			<tr>
 				<c:if test="${empty dto.getFree_update() }">
-				<th>작성일자</th>
-				<td>${dto.getFree_date() }</td>
-				<td>조회 : ${dto.getFree_hit() }</td>
+				<th class="freeContTh">작성일자</th>
+				<td class="freeContTd">${dto.getFree_date() } &emsp;
+				조회수 : ${dto.getFree_hit() }</td>
 				</c:if>
 				
 				<c:if test="${!empty dto.getFree_update() }">
-					<th>수정일자</th>
-					<td>${dto.getFree_update() }</td>
+					<th class="freeContTh">수정일자</th>
+					<td class="freeContTd">${dto.getFree_update() }</td>
 				</c:if>
 			</tr>
 			
@@ -75,19 +60,16 @@ textarea {
 						<h3>검색된 게시물이 없습니다</h3>
 				</tr>
 			</c:if>
-			
-			<tr>
-				<td colspan="3" align="center">
-				<input type="button" value="수정" onclick="location.href='free_update.do?no=${dto.getFree_no()}'">&nbsp;
-				<input type="button" value="삭제" onclick="if(confirm('게시글을 삭제하시겠습니까?')){
-					location.href='free_delete.do?no=${dto.getFree_no() }'
-				}else {return;}">&nbsp;
-				<input type="button" value="답글" onclick="location.href='free_reply.do?no=${dto.getFree_no()}'">&nbsp;
-				<input type="button" value="전체목록" onclick="location.href='free_list.do'">
-				</td>
-			</tr>
 		</table>
-	
+			
+			<div class="freeContBtnWrap">
+				<input type="button" class="freeContBtn" value="수정" onclick="location.href='free_update.do?no=${dto.getFree_no()}'">&nbsp;&nbsp;
+				<input type="button" class="freeContBtn" value="삭제" onclick="if(confirm('게시글을 삭제하시겠습니까?')){
+					location.href='free_delete.do?no=${dto.getFree_no() }'
+				}else {return;}">&nbsp;&nbsp;
+				<input type="button" class="freeContBtn" value="답글" onclick="location.href='free_reply.do?no=${dto.getFree_no()}'">&nbsp;&nbsp;
+				<input type="button" class="freeContBtn" value="전체목록" onclick="location.href='free_list.do'">
+			</div>
 	</div>
 	<jsp:include page="../inc/pet_bottom.jsp" />
 </body>
