@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>YamYam PET</title>
 <link rel="stylesheet" type="text/css" href="css/free.css">
 </head>
 <body>
