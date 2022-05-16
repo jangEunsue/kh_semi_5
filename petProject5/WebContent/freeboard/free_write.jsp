@@ -6,65 +6,52 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-textarea {
-	width: 100%;
-    box-sizing: border-box;
-    resize: none;
-    padding: 10px 16px;
-    border: none;
-    outline: none;
-    font-family: sans-selif; 
-}
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="css/free.css">
 </head>
 <body>
 <jsp:include page="../inc/pet_top.jsp" />
-<div align="center">
-		<hr width="40%" color="lightgray">
-			<h3>자유 게시판 글쓰기 페이지</h3>
-		<hr width="40%" color="lightgray">
+	
+	
+	<div align="center">
+		<h3 id="freeContH3">자유 게시판 글쓰기 페이지</h3>
 		<br>
 		
 		<form method="post" action="<%=request.getContextPath()%>/free_write_ok.do">
 		
 		<input type="hidden" name="userId" value="userId">
-		<table border="1" cellspacing="0" width="800">
+		
+		<table class="freeContTable">
 		<c:set var="pm" value="${memberList }"/>
 			
 			<tr>
-				<th>작성자</th>
-				<td>
-				<input name="writer" value="${pm.getM_name() }" readonly>
+				<th class="freeContTh">작성자</th>
+				<td class="freeContTd">
+				<input name="writer" value="${pm.getM_name() }" class="freeInput" readonly>
 				
 				</td>
 			
 			<tr>
-				<th>글제목</th>
-				<td><input name="title" size=98></td>
+				<th class="freeContTh">글제목</th>
+				<td class="freeContTd"><input name="title" class="freeInput" size=98></td>
 			</tr>
 		
 			<tr>
-				<th>글내용</th>
-				<td><textarea rows="10" cols="100" name="content"></textarea></td>
+				<th class="freeContTh">글내용</th>
+				<td class="freeContTd"><textarea id="freeContText" rows="10" name="content"></textarea></td>
 			</tr>
 		
 			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="pwd"></td>
+				<th class="freeContTh">비밀번호</th>
+				<td class="freeContTd"><input type="password" class="freeInput" name="pwd"></td>
 			</tr>
 			
-
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="글쓰기">&nbsp;&nbsp;&nbsp;
-					<input type="reset" value="다시작성">
-				</td>
-			</tr>
-		
 		</table>
+
+			<div class="freeContBtnWrap">
+					<input type="submit" class="freeContBtn" value="글쓰기">&nbsp;&nbsp;&nbsp;
+					<input type="reset" class="freeContBtn" value="다시작성">&nbsp;&nbsp;&nbsp;
+					<input type="button" class="freeContBtn" value="전체목록" onclick="location.href='free_list.do'">
+			</div>
 		
 		</form>
 	</div>
